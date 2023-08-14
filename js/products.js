@@ -1,14 +1,19 @@
 
-const fichas = document.getElementsByClassName("fichas")[0];
+const fichas = document.getElementsByClassName("contenedor")[0];
 
 function crearFichas(registro){
     for (const i of registro){
         fichas.innerHTML +=
             `
-            <div>
-                <img src= ${i.image}></img>
-                <p> ${i.name} </p>
-                <p> ${i.currency} ${i.cost} </p>
+            <div class="articulo">
+                <div class="imagenDeArticulo">
+                    <img src= ${i.image}></img>
+                </div>
+                <div class="descDeArticulo">
+                    <p class="titulo"> ${i.name} </p>
+                    <p class="dinero"> ${i.currency} ${i.cost} </p>
+                    <button class="botonDeAgregar">Agregar a Carrito</button>
+                </div>
             <div>
             `
     }
