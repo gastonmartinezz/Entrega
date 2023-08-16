@@ -41,8 +41,13 @@ a {
 
 button {
 	border-radius: 20px;
-	border: 1px solid blueviolet;
-	background-color: blueviolet;
+	background-image: -webkit-linear-gradient(top, blueviolet, red);
+	background-image: -moz-linear-gradient(top, blueviolet, red);
+	background-image: linear-gradient(to bottom,blueviolet red);
+	-webkit-box-shadow: 8px 6px 12px grey;
+  	-moz-box-shadow: 8px 6px 12px grey;
+  	box-shadow: 8px 6px 12px grey;;
+	border-style: hidden;
 	color: white;
 	font-size: 12px;
 	font-weight: bold;
@@ -50,6 +55,7 @@ button {
 	letter-spacing: 1px;
 	text-transform: uppercase;
 }
+
 
 button:active {
 	transform: scale(0.95);
