@@ -35,12 +35,14 @@ body {
 }
 
 .botonDeAgregar {
+    
     margin-bottom: 10px;
     border-radius: 5px;
     background-color: var(--color);
     border: 2px solid var(--color);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
+
 
 .imagenDeArticulo {
     border-top-left-radius: 4px;
@@ -48,8 +50,9 @@ body {
 }
 
 .titulo {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: 550;
+    font-weight: bold;
 }
 
 .descDeArticulo {
@@ -68,7 +71,43 @@ body {
 }
 
 .botonDeAgregar:hover {
-    background-color: rgb(222, 222, 222);
-    transition: .3s;
+    box-shadow: 1px 1px 5px lightgray;
+    transition: .1s;
     border: 2px solid rgb(222, 222, 222);
+    background-color: #F09100;
+    
+    color: aliceblue;
+    
 }
+
+/*descripcion y soldcount*/
+
+.descripcion {
+    font-size:  1.2rem;
+    font-weight: 400;
+    padding-right: 0.8rem;
+}
+
+.sold{
+
+    font-size:  1rem;
+    font-weight: 550;
+
+}
+
+#login {
+
+    padding-top: 0.45rem;
+    
+   
+}
+
+#login a{
+    color: #F09100;
+}
+    
+#login a:hover {
+    color: white;
+}
+
+
