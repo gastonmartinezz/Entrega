@@ -5,6 +5,7 @@ function crearFichas(registro){
     for (const i of registro){
         fichas.innerHTML +=
             `
+            
             <div class="articulo">
                 <div class="imagenDeArticulo">
                     <img src= ${i.image}></img>
