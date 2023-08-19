@@ -2,7 +2,9 @@
 .card-body,
 .container,
 .site-header {
-  font-family: 'Verdana', serif !important;
+  
+  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .jumbotron .display-4 {
