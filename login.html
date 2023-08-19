@@ -10,17 +10,16 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/login.css" rel="stylesheet">
 </head>
-
 <body>
   <main>
     <div class="container" id="container">
       <div class="form-container ingresar-container">
-        <form action="#">
+        <form id="login" action="#">
           <h1>Bienvenido</h1>
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
+          <input id="email" type="email" required placeholder="Email" />
+          <input id="pswrd" type="password" required placeholder="Password" />
           <a href="#">¿Olvidó su contraseña?</a>
-          <button>ingresar</button>
+          <button id="ingbtn">ingresar</button>
         </form>
       </div>
       <div class="superponer-container">
@@ -39,5 +38,5 @@
     </div>
   </footer>
 </body>
-<script src="js/login.js"></script>
+<script src="/js/login.js"></script>
 </html>
