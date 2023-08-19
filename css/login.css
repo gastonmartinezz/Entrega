@@ -2,11 +2,6 @@
     padding: 0;
     margin: 0;
 	box-sizing: border-box;
-<<<<<<< Updated upstream
-=======
-	font-family: 'Nunito Sans', sans-serif;
-    font-family: 'Quicksand', sans-serif;
->>>>>>> Stashed changes
 }
 
 body {
@@ -156,5 +151,3 @@ input {
 .superponer-derecha {
 	right: 0;
 }
-
-	  
