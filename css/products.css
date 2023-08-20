@@ -98,26 +98,20 @@ body {
 }
 
 .sold{
-
     font-size:  1rem;
     font-weight: 550;
-    
-
 }
 
 #login {
-
     padding-top: 0.45rem;
-    
-   
 }
 
 #login a{
-    color: #ff9b05;
+    color: white;
 }
     
 #login a:hover {
-    color: white;
+    color: #ff9b05;
     cursor: pointer;
 }
 
