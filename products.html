@@ -36,11 +36,31 @@
           <li class="nav-item" id='login'>
             <a href="login.html"> Cerrar Sesión </a>
           </li>
+          <li>
+
+          </li>
         </ul>
-      </div>
-    </div>
+      
   </nav>
   <main class="pb-5 container">
+    <div id="tituloCategoria"> </div>
+
+    <div>
+      <p> Ordenar segun <select name="Ordenar" id="filtros"placehold>
+        
+        <option value = "mayor-relevancia"> mayor relevancia</option>
+        <option value = "mayor-precio"> precio mas alto</option>
+        <option value = "menor-precio"> precio más bajo</option>
+
+        </select></p>
+
+        <p>Filtrar por rango de precio</p>
+        <input type="text" id="precioMin" placeholder="Valor Mín">
+        <input type="text" id="precioMax" placeholder="Valor Max">
+        
+        <button id="precioFiltros" >Filtrar</button>
+      
+    </div>
     <!-- Le doy clase "fichas" -->
     <div class="container, fichas" >
       <div class="contenedor">
@@ -53,6 +73,7 @@
       </div>
 
     </div>
+    
     
   </main>
   <footer class="text-muted">

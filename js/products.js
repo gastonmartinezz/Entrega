@@ -1,8 +1,22 @@
 
+let categoriaID = localStorage.getItem("catID");
+
+const categoriaURL = `https://japceibal.github.io/emercado-api/cats_products/${categoriaID}.json`;
+
 const fichas = document.getElementsByClassName("contenedor")[0];
+const titulo = document.getElementById("tituloCategoria");
 
 function crearFichas(registro){
-    for (const i of registro){
+
+    titulo.innerHTML +=
+        `
+            <div>
+                <h2> Venta de ${registro.catName}</h2>
+            </div>
+        `;
+    
+
+    for (const i of registro.products){
         fichas.innerHTML +=
             `
             
@@ -22,10 +36,8 @@ function crearFichas(registro){
     }
 };
 
-
-const autosURL = "https://japceibal.github.io/emercado-api/cats_products/101.json";
-
-fetch(autosURL)
+fetch(categoriaURL)
 .then(response => response.json())
-.then(data => crearFichas(data.products));
+.then(data => crearFichas(data));
 
+console.log(categoriaURL)
