@@ -43,39 +43,47 @@
       
   </nav>
   <main class="pb-5 container">
-    <div id="tituloCategoria"> </div>
 
-    <div>
-      <p> Ordenar segun <select name="Ordenar" id="filtros"placehold>
+    <!-- Le doy clase "fichas" -->
+    <div class="container, fichas" >
+      
+      <!-- El aside -->
+      <aside>
+
+        <div id="tituloCategoria"> </div>
+
+        <p> Ordenar segun <select name="Ordenar" id="filtros"placehold>
         
-        <option value = "mayor-relevancia"> mayor relevancia</option>
-        <option value = "mayor-precio"> precio mas alto</option>
-        <option value = "menor-precio"> precio más bajo</option>
-
-        </select></p>
-
+          <option value = "mayor-relevancia"> mayor relevancia</option>
+          <option value = "mayor-precio"> precio mas alto</option>
+          <option value = "menor-precio"> precio más bajo</option>
+  
+          </select>
+        </p>
+  
         <p>Filtrar por rango de precio</p>
         <input type="text" id="precioMin" placeholder="Valor Mín">
         <input type="text" id="precioMax" placeholder="Valor Max">
-        
+          
         <button id="precioFiltros" >Filtrar</button>
-      
-    </div>
-    <!-- Le doy clase "fichas" -->
-    <div class="container, fichas" >
+
+      </aside>
+      <!-- Fin Aside -->
+      <!-- Las fichas -->
       <div class="contenedor">
 
-      </div>
-      <!-- <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div> -->
-      <!-- Esta es la alerta -->
-      </div>
-
+        </div>
+        <!-- <div class="alert alert-danger text-center" role="alert">
+          <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+        </div> -->
+        <!-- Esta es la alerta -->
+        </div>
+      <!-- Fin fichas -->
     </div>
-    
-    
   </main>
+  <!-- Fin main -->
+
+  <!-- Footer -->
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
@@ -84,6 +92,9 @@
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
   </footer>
+  <!-- Fin Footer -->
+
+  <!-- Que es esto -->
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
