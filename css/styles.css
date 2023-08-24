@@ -192,3 +192,50 @@ a.custom-card:hover {
 }
 
 
+/*BARRA DE BUSQUEDA*/
+
+.buscador input{
+
+  outline: none;
+  box-sizing: border-box;
+  height: 40px;
+  width: 0;
+  padding: 0 20px;
+  color: black;
+  border-radius: 50px;
+  font-size: 20px;
+  border: 1px solid;
+  transition: all .7s ease;
+}
+
+::placeholder{
+  color: grey;
+}
+
+.lupa {
+
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 80px;
+  height: 80px;
+  background-color: white;
+  line-height: 80px;
+  border-radius: 50%;
+  text-align: center;
+  cursor: pointer;
+  transition: .5s;
+
+}
+
+.lupa i{
+  font: 25px;
+  color: black;
+  line-height: 80px;
+  transition: all .7 ease;
+}
+
+.buscador:hover input{
+  width: 300px;
+}
+
