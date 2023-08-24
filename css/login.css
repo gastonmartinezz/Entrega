@@ -7,11 +7,10 @@ body, html {
 	display: flex;
 	margin: 0;
 	width: 100vw;
-	height: 90vh;
+	height: 100vh;
 }
 
 .form-container {
-	border: 2px red solid;
 	background-color: #F7F9FB;
 	width: 60%;
 	margin: 0;
@@ -26,25 +25,30 @@ body, html {
 	margin: 0;
 }
 
-footer {
-	border: 2px ;
-	display: flex;
-	justify-content: center;
-	margin: 0;
-	height: calc(100vh - 90vh);
-	width: 60%;
-}
-
-.container-footer {
-	display: flex;
-}
-
 img {
 	width: 50%;
 	border-radius: 100%;
 }
 
-a {
+.linkFooter{
 	text-decoration: none;
 	color: #EE9700;
+}
+
+.container-footer {
+	margin-top: 81vh;
+	color: #607488;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 15px;
+}
+
+.container-footer > p {
+	margin: 0;
+}
+
+form {
+	border: 2px blue solid;
 }
