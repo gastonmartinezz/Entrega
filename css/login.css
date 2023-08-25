@@ -1,6 +1,10 @@
 body, html {
 	margin: 0;
     padding: 0;
+	font-family: 'Lato', sans-serif;
+	font-family: 'Nunito Sans', sans-serif;
+	font-family: 'Quicksand', sans-serif;
+	font-family: 'Roboto', sans-serif;
 }
 
 .container {
@@ -11,7 +15,7 @@ body, html {
 }
 
 .form-container {
-	background-color: #F7F9FB;
+	background-color: white;
 	width: 60%;
 	margin: 0;
 }
@@ -25,24 +29,22 @@ body, html {
 	margin: 0;
 }
 
-img {
+#japImagen {
 	width: 50%;
 	border-radius: 100%;
 }
 
-.linkFooter{
-	text-decoration: none;
-	color: #EE9700;
-}
-
-.container-footer {
-	margin-top: 81vh;
+.footer {
 	color: #607488;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	gap: 15px;
+	font-size: 13px;
+	position: fixed;
+	bottom: 0;
+	width: 60%;
 }
 
 .container-footer > p {
@@ -50,5 +52,79 @@ img {
 }
 
 form {
-	border: 2px blue solid;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 15px;
+	margin-top: 150px;
+}
+
+input {
+	width: 50%;
+	height: 20px;
+	border-radius: 3px;
+	border: 1px #E0E1E8 solid;
+}
+
+form img {
+	width: 50%
+}
+
+#jap {
+	color: #607488;
+	text-decoration: underline;
+}
+
+.divider {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	width: 40%;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.linea {
+	height: 2px;
+	background-color: #F7F9FB;
+	width: 50%;
+}
+
+#olvido {
+	font-size: 14px;
+	text-decoration: none;
+}
+
+button {
+	height: 30px;
+	background-color: #0072E9;
+	border: 1px #0072E9 solid;
+	color: white;
+	border-radius: 5px;
+	width: 50%;
+}
+
+
+input:hover {
+	border: 1px #0072E9 solid;
+}
+
+input:focus {
+	border: 1px #0072E9 solid;
+	outline: none;
+}
+
+.cuenta {
+	font-size: 15px;
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+	margin-top: 100px;
+}
+
+#ingresar:visited {
+	color: blue;
 }
