@@ -45,7 +45,7 @@ body {
         margin-top: 1.2rem;
         border-radius: .7rem;
     }
-    aside > *{
+    aside p{
         margin-bottom: 1.5rem;
     }
     aside select{
@@ -66,10 +66,33 @@ body {
         text-align: center;
     }
 
+    /* Cuando la Pantalla se achica se mueve el aside para arriba */
     @media screen and (max-width:992px){
-        aside{/* 
-            display:none; */
+
+        .fichas{
+            flex-flow: column nowrap;
         }
+
+        aside{   
+            height: fit-content;
+            width:calc(100% - 2.4rem);
+            box-sizing:border-box;
+            margin: 1.2rem;
+        }
+
+        aside *{
+            text-align: center;
+        }
+
+        aside p{
+            margin-bottom: .3rem;
+        }
+
+        aside input, aside select{
+            width: 70%;
+            margin-top: .1rem;
+        }
+
     }
 /* FIN ASIDE */
 
