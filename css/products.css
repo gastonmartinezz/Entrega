@@ -79,11 +79,18 @@ body {
     /* Agrandar inputs y boton al hovear. Sacar outline feo */
     aside button:hover, aside input:focus, aside input:hover, aside select:hover{ 
         outline: 0;
-        transform:scale(1.1,1.1);
+        transform:scale(1.3);
         border-color: transparent;
         border-style: solid;
+        transition: all .2s ease-in-out;
     }        
-    
+    aside input:focus, aside input:hover, aside select:hover{
+        transform:scale(1.05);
+    }
+
+    aside button:not(:hover), aside input:not(:hover), aside select:not(:hover){
+        transition: all .2s ease-in-out;
+    }
     .centrado{
         text-align: center;
     }
