@@ -11,7 +11,7 @@ function crearFichas(registro){
     titulo.innerHTML +=
         `
             <div>
-                <h2> Venta de ${registro.catName}</h2>
+                <h2 class="tituloCategoria"> Venta de ${registro.catName}</h2>
             </div>
         `;
     

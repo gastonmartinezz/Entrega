@@ -37,11 +37,19 @@ body {
 }
 
 /* ASIDE */
-    aside{   
-        height: fit-content;
+    aside{
+        flex-flow: column nowrap;
         width:25%;
+    }
+
+    .tituloCategoria{
+        font-weight: 800;
+    }
+
+    aside > div{
+        height: fit-content;
         background-color: var(--naranja1);
-        padding: min(1.4rem, 3%);  
+        padding: min(1.4rem, 5%);  
         margin-top: 1.2rem;
         border-radius: .7rem;
     }
@@ -63,6 +71,10 @@ body {
         margin-top: .5rem;
         border-radius: .3rem;
         border-color: transparent;
+    }
+
+    .barraBusqueda *{
+        margin-bottom: 0;
     }
 
     aside input:placeholder-shown{
