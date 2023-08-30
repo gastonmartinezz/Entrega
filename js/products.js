@@ -41,3 +41,84 @@ fetch(categoriaURL)
 .then(data => crearFichas(data));
 
 console.log(categoriaURL)
+
+/*fetch(categoriaURL)
+.then(response => response.json())
+.then(data => {(data);
+
+  const precioFiltrosBtn = document.getElementById("precioFiltros");
+
+  precioFiltrosBtn.addEventListener("click", function () {
+    const precioMinInput = parseFloat(document.getElementById("precioMin").value);
+    const precioMaxInput = parseFloat(document.getElementById("precioMax").value);
+
+   
+    const productosFiltradosOrdenados = data.products.filter(producto => {
+      const precioProducto = parseFloat(producto.cost);
+      return precioProducto >= precioMinInput && precioProducto <= precioMaxInput;
+    }).sort((a, b) => {
+      const precioA = parseFloat(a.cost);
+      const precioB = parseFloat(b.cost);
+      return precioA - precioB;
+    });
+
+    
+    fichas.innerHTML = "";
+
+   
+    crearFichas({ catName: data.catName, products: productosFiltradosOrdenados });
+  });
+});*/
+
+/*fetch(categoriaURL)
+.then(response => response.json())
+.then(data => {(fichas)
+ 
+
+  const precioFiltrosBtn = document.getElementById("precioFiltros");
+
+  precioFiltrosBtn.addEventListener("click", function () {
+    const precioMinInput = parseFloat(document.getElementById("precioMin").value);
+    const precioMaxInput = parseFloat(document.getElementById("precioMax").value);
+
+   
+    const productosFiltrados = data.products.filter(producto => {
+      const precioProducto = parseFloat(producto.cost);
+      return precioProducto >= precioMinInput && precioProducto <= precioMaxInput;
+    });
+
+   
+    fichas.innerHTML = "";
+
+    
+    crearFichas({ catName: data.catName, products: productosFiltrados });
+  });
+});*/
+
+document.addEventListener("DOMContentLoaded", function () {
+  const precioFiltrosBtn = document.getElementById("precioFiltros");
+
+  precioFiltrosBtn.addEventListener("click", function () {
+    const precioMinInput = parseFloat(document.getElementById("precioMin").value);
+    const precioMaxInput = parseFloat(document.getElementById("precioMax").value);
+
+    fetch(categoriaURL)
+      .then(response => response.json())
+      .then(data => {
+        
+        const productosFiltradosOrdenados = data.products.filter(producto => {
+          const precioProducto = parseFloat(producto.cost);
+          return precioProducto >= precioMinInput && precioProducto <= precioMaxInput;
+        }).sort((a, b) => parseFloat(a.cost) - parseFloat(b.cost));
+
+        
+        fichas.innerHTML = "";
+
+        
+        crearFichas({ catName: data.catName, products: productosFiltradosOrdenados });
+      });
+  });
+});
+
+  
+ 
