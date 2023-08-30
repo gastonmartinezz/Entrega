@@ -1,5 +1,6 @@
 :root {
     --color: rgb(235, 235, 235);
+    --naranja1: #F09100;
 }
 
 * {
@@ -18,7 +19,7 @@
 }
     
 #login a:hover {
-    color: #ff9b05;
+    color: var(--naranja1);
     cursor: pointer;
 }
 /* Fin NAV */
@@ -40,28 +41,49 @@ body {
     aside{   
         height: fit-content;
         width:25%;
-        background-color: #F09100;
+        background-color: var(--naranja1);
         padding: min(1.4rem, 3%);  
         margin-top: 1.2rem;
         border-radius: .7rem;
     }
+
     aside p{
         margin-bottom: 1.5rem;
+        font-size: 1.2em;
+        font-weight: 600;
     }
+
     aside select{
-        border-radius: .3rem;
-        height:1.9rem;
+        font-size: .95em;
+        border-radius: 1rem;
+        height:2.2rem;
     }
+
     aside input, aside select{
         width: 100%;
         margin-top: .5rem;
         border-radius: .3rem;
         border-color: transparent;
     }
+
+    aside input:placeholder-shown{
+        background-color:white;
+        opacity: .85;
+    }
+
     aside button{
         border-color: transparent;
         border-radius: .3rem;
     }
+
+    /* Agrandar inputs y boton al hovear. Sacar outline feo */
+    aside button:hover, aside input:focus, aside input:hover, aside select:hover{ 
+        outline: 0;
+        transform:scale(1.1,1.1);
+        border-color: transparent;
+        border-style: solid;
+    }        
+    
     .centrado{
         text-align: center;
     }
@@ -85,14 +107,17 @@ body {
         }
 
         aside p{
-            margin-bottom: .3rem;
+            margin-top: .5em;
+            margin-bottom: .3em;
         }
 
         aside input, aside select{
             width: 70%;
-            margin-top: .1rem;
+            margin-top: .2rem;
         }
-
+        aside button{
+            margin-top: 1em;
+        }
     }
 /* FIN ASIDE */
 
