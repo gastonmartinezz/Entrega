@@ -42,6 +42,8 @@ fetch(categoriaURL)
 
 console.log(categoriaURL)
 
+
+
 document.addEventListener('keyup', e => {
     if (e.target.matches('#buscador')) {
         const searchText = e.target.value.toLowerCase();
