@@ -8,7 +8,7 @@ const titulo = document.getElementById("tituloCategoria");
 
 function crearFichas(registro){
 
-    titulo.innerHTML +=
+    titulo.innerHTML =
         `
             <div>
                 <h2> Venta de ${registro.catName}</h2>
