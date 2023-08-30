@@ -41,3 +41,35 @@ fetch(categoriaURL)
 .then(data => crearFichas(data));
 
 console.log(categoriaURL)
+
+
+
+document.addEventListener('keyup', e => {
+    if (e.target.matches('#buscador')) {
+        const searchText = e.target.value.toLowerCase();
+        const elementosTitulo = document.querySelectorAll('.titulo');
+
+        elementosTitulo.forEach(producto => {
+            const titulo = producto.textContent.toLowerCase();
+            const elementoPadre = producto.closest('.articulo');
+
+            if (titulo.includes(searchText)) {
+                // Muestra el elemento si coincide con la búsqueda
+                elementoPadre.style.display = 'block';
+            } else {
+                // Oculta el elemento si no coincide con la búsqueda
+                elementoPadre.style.display = 'none';
+            }
+        });
+    }
+});
+
+
+
+
+
+
+
+
+
+
