@@ -42,79 +42,29 @@ fetch(categoriaURL)
 
 console.log(categoriaURL)
 
-/*fetch(categoriaURL)
-.then(response => response.json())
-.then(data => {(data);
-
-  const precioFiltrosBtn = document.getElementById("precioFiltros");
-
-  precioFiltrosBtn.addEventListener("click", function () {
-    const precioMinInput = parseFloat(document.getElementById("precioMin").value);
-    const precioMaxInput = parseFloat(document.getElementById("precioMax").value);
-
-   
-    const productosFiltradosOrdenados = data.products.filter(producto => {
-      const precioProducto = parseFloat(producto.cost);
-      return precioProducto >= precioMinInput && precioProducto <= precioMaxInput;
-    }).sort((a, b) => {
-      const precioA = parseFloat(a.cost);
-      const precioB = parseFloat(b.cost);
-      return precioA - precioB;
-    });
-
-    
-    fichas.innerHTML = "";
-
-   
-    crearFichas({ catName: data.catName, products: productosFiltradosOrdenados });
-  });
-});*/
-
-/*fetch(categoriaURL)
-.then(response => response.json())
-.then(data => {(fichas)
- 
-
-  const precioFiltrosBtn = document.getElementById("precioFiltros");
-
-  precioFiltrosBtn.addEventListener("click", function () {
-    const precioMinInput = parseFloat(document.getElementById("precioMin").value);
-    const precioMaxInput = parseFloat(document.getElementById("precioMax").value);
-
-   
-    const productosFiltrados = data.products.filter(producto => {
-      const precioProducto = parseFloat(producto.cost);
-      return precioProducto >= precioMinInput && precioProducto <= precioMaxInput;
-    });
-
-   
-    fichas.innerHTML = "";
-
-    
-    crearFichas({ catName: data.catName, products: productosFiltrados });
-  });
-});*/
-
 document.addEventListener("DOMContentLoaded", function () {
   const precioFiltrosBtn = document.getElementById("precioFiltros");
+    //Aquí estamos seleccionando el botón de filtrado con el id "precioFiltros" y añadiendo un evento de clic. El bloque de código dentro de esta función se ejecutará cuando el usuario haga clic en ese botón.
 
   precioFiltrosBtn.addEventListener("click", function () {
     const precioMinInput = parseFloat(document.getElementById("precioMin").value);
     const precioMaxInput = parseFloat(document.getElementById("precioMax").value);
+      // Filtra y ordena los productos según el rango de precios
 
     fetch(categoriaURL)
       .then(response => response.json())
       .then(data => {
+          //utilizamos fetch para cargar los datos del JSON
         
         const productosFiltradosOrdenados = data.products.filter(producto => {
           const precioProducto = parseFloat(producto.cost);
           return precioProducto >= precioMinInput && precioProducto <= precioMaxInput;
         }).sort((a, b) => parseFloat(a.cost) - parseFloat(b.cost));
 
-        
+        // Limpiamos el contenedor de productos existente
         fichas.innerHTML = "";
 
-        
+        // Creamos las fichas de los productos filtrados y ordenados
         crearFichas({ catName: data.catName, products: productosFiltradosOrdenados });
       });
   });
