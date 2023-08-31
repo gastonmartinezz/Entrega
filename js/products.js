@@ -65,8 +65,38 @@ document.addEventListener('keyup', e => {
 });
 
 
+/* STICKY (testing) */
 
+// When the user scrolls the page, execute myFunction
+window.onscroll = function() {stickying()};
+//window.addEventListener("scroll", function(){
 
+/* //Añadir sticky dependiendo del tamaño
+window.resize(function() {
+ */
+    // Get the navbar
+    let elemento = document.getElementsByClassName("posibleSticky")[0];
+
+    // Get the offset position of the navbar
+    var sticky = elemento.offsetTop;
+/* 
+    if (window.innerWidth <= 992){
+        document.getElementsByTagName("aside")[0].classList.remove("posibleSticky");
+        document.getElementsByClassName("barraBusqueda")[0].classList.add("posibleSticky");
+    } else {
+        document.getElementsByTagName("aside")[0].classList.add("posibleSticky");
+        document.getElementsByClassName("barraBusqueda")[0].classList.remove("posibleSticky");
+    } */
+    // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+/*     
+}); */
+function stickying() {
+    if (window.scrollY >= sticky) {
+      elemento.classList.add("sticky")
+    } else {
+      elemento.classList.remove("sticky");
+    }
+  }
 
 
 

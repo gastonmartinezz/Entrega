@@ -8,6 +8,20 @@
     font-family: 'Quicksand', sans-serif;
 }
 
+/* STICKY (testing) */
+
+.sticky {/* 
+    background-color: black; */
+    position: sticky;
+    align-self: flex-start;
+    top: 0;
+  }
+
+.sticky + .content {
+    padding-top: 60px;
+}
+/* FIN STICKY */
+
 /* NAV */
 
 #login {
@@ -40,6 +54,7 @@ body {
     aside{
         flex-flow: column nowrap;
         width:25%;
+        height: auto;
     }
 
     .tituloCategoria{
@@ -49,27 +64,27 @@ body {
     aside > div{
         height: fit-content;
         background-color: var(--naranja1);
-        padding: min(1.4rem, 5%);  
-        margin-top: 1.2rem;
-        border-radius: .7rem;
+        padding: min(1.4em, 5%);  
+        margin-top: 1.2em;
+        border-radius: .7em;
     }
 
     aside p{
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.5em;
         font-size: 1.2em;
         font-weight: 600;
     }
 
     aside select{
         font-size: .95em;
-        border-radius: 1rem;
-        height:2.2rem;
+        border-radius: 1em;
+        height:2.2em;
     }
 
     aside input, aside select{
         width: 100%;
-        margin-top: .5rem;
-        border-radius: .3rem;
+        margin-top: .5em;
+        border-radius: .3em;
         border-color: transparent;
     }
 
@@ -84,7 +99,7 @@ body {
 
     aside button{
         border-color: transparent;
-        border-radius: .3rem;
+        border-radius: .3em;
     }
 
     /* Agrandar inputs y boton al hovear. Sacar outline feo */
@@ -118,41 +133,52 @@ body {
             width:calc(100% - 2.4rem);
             box-sizing:border-box;
             margin: 1.2rem;
+            margin-top: 0;
+            font-size: .7rem;
         }
 
         aside *{
             text-align: center;
         }
 
+        aside>div{
+            padding: .4em;
+        }
+
         aside p{
-            margin-top: .5em;
-            margin-bottom: .3em;
+            margin-top:0;
+            margin-bottom: .2em;
         }
 
         aside input, aside select{
             width: 70%;
-            margin-top: .2rem;
+            margin-top: .2em;
         }
         aside button{
-            margin-top: 1em;
+            margin-top: .5em;
         }
+
+        
     }
 /* FIN ASIDE */
-
-
-
 
 
 /* MAIN */
 .contenedor {
     display: inline-grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    /* width:75%; */
+    width:75%;
     height: 80%;
     gap: 1.2em  ;
     padding: 1.2em;
 }
+/* Cuando la pantalla es chica, width auto */
+@media screen and (max-width:992px){
 
+    .contenedor{
+        width: auto;
+    }
+}
 /* FICHAS */
 
     .articulo {
