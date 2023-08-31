@@ -1,6 +1,7 @@
 :root {
     --color: rgb(235, 235, 235);
     --naranja1: #F09100;
+    --gris:#2e343a;
 }
 
 * {
@@ -62,11 +63,12 @@ body {
     }
 
     aside > div{
-        height: fit-content;
-        background-color: var(--naranja1);
+        height: fit-content;/* 
+        background-color: var(--naranja1); */
         padding: min(1.4em, 5%);  
         margin-top: 1.2em;
         border-radius: .7em;
+        color: var(--gris);
     }
 
     aside p{
@@ -86,20 +88,25 @@ body {
         margin-top: .5em;
         border-radius: .3em;
         border-color: transparent;
+        background-color: var(--gris);
+        color: white;
     }
 
     .barraBusqueda *{
-        margin-bottom: 0;
+        margin: 0;
     }
 
     aside input:placeholder-shown{
-        background-color:white;
-        opacity: .85;
+        background-color:var(--gris);
+        opacity: .90;
+        color: white;
     }
 
     aside button{
         border-color: transparent;
         border-radius: .3em;
+        color: white;
+        background-color: var(--gris)
     }
 
     /* Agrandar inputs y boton al hovear. Sacar outline feo */
