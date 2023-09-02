@@ -16,7 +16,7 @@ const titulo = document.getElementById("tituloCategoria");
 
 function crearFichas(registro){
 
-    titulo.innerHTML +=
+    titulo.innerHTML =
         `
             <div>
                 <h2 class="tituloCategoria"> Venta de ${registro.catName}</h2>
@@ -49,6 +49,32 @@ fetch(categoriaURL)
 .then(data => crearFichas(data));
 
 console.log(categoriaURL)
+
+document.addEventListener("DOMContentLoaded", function () {
+  const precioFiltrosBtn = document.getElementById("precioFiltros");
+
+  precioFiltrosBtn.addEventListener("click", function () {
+    const precioMinInput = parseFloat(document.getElementById("precioMin").value);
+    const precioMaxInput = parseFloat(document.getElementById("precioMax").value);
+
+    fetch(categoriaURL)
+      .then(response => response.json())
+      .then(data => {
+        // Filtramos y ordenamos los productos según el rango de precios
+        const productosFiltradosOrdenados = data.products.filter(producto => {
+          const precioProducto = parseFloat(producto.cost);
+          return precioProducto >= precioMinInput && precioProducto <= precioMaxInput;
+        }).sort((a, b) => parseFloat(a.cost) - parseFloat(b.cost));
+
+        // Limpiamos el contenedor de productos existente
+        fichas.innerHTML ="";
+
+        // Creamos las fichas de los productos filtrados y ordenados
+        crearFichas({ catName: data.catName, products: productosFiltradosOrdenados });
+      });
+  });
+});
+
 
 document.addEventListener('keyup', e => {
     if (e.target.matches('#buscador')) {
