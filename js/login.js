@@ -11,7 +11,6 @@ document.getElementById('formulario').addEventListener('submit', (e) =>{
 
     console.log(localStorage);
 
-
     alert('Registrado con éxito!');
 
     window.location.href = 'index.html';
