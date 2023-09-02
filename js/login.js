@@ -1,24 +1,20 @@
-
-
 document.getElementById('formulario').addEventListener('submit', (e) =>{
- 
     e.preventDefault()
-    const pass = document.getElementById('pass').value
-    const mail = document.getElementById('mail').value
+    const pass = document.getElementById('pass').value;
+    const mail = document.getElementById('mail').value;
 
-    console.log(pass)
-    console.log(mail)
+    console.log(pass);
+    console.log(mail);
 
     localStorage.setItem('Email', mail);
     localStorage.setItem('pass', pass);
 
-    console.log(localStorage)
+    console.log(localStorage);
 
 
-    alert('Registrado con éxito!')
+    alert('Registrado con éxito!');
 
-    window.location.href = 'index.html'
-
+    window.location.href = 'index.html';
 })
 
 
