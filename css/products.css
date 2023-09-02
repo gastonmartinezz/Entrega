@@ -1,5 +1,7 @@
 :root {
-    --color: rgb(235, 235, 235)
+    --color: rgb(235, 235, 235);
+    --naranja1: #F09100;
+    --gris:#2e343a;
 }
 
 * {
@@ -7,98 +9,21 @@
     font-family: 'Quicksand', sans-serif;
 }
 
-body {
-    background-color: var(--color);
+/* STICKY (testing) */
+
+.sticky {/* 
+    background-color: black; */
+    position: sticky;
+    align-self: flex-start;
+    top: 0;
+  }
+
+.sticky + .content {
+    padding-top: 60px;
 }
+/* FIN STICKY */
 
-.contenedor {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    width: 60%;
-    height: 80%;
-    gap: 1.2em  ;
-    margin-top: 5%;
-    margin-left: 25%;
-}
-
-.articulo {
-    border-radius: 8px;
-    background-color: rgb(249, 250, 251);
-    box-shadow: 1px 1px 10px lightgray;
-    border-top-left-radius: .7em;
-    border-top-right-radius: .7em;
-    
-}
-
-.articulo img {
-    width: 100%;
-    border-top-left-radius: .7em;
-    border-top-right-radius: .7em;
-
-}
-
-.dinero {
-    font-weight: bold;
-    font-size: 1.6rem;
-}
-
-.botonDeAgregar {
-    margin-right: 10%;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    background-color: var(--color);
-    border: 2px solid var(--color);
-    font-size: 1.1rem;
-}
-
-
-.imagenDeArticulo {
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-}
-
-.titulo {
-    padding-right: .4em;
-    font-size: 1.5rem;
-    font-weight: 550;
-    font-weight: bold;
-}
-
-.descDeArticulo {
-    
-    padding-left: 15px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-}
-
-.articulo:hover {
-    cursor: pointer;
-    box-shadow: 8px 8px 2px rgba(211, 211, 211, 0.562), 0px 0px 20px 5px rgba(0, 0, 0, 0.13);
-    transition: 0.2s;
-}
-
-.botonDeAgregar:hover {
-    box-shadow: 1px 1px 5px lightgray;
-    transition: .1s;
-    border: 2px solid rgb(222, 222, 222);
-    background-color: #F09100;
-    color: aliceblue;
-}
-
-/*descripcion y soldcount*/
-
-.descripcion {
-    font-size:  1.05rem;
-    font-weight: 400;
-    padding-right: 0.8rem;
-}
-
-.sold{
-    font-size:  1rem;
-    font-weight: 550;
-}
+/* NAV */
 
 #login {
     padding-top: 0.45rem;
@@ -109,13 +34,238 @@ body {
 }
     
 #login a:hover {
-    color: #ff9b05;
+    color: var(--naranja1);
     cursor: pointer;
 }
+/* Fin NAV */
+
+/* BODY */
+body {
+    background-color: var(--color);
+}
+
+.fichas{
+    margin: 3% 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+/* ASIDE */
+    aside{
+        flex-flow: column nowrap;
+        width:25%;
+        height: auto;
+    }
+
+    .tituloCategoria{
+        font-weight: 800;
+    }
+
+    aside > div{
+        height: fit-content;/* 
+        background-color: var(--naranja1); */
+        padding: min(1.4em, 5%);  
+        margin-top: 1.2em;
+        border-radius: .7em;
+        color: var(--gris);
+    }
+
+    aside p{
+        margin-bottom: 1.5em;
+        font-size: 1.2em;
+        font-weight: 600;
+    }
+
+    aside select{
+        font-size: .95em;
+        border-radius: 1em;
+        height:2.2em;
+    }
+
+    aside input, aside select{
+        width: 100%;
+        margin-top: .5em;
+        border-radius: .3em;
+        border-color: transparent;
+        background-color: var(--gris);
+        color: white;
+    }
+
+    .barraBusqueda *{
+        margin: 0;
+    }
+
+    aside input:placeholder-shown{
+        background-color:var(--gris);
+        opacity: .90;
+        color: white;
+    }
+
+    aside button{
+        border-color: transparent;
+        border-radius: .3em;
+        color: white;
+        background-color: var(--gris)
+    }
+
+    /* Agrandar inputs y boton al hovear. Sacar outline feo */
+    aside button:hover, aside input:focus, aside input:hover, aside select:hover{ 
+        outline: 0;
+        transform:scale(1.3);
+        border-color: transparent;
+        border-style: solid;
+        transition: all .2s ease-in-out;
+    }        
+    aside input:focus, aside input:hover, aside select:hover{
+        transform:scale(1.05);
+    }
+
+    aside button:not(:hover), aside input:not(:hover), aside select:not(:hover){
+        transition: all .2s ease-in-out;
+    }
+    .centrado{
+        text-align: center;
+    }
+
+    /* Cuando la Pantalla se achica se mueve el aside para arriba */
+    @media screen and (max-width:992px){
+
+        .fichas{
+            flex-flow: column nowrap;
+        }
+
+        aside{   
+            height: fit-content;
+            width:calc(100% - 2.4rem);
+            box-sizing:border-box;
+            margin: 1.2rem;
+            margin-top: 0;
+            font-size: .7rem;
+        }
+
+        aside *{
+            text-align: center;
+        }
+
+        aside>div{
+            padding: .4em;
+        }
+
+        aside p{
+            margin-top:0;
+            margin-bottom: .2em;
+        }
+
+        aside input, aside select{
+            width: 70%;
+            margin-top: .2em;
+        }
+        aside button{
+            margin-top: .5em;
+        }
+
+        
+    }
+/* FIN ASIDE */
 
 
-/*pongan comentarios de las partes porfas <3*/
+/* MAIN */
+.contenedor {
+    display: inline-grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    width:75%;
+    height: 80%;
+    gap: 1.2em  ;
+    padding: 1.2em;
+}
+/* Cuando la pantalla es chica, width auto */
+@media screen and (max-width:992px){
 
+    .contenedor{
+        width: auto;
+    }
+}
+/* FICHAS */
 
+    .articulo {
+        border-radius: 8px;
+        background-color: rgb(249, 250, 251);
+        box-shadow: 1px 1px 10px lightgray;
+        border-top-left-radius: .7em;
+        border-top-right-radius: .7em;
+        
+    }
+
+    .articulo img {
+        width: 100%;
+        border-top-left-radius: .7em;
+        border-top-right-radius: .7em;
+
+    }
+
+    /* No necesario?
+    .imagenDeArticulo {
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+    } */
+
+    .dinero {
+        font-weight: bold;
+        font-size: 1.6rem;
+    }
+
+    .botonDeAgregar {
+        margin-right: 10%;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        background-color: var(--color);
+        border: 2px solid var(--color);
+        font-size: 1.1rem;
+    }
+
+    .titulo {
+        padding-right: .4em;
+        font-size: 1.5rem;
+        font-weight: 550;
+        font-weight: bold;
+    }
+
+    .descDeArticulo {
+        
+        padding-left: 15px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+
+    .articulo:hover {
+        cursor: pointer;
+        box-shadow: 8px 8px 2px rgba(211, 211, 211, 0.562), 0px 0px 20px 5px rgba(0, 0, 0, 0.13);
+        transition: 0.2s;
+    }
+
+    .botonDeAgregar:hover {
+        box-shadow: 1px 1px 5px lightgray;
+        transition: .1s;
+        border: 2px solid rgb(222, 222, 222);
+        background-color: #F09100;
+        color: aliceblue;
+    }
+
+    .descripcion {
+        font-size:  1.05rem;
+        font-weight: 400;
+        padding-right: 0.8rem;
+    }
+
+    .sold{
+        font-size:  1rem;
+        font-weight: 550;
+    }
+
+    /* FIN FICHAS */
+
+ /* FIN MAIN */
 /* clase para ocultar los elementos cuando no son los que busca en la barrita :)*/
-
