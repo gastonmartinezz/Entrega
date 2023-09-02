@@ -1,3 +1,12 @@
+const isLoggedIn = true;
+     
+if (isLoggedIn) {
+       const username = localStorage.getItem("Email");
+    const usernameElement = document.getElementById("logged-in-username");
+ 
+    usernameElement.textContent = username;
+} 
+
 let categoriaID = localStorage.getItem("catID");
 
 const categoriaURL = `https://japceibal.github.io/emercado-api/cats_products/${categoriaID}.json`;
