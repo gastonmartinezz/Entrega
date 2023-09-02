@@ -61,8 +61,8 @@ form {
 }
 
 input {
-	width: 50%;
-	height: 20px;
+	width: 40%;
+	height: 30px;
 	border-radius: 3px;
 	border: 1px #E0E1E8 solid;
 }
@@ -97,12 +97,12 @@ form img {
 }
 
 button {
-	height: 30px;
+	height: 40px;
 	background-color: #0072E9;
 	border: 1px #0072E9 solid;
 	color: white;
 	border-radius: 5px;
-	width: 50%;
+	width: 40%;
 }
 
 
@@ -122,9 +122,13 @@ input:focus {
 	align-items: center;
 	justify-content: center;
 	gap: 5px;
-	margin-top: 100px;
+	margin-top: 25px;
 }
 
-#ingresar:visited {
+a:visited {
 	color: blue;
+}
+
+button:hover {
+	cursor: pointer;
 }

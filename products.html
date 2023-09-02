@@ -33,9 +33,23 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item" id='login'>
-            <a href="login.html"> Cerrar Sesión </a>
-          </li>
+          <a class="" href= "dropdown-menu dropdown-menu-dark">
+            <li class="nav-item">
+							<div id="navbarNavDarkDropdown">
+								<ul class="navbar-nav">
+									<li class="nav-item dropdown">
+										<a class="nav-link dropdown-toggle" id="nav-userInfo" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><span id="logged-in-username"></span></a>
+                      
+										<ul class="dropdown-menu dropdown-menu-dark">
+									    <li><a class="dropdown-item" href="cart.html">Mi Carrito</a></li>
+											<li><a class="dropdown-item" href="my-profile.html">Mi Perfil</a></li>
+											<li><a class="dropdown-item" id="closeSession" href="login.html">Cerrar sesión</a></li>
+                    
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</li>
           <li>
 
           </li>
@@ -46,13 +60,11 @@
     <div id="tituloCategoria"> </div>
 
     <div>
-      <p> Ordenar segun <select name="Ordenar" id="filtros"placehold>
-        
-        <option value = "mayor-relevancia"> mayor relevancia</option>
-        <option value = "mayor-precio"> precio mas alto</option>
-        <option value = "menor-precio"> precio más bajo</option>
-
-        </select></p>
+      <p> Ordenar segun <select id="ordenSelect" onchange="filtrarProductos(this)">
+      <option value="asc">Ascendente por Precio</option>
+      <option value="des">Descendente por Precio</option>
+      <option value="rel">Relevancia</option>
+      </select></p>
 
         <p>Filtrar por rango de precio</p>
         <input type="text" id="precioMin" placeholder="Valor Mín">
@@ -69,7 +81,7 @@
     </div>
     <!-- Le doy clase "fichas" -->
     <div class="container, fichas" >
-      <div class="contenedor">
+      <div class="contenedor" id="contenedor1">
 
       </div>
       <!-- <div class="alert alert-danger text-center" role="alert">
