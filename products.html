@@ -46,13 +46,11 @@
     <div id="tituloCategoria"> </div>
 
     <div>
-      <p> Ordenar segun <select name="Ordenar" id="filtros"placehold>
-        
-        <option value = "mayor-relevancia"> mayor relevancia</option>
-        <option value = "mayor-precio"> precio mas alto</option>
-        <option value = "menor-precio"> precio más bajo</option>
-
-        </select></p>
+      <p> Ordenar segun <select id="ordenSelect" onchange="filtrarProductos(this)">
+      <option value="asc">Ascendente por Precio</option>
+      <option value="des">Descendente por Precio</option>
+      <option value="rel">Relevancia</option>
+      </select></p>
 
         <p>Filtrar por rango de precio</p>
         <input type="text" id="precioMin" placeholder="Valor Mín">
@@ -63,7 +61,7 @@
     </div>
     <!-- Le doy clase "fichas" -->
     <div class="container, fichas" >
-      <div class="contenedor">
+      <div class="contenedor" id="contenedor1">
 
       </div>
       <!-- <div class="alert alert-danger text-center" role="alert">

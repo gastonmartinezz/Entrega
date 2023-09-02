@@ -8,7 +8,7 @@ const titulo = document.getElementById("tituloCategoria");
 
 function crearFichas(registro){
 
-    titulo.innerHTML =
+    titulo.innerHTML +=
         `
             <div>
                 <h2> Venta de ${registro.catName}</h2>
@@ -38,37 +38,48 @@ function crearFichas(registro){
 
 fetch(categoriaURL)
 .then(response => response.json())
-.then(data => crearFichas(data));
+.then(data => crearFichas(data));   
 
 console.log(categoriaURL)
 
-document.addEventListener("DOMContentLoaded", function () {
-  const precioFiltrosBtn = document.getElementById("precioFiltros");
-    //Aquí estamos seleccionando el botón de filtrado con el id "precioFiltros" y añadiendo un evento de clic. El bloque de código dentro de esta función se ejecutará cuando el usuario haga clic en ese botón.
 
-  precioFiltrosBtn.addEventListener("click", function () {
-    const precioMinInput = parseFloat(document.getElementById("precioMin").value);
-    const precioMaxInput = parseFloat(document.getElementById("precioMax").value);
-      // Filtra y ordena los productos según el rango de precios
 
-    fetch(categoriaURL)
-      .then(response => response.json())
-      .then(data => {
-          //utilizamos fetch para cargar los datos del JSON
-        
-        const productosFiltradosOrdenados = data.products.filter(producto => {
-          const precioProducto = parseFloat(producto.cost);
-          return precioProducto >= precioMinInput && precioProducto <= precioMaxInput;
-        }).sort((a, b) => parseFloat(a.cost) - parseFloat(b.cost));
 
-        // Limpiamos el contenedor de productos existente
-        fichas.innerHTML = "";
+async function fetchProductos() {
+  const response = await fetch(categoriaURL);
+  const data = await response.json();
+  return data;
+}
 
-        // Creamos las fichas de los productos filtrados y ordenados
-        crearFichas({ catName: data.catName, products: productosFiltradosOrdenados });
-      });
-  });
-});
+async function mostrarProductos(orden) {
+  const listaProductos = document.getElementById('contenedor1');
+  listaProductos.innerHTML = '';
 
+  const productos = await fetchProductos();
+
+  if (orden === 'asc') {
+    productos.products.sort((a, b) => a.cost - b.cost);
+  } else if (orden === 'des') {
+    productos.products.sort((a, b) => b.cost - a.cost);
+  } else if (orden === 'rel'){
+    productos.products.sort((a, b) => b.soldCount - a.soldCount )
+  }
+  crearFichas(productos); 
+}
   
- 
+  
+  /*productos.products.forEach(producto => {
+    const li = document.createElement('li');
+    li.textContent = `${producto.name} - precio: ${producto.cost}`;
+    listaProductos.appendChild(li);
+  });
+}
+*/
+
+
+function filtrarProductos() {
+  const ordenSelect = document.getElementById('ordenSelect');
+  console.log(ordenSelect.value)
+  mostrarProductos(ordenSelect.value);
+   
+}
