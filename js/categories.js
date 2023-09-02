@@ -1,3 +1,28 @@
+document.addEventListener("DOMContentLoaded", ()=> {
+	if (!userEmail) {
+		window.location.replace("./index.html");
+    }
+    document.getElementById("nav-userInfo").innerHTML = localStorage.getItem("userEmail");
+
+	document.getElementById("closeSession").addEventListener("click", () => {
+		localStorage.removeItem("userEmail");
+		window.location.replace("login.html");
+
+        document.getElementById("email").value
+        
+    })});
+    const isLoggedIn = true;
+     
+if (isLoggedIn) {
+       const username = localStorage.getItem("Email");
+    const usernameElement = document.getElementById("logged-in-username");
+ 
+    usernameElement.textContent = username;
+} 
+
+
+
+
 const ORDER_ASC_BY_NAME = "AZ";
 const ORDER_DESC_BY_NAME = "ZA";
 const ORDER_BY_PROD_COUNT = "Cant.";

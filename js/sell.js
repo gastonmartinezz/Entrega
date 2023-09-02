@@ -1,3 +1,13 @@
+
+    const isLoggedIn = true;
+     
+    if (isLoggedIn) {
+           const username = localStorage.getItem("Email");
+        const usernameElement = document.getElementById("logged-in-username");
+     
+        usernameElement.textContent = username;
+    } 
+
 let productCost = 0;
 let productCount = 0;
 let comissionPercentage = 0.13;
