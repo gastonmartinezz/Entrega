@@ -12,7 +12,11 @@ const mailvalidation = localStorage.getItem('Email');
 console.log(mailvalidation);
 console.log(passvalidation);
 
-document.getElementById('logout').addEventListener('click', function() {
+
+
+
+
+document.getElementById('closeSession').addEventListener('click', function() {
     localStorage.clear();
     alert('Haz cerrado sesion correctamente');
     window.location.href = 'login.html';
