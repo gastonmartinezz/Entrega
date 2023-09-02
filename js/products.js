@@ -17,7 +17,7 @@ function crearFichas(registro){
     
 
     for (const i of registro.products){
-        fichas.innerHTML +=
+        fichas.innerHTML =
             `
             
             <div class="articulo">
