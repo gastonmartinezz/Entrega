@@ -30,9 +30,9 @@ function crearFichas(registro){
             <img src= ${i.image}></img>
         </div>
         <div class="descDeArticulo">
-          <p class="titulo"> ${i.name} </p>
+          <p class="titulo buscador"> ${i.name} </p>
           <p class="dinero"> ${i.currency} ${i.cost} </p>
-          <p class ="descripcion"> ${i.description} </p>
+          <p class ="descripcion buscador"> ${i.description} </p>
           <p class ="sold"> Unidades vendidas: ${i.soldCount}</p>
           <button class="botonDeAgregar">Agregar a Carrito</button>
         </div>
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener('keyup', e => {
   if (e.target.matches('#buscador')) {
     const searchText = e.target.value.toLowerCase();
-    const elementosTitulo = document.querySelectorAll('.titulo');
+    const elementosTitulo = document.querySelectorAll('.buscador');
 
     elementosTitulo.forEach(producto => {
       const titulo = producto.textContent.toLowerCase();
