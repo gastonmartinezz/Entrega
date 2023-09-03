@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-document.addEventListener('keyup', e => {
+/* document.addEventListener('keyup', e => {
   if (e.target.matches('#buscador')) {
     const searchText = e.target.value.toLowerCase();
     const elementosTitulo = document.querySelectorAll('.buscador');
@@ -81,6 +81,7 @@ document.addEventListener('keyup', e => {
     elementosTitulo.forEach(producto => {
       const titulo = producto.textContent.toLowerCase();
       const elementoPadre = producto.closest('.articulo');
+      console.log(titulo);
 
       if (titulo.includes(searchText)) {
         // Muestra el elemento si coincide con la búsqueda
@@ -90,6 +91,29 @@ document.addEventListener('keyup', e => {
         elementoPadre.style.display = 'none';
       }
     });
+  }
+}); */
+
+document.addEventListener('keyup', e => {
+  if (e.target.matches('#buscador')) {
+
+    let searchText = e.target.value.toLowerCase();
+    let fichasTexto = document.querySelectorAll("div.descDeArticulo");
+
+    fichasTexto.forEach(producto => {
+      let fichaTitulo = producto.getElementsByClassName("titulo")[0].innerHTML.toLowerCase();
+      let fichaDesc = producto.getElementsByClassName("descripcion")[0].innerHTML.toLowerCase();
+      
+      const fichaEntera = producto.closest('.articulo');
+
+      if (fichaTitulo.includes(searchText) || fichaDesc.includes(searchText)) {
+        // Muestra el elemento si coincide con la búsqueda
+        fichaEntera.style.display = 'block';
+      } else {
+        // Oculta el elemento si no coincide con la búsqueda
+        fichaEntera.style.display = 'none';
+      }
+    })
   }
 });
 
@@ -151,6 +175,6 @@ async function mostrarProductos(orden) {
 
 function filtrarProductos() {
   const ordenSelect = document.getElementById('ordenSelect');
-  console.log(ordenSelect.value)
+  //console.log(ordenSelect.value)
   mostrarProductos(ordenSelect.value);
 }
