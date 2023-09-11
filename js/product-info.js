@@ -129,3 +129,49 @@ function Comments(z){
 
 
   
+
+
+//Funcion escribirComentario: Recibe un registro y escribe un comentario con los datos del registro en el div de id "divComentarios".
+function escribirComentario( objeto ){
+
+    let divComentarios = document.getElementById("divComentarios");
+
+    divComentarios.innerHTML += `
+    <div class="comentario">
+        <p class="comNombre">${objeto.user} <div class="comEstrellitas"></div></p>
+        <p class="comDescripcion">${objeto.description}</p>
+        <p class="comFecha">${objeto.dateTime}</p>
+    </div>
+`
+}
+
+//Al cargar la pagina
+document.addEventListener("DOMContentLoaded", function(){
+
+    //Debe haber un elemento en el local storage con el id del producto de la pagina.
+    const PRODUCT_ID = localStorage.getItem("productoId");
+    
+    //URL con el Json de los comentarios del producto.
+    const URL_COMMENTS = `https://https://japceibal.github.io/emercado-api/products_comments/${PRODUCT_ID}.json`;
+    
+    //Fetch al json de comentarios
+    fetch(URL_COMMENTS + PRODUCT_ID + ".json")
+    .then(response => response.json)
+    .then(comments => {
+        
+        //Vaciar el div con comentarios
+        let divComentarios = document.getElementById("divComentarios");
+        divComentarios.innerHTML = "";
+
+        //Para cada elemento (comentario) de la lista de comentarios
+        for (let i of comments){
+
+            //Escribir un comentario con sus datos
+            escribirComentario(i);
+        }
+
+    })
+    .catch(error => alert(error))
+
+
+})
