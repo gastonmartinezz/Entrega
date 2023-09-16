@@ -7,52 +7,49 @@ if (isLoggedIn) {
   usernameElement.textContent = username;
 }
 
+//Defino una lista vacia que contendrá comentarios(objetos)
+let listaComentarios = [];
 
+//idProducto
+let productoid = localStorage.getItem('idproduct');
 
 document.addEventListener("DOMContentLoaded", function () {
     
-  let productoid = localStorage.getItem('idproduct');
-  const CommentURL = `https://japceibal.github.io/emercado-api/products/${productoid}.json`;
+  const ProductoURL = `https://japceibal.github.io/emercado-api/products/${productoid}.json`;
   
-  fetch(CommentURL)
+  //fetch a 
+  fetch(ProductoURL)
   .then(response => response.json())
   .then(data => Infoproducto(data))
+  .catch(error => console.log(error))
   
   const Comentarios = `https://japceibal.github.io/emercado-api/products_comments/${productoid}.json`
   fetch(Comentarios)
   .then(response => response.json())
-  .then(datos => Comments(datos))
+  .then(datos => agregarComentariosJSON(datos))
+  .catch(error => console.log(error))
 
-  let divComentarios = document.getElementById("comentarios");
+});
 
-  function Comments(datos){
+let divComentarios = document.getElementById("comentarios");
 
-    //Vaciar el div con comentarios
-     
-          divComentarios.innerHTML = "";
+//Agrega los comentarios del JSON a la listaComentarios y muestra la lista
+function agregarComentariosJSON(lista){
+  for (i of lista){
 
-  //Para cada elemento (comentario) de la lista de comentarios
-  for (let i of datos){
-
-    //Escribir un comentario con sus datos
-    escribirComentario(i);
+    const username = i.user;
+    const rating = i.score;
+    const text = i.description;
+  
+    const newComment = {
+      "user": username,
+      "rating": rating,
+      "text": text
+    }
+    listaComentarios.push(newComment);
   }
-
+  imprimirComentariosLocal();
 }
-
-function escribirComentario( objeto ){
-
-  divComentarios.innerHTML += `
-  <div class="comentario">
-    <p class="comNombre">${objeto.user} <div class="comEstrellitas"></div></p>
-    <p class="comDescripcion">${objeto.description}</p>
-    <p class="comFecha">${objeto.dateTime}</p>
-  </div>
-`
-}
-
-})
-
 
 const fichas = document.getElementById('main')
 
@@ -75,8 +72,6 @@ function Infoproducto(x){
   </svg>  Agregar al carrito</button>
   <input type="number" name="" id="cantidad" placeholder="1" value="1" min="1">
   </div>
-          
-
 
   <p class = "Vendidos">Cantidad de unidades vendidas: ${x.soldCount}</p>
           
@@ -116,54 +111,32 @@ function Infoproducto(x){
     Mainimagen.src = Img0.src
   })
 
-  
+}
 
-} 
-
-
-//Funcion escribirComentario: Recibe un registro y escribe un comentario con los datos del registro en el div de id "divComentarios".
-
-
-//Al cargar la pagina
-/* document.addEventListener("DOMContentLoaded", function(){
-
- /*  //Debe haber un elemento en el local storage con el id del producto de la pagina.
-  const PRODUCT_ID = localStorage.getItem("idproduct");
-    
-  //URL con el Json de los comentarios del producto.
-  const URL_COMMENTS = `https://https://japceibal.github.io/emercado-api/products_comments/${PRODUCT_ID}.json`;
-    
-  //Fetch al json de comentarios
-  fetch(URL_COMMENTS)
-  .then(response => response.json)
-  .then(comments => { */
-        
-
-
-
-
-
-const commentsContainer = document.getElementById('comments-container');
+const commentsContainer = document.getElementById('divComentarios');
 const commentForm = document.getElementById('comment-form');
 
 // Función para mostrar los comentarios
 function displayComments(comments) {
+  //Vaciar DIV
   commentsContainer.innerHTML = '';
 
+  //Para cada elemento en la lista, anidar un div commentDiv con los datos.
   comments.forEach(comment => {
+
     const commentDiv = document.createElement('div');
     commentDiv.classList.add('comment');
 
+    //Escribir datos
     commentDiv.innerHTML = `
-      <span class="user">${comment.username}</span> - Puntuación: ${'&#9733;'.repeat(comment.rating)}<br>
+      <span class="user">${comment.user}</span> - Puntuación: ${'&#9733;'.repeat(comment.rating)}<br>
       ${comment.text}
     `;
 
+    //Anidar en commentsContainer
     commentsContainer.appendChild(commentDiv);
   });
 }
-
-displayComments(Comentarios);
 
 commentForm.addEventListener('submit', event => {
   event.preventDefault();
@@ -172,14 +145,41 @@ commentForm.addEventListener('submit', event => {
   const rating = parseInt(document.getElementById('rating').value);
   const text = document.getElementById('comment').value;
 
+  //Crear Comentario (objeto)
   const newComment = {
-    username,
-    rating,
-    text
+    "user": username,
+    "rating": rating,
+    "text": text
   };
 
-  Comentarios.push(newComment);
+  //Guardar comentario en lista local
+  listaComentarios.push(newComment);
 
-  displayComments(Comentarios);
+  //Guardar comentario en Local del producto
+  saveCommentsLocal(newComment);
+
+  //Mostrar comentario de la lista entera
+  displayComments(listaComentarios);
 
 });
+
+//Funcion que guarda un comentario (objeto) en el LocalStorage. 
+function saveCommentsLocal(comentario){
+
+  let local = localStorage.getItem(`${productoid}Comentarios`);
+  let lista = []
+  if (local != null) lista= JSON.parse(local);
+  lista.push(comentario);
+  localStorage.setItem(`${productoid}Comentarios`, JSON.stringify(lista))
+}
+
+//Añade los comentarios del local a la listaComentarios, luego la imprime.
+
+function imprimirComentariosLocal() {
+  let local = JSON.parse(localStorage.getItem(`${productoid}Comentarios`));
+  if (local != null)
+    for ( i of local){
+      listaComentarios.push(i);
+  }
+  displayComments(listaComentarios);
+}
