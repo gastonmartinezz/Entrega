@@ -29,6 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
   .then(datos => agregarComentariosJSON(datos))
   .catch(error => console.log(error))
 
+
+
+
 });
 
 let divComentarios = document.getElementById("comentarios");
@@ -76,8 +79,9 @@ function Infoproducto(x){
   <p class = "Vendidos">Cantidad de unidades vendidas: ${x.soldCount}</p>
           
   </div>
-          
+    
   <div class="mainImg">
+  <a href="products.html">Volver al listado<a>
   <img id="Mainimagen" src=${x.images[0]}>
   </div>
           
@@ -183,3 +187,5 @@ function imprimirComentariosLocal() {
   }
   displayComments(listaComentarios);
 }
+
+
