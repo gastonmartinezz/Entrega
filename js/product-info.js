@@ -99,7 +99,27 @@ function Infoproducto(x){
 
 } 
 
+
+const contenedorComments = document.getElementById('comentarios') 
+
+
+
+
+
+
 function Comments(z){
+  
+  contenedorComments.innerHTML =
+
+  `
+  
+    <div class="comentariosMain">
+    
+    
+    </div>
+  
+  
+  `
 
 
 }
