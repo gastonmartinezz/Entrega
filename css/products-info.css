@@ -16,6 +16,7 @@
     float: right;
     padding: 3em;
     background-color: rgba(223, 222, 222, 0.11);
+    margin-top: 2em;
  
 }
 
@@ -32,7 +33,7 @@
 .descripcion{
     padding-top: 10px;
     font-size: 1.1em;
-    font-weight: 550;
+    font-weight: 700;
 }
 
 .costo{
@@ -97,15 +98,16 @@
     display: flex;
     flex-direction: column;
     width: 60%;
-    margin-top: 8em;
-    border-radius: 8px;
-    box-shadow: 0px 3px 3px #0000003d;
-    border: solid lightgrey 1px;
+    margin-top: 3em;
+   
 
 }
 
 .mainImg img{
     width: 100%;
+    border-radius: 8px;
+    box-shadow: 0px 3px 3px #0000003d;
+    border: solid lightgrey 1px;
 }
 
 .carrusel{
@@ -123,5 +125,104 @@
     border-radius: 5px;
     box-shadow:3px 3px 3px #0000003d;
     border: solid lightgrey 1px;
+    cursor: pointer;
+}
+
+/* seccion de comentarios */
+
+
+.mainComments{
+    
+}
+
+.mainComments h2{
+
+    margin-top: .5em; 
+    margin: .8em 0; 
+    font-family: 'Poppins', sans-serif;
+
+}
+
+
+#divComentarios{
+
+    font-size: 1em;
+    background-color: rgba(219, 219, 219, 0.11);
+    font-weight: 700;
+}
+
+#divComentarios span{
+    font-family: 'Poppins', sans-serif;
+    
+    
+}
+
+
+.comment{
+    border: solid 0.5px lightgrey;
+    border-bottom: n;
+    padding: 20px;
+    margin-top: -1px;
+}
+
+.imputName {
+ 
+   font-weight: bolder;
+   padding-bottom: 10px;
+   font-size: 1.2em;
+   padding-right: 2px;
+
+}
+
+.botonEnviar{
+
+    padding: .5em;
+    margin-top: 1em;
+    border-radius: 8px;
+    box-shadow: 0px 3px 3px #0000003d;
+    border: solid lightgrey 1px;
+    color:white;
+    background-color: #F09100;
+    font-weight: bold;
+}
+
+.botonEnviar:hover{
+
+    background-color: #212529;
+    transition: 0.2s;
+}
+
+h2{
+    margin-bottom: .8em;
+    margin-top: .8em;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+#comment-form{
+
+    margin-top: .8em;
+    width: 35%;
+    background-color: rgba(223, 222, 222, 0.11);
+    padding: .5em 1em;
+
+}
+
+#username, #rating, #comment{
+
+    border:solid 0.5px lightgrey; 
+    
+}
+
+#comment {
+    width:100%;
+}
+
+
+a{
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    padding-bottom: .4em;
     cursor: pointer;
 }
