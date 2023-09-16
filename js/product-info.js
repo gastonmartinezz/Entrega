@@ -29,9 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
   .then(datos => agregarComentariosJSON(datos))
   .catch(error => console.log(error))
 
-
-
-
 });
 
 let divComentarios = document.getElementById("comentarios");
@@ -43,11 +40,13 @@ function agregarComentariosJSON(lista){
     const username = i.user;
     const rating = i.score;
     const text = i.description;
+    const date = new Date(i.dateTime);
   
     const newComment = {
       "user": username,
       "rating": rating,
-      "text": text
+      "text": text,
+      "date": date
     }
     listaComentarios.push(newComment);
   }
@@ -132,8 +131,10 @@ function displayComments(comments) {
     commentDiv.classList.add('comment');
 
     //Escribir datos
+    let fecha = new Date(comment.date);
+    let date = fecha.toLocaleString();
     commentDiv.innerHTML = `
-      <span class="user">${comment.user}</span> - Puntuación: ${'&#9733;'.repeat(comment.rating)}<br>
+      <span class="user">${comment.user}</span> - Puntuación: ${'&#9733;'.repeat(comment.rating)} - ${date}<br>
       ${comment.text}
     `;
 
@@ -148,12 +149,14 @@ commentForm.addEventListener('submit', event => {
   const username = document.getElementById('username').value;
   const rating = parseInt(document.getElementById('rating').value);
   const text = document.getElementById('comment').value;
+  const date = new Date();
 
   //Crear Comentario (objeto)
   const newComment = {
     "user": username,
     "rating": rating,
-    "text": text
+    "text": text,
+    "date": date
   };
 
   //Guardar comentario en lista local
