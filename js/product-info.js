@@ -100,37 +100,6 @@ function Infoproducto(x){
 } 
 
 
-const contenedorComments = document.getElementById('comentarios') 
-
-
-
-
-
-
-function Comments(z){
-  
-  contenedorComments.innerHTML =
-
-  `
-  
-    <div class="comentariosMain">
-    
-    
-    </div>
-  
-  
-  `
-
-
-}
-
-
-
-
-
-  
-
-
 //Funcion escribirComentario: Recibe un registro y escribe un comentario con los datos del registro en el div de id "divComentarios".
 function escribirComentario( objeto ){
 
