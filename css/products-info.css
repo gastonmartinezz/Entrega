@@ -33,7 +33,7 @@
 .descripcion{
     padding-top: 10px;
     font-size: 1.1em;
-    font-weight: 550;
+    font-weight: 700;
 }
 
 .costo{
@@ -147,7 +147,8 @@
 #divComentarios{
 
     font-size: 1em;
-
+    background-color: rgba(219, 219, 219, 0.11);
+    font-weight: 700;
 }
 
 #divComentarios span{
