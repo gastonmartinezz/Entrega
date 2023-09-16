@@ -25,7 +25,7 @@ function crearFichas(registro){
   for (const i of registro.products){
     fichas.innerHTML +=
       `
-      <div class="articulo">
+      <div class="articulo" onclick ="viajar(${i.id})">
         <div class="imagenDeArticulo">
             <img src= ${i.image}></img>
         </div>
@@ -73,26 +73,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-/* document.addEventListener('keyup', e => {
-  if (e.target.matches('#buscador')) {
-    const searchText = e.target.value.toLowerCase();
-    const elementosTitulo = document.querySelectorAll('.buscador');
-
-    elementosTitulo.forEach(producto => {
-      const titulo = producto.textContent.toLowerCase();
-      const elementoPadre = producto.closest('.articulo');
-      console.log(titulo);
-
-      if (titulo.includes(searchText)) {
-        // Muestra el elemento si coincide con la búsqueda
-        elementoPadre.style.display = 'block';
-      } else {
-        // Oculta el elemento si no coincide con la búsqueda
-        elementoPadre.style.display = 'none';
-      }
-    });
-  }
-}); */
 
 document.addEventListener('keyup', e => {
   if (e.target.matches('#buscador')) {
@@ -121,27 +101,12 @@ document.addEventListener('keyup', e => {
 
 // When the user scrolls the page, execute myFunction
 window.onscroll = function() {stickying()};
-//window.addEventListener("scroll", function(){
 
-/* //Añadir sticky dependiendo del tamaño
-window.resize(function() {
- */
-    // Get the navbar
     let elemento = document.getElementsByClassName("posibleSticky")[0];
 
     // Get the offset position of the navbar
     var sticky = elemento.offsetTop;
-/* 
-    if (window.innerWidth <= 992){
-        document.getElementsByTagName("aside")[0].classList.remove("posibleSticky");
-        document.getElementsByClassName("barraBusqueda")[0].classList.add("posibleSticky");
-    } else {
-        document.getElementsByTagName("aside")[0].classList.add("posibleSticky");
-        document.getElementsByClassName("barraBusqueda")[0].classList.remove("posibleSticky");
-    } */
-    // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-/*     
-}); */
+
 function stickying() {
   if (window.scrollY >= sticky) {
     elemento.classList.add("sticky")
@@ -178,3 +143,17 @@ function filtrarProductos() {
   //console.log(ordenSelect.value)
   mostrarProductos(ordenSelect.value);
 }
+
+
+function viajar(x){
+
+    localStorage.setItem('idproduct', x);
+    window.location.href = 'product-info.html';
+    
+}
+
+
+
+
+
+ 
