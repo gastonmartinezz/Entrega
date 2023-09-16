@@ -142,6 +142,44 @@ function Infoproducto(x){
 
 
 
-    
 
+const commentsContainer = document.getElementById('comments-container');
+const commentForm = document.getElementById('comment-form');
 
+// Función para mostrar los comentarios
+function displayComments(comments) {
+  commentsContainer.innerHTML = '';
+
+  comments.forEach(comment => {
+    const commentDiv = document.createElement('div');
+    commentDiv.classList.add('comment');
+
+    commentDiv.innerHTML = `
+      <span class="user">${comment.username}</span> - Puntuación: ${'&#9733;'.repeat(comment.rating)}<br>
+      ${comment.text}
+    `;
+
+    commentsContainer.appendChild(commentDiv);
+  });
+}
+
+displayComments(Comentarios);
+
+commentForm.addEventListener('submit', event => {
+  event.preventDefault();
+
+  const username = document.getElementById('username').value;
+  const rating = parseInt(document.getElementById('rating').value);
+  const text = document.getElementById('comment').value;
+
+  const newComment = {
+    username,
+    rating,
+    text
+  };
+
+  Comentarios.push(newComment);
+
+  displayComments(Comentarios);
+
+});
