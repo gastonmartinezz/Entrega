@@ -37,6 +37,7 @@ let divComentarios = document.getElementById("comentarios");
 function agregarComentariosJSON(lista){
   for (i of lista){
 
+    //Crea un objeto comentario con datos del json
     const username = i.user;
     const rating = i.score;
     const text = i.description;
@@ -48,8 +49,10 @@ function agregarComentariosJSON(lista){
       "text": text,
       "date": date
     }
+    //añade los comentarios a una lista
     listaComentarios.push(newComment);
   }
+  //imprime los comentarios de la lsita Y del LocalStorage
   imprimirComentariosLocal();
 }
 
@@ -143,6 +146,7 @@ function displayComments(comments) {
   });
 }
 
+//Cuando se envia el formulario de creacion de comentario
 commentForm.addEventListener('submit', event => {
   event.preventDefault();
 
@@ -162,10 +166,10 @@ commentForm.addEventListener('submit', event => {
   //Guardar comentario en lista local
   listaComentarios.push(newComment);
 
-  //Guardar comentario en Local del producto
+  //Guardar comentario en LocalStorage del producto
   saveCommentsLocal(newComment);
 
-  //Mostrar comentario de la lista entera
+  //Mostrar comentarios de la lista entera
   displayComments(listaComentarios);
 
 });
