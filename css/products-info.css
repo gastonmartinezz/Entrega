@@ -200,6 +200,17 @@ html{
     transition: 0.2s;
 }
 
+#comment-form{
+
+    margin-top: .8em;
+    width: 50%;
+    background-color: rgba(223, 222, 222, 0.11);
+    padding: .5em 1em;
+    display: inline-block;
+    min-width: 100px;
+
+}
+
 @media (max-width: 768px){
     .contenidoTexto{
         width: 100%;
@@ -209,6 +220,9 @@ html{
     .mainImg{
         width: 100%;
     
+    }
+    .carrusel{
+        width: 100%;
     }
 
     .carrusel img {
@@ -231,16 +245,6 @@ h2{
 
 }
 
-#comment-form{
-
-    margin-top: .8em;
-    width: 50%;
-    background-color: rgba(223, 222, 222, 0.11);
-    padding: .5em 1em;
-    display: inline-block;
-    min-width: 100px;
-
-}
 
 #username, #rating, #comment{
     border:solid 0.5px lightgrey; 
