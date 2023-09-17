@@ -4,19 +4,25 @@
 * {
     font-family: 'Nunito Sans', sans-serif;
     font-family: 'Quicksand', sans-serif;
+    box-sizing: border-box;
 }
 
 /* TRABAJO CON EL TEXTO */
+
+html{
+    font-size: 16px;
+}
 
 .contenidoTexto{
 
     display: flex;
     flex-direction: column;
-    width: 38%;
     float: right;
-    padding: 3em;
+    width: 45%;
+    padding: 2em;
     background-color: rgba(223, 222, 222, 0.11);
     margin-top: 2em;
+    box-sizing: border-box;
  
 }
 
@@ -25,21 +31,21 @@
 
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
-    font-size: 3em;
+    font-size: 2.5em;
     
 }
 
 
 .descripcion{
     padding-top: 10px;
-    font-size: 1.1em;
+    font-size: 1em;
     font-weight: 700;
 }
 
 .costo{
 
     font-family: 'Poppins', sans-serif;
-    font-size: 2.2em;
+    font-size: 2em;
     font-weight: 500;
     text-shadow: 0 0 0px rgb(255, 249, 249), 0 0 2px rgb(177, 175, 175), 0 0 30px rgb(248, 247, 255), 0 0 50px rgb(238, 234, 237)
     
@@ -49,39 +55,28 @@
 
 .botoncarrito{
     width: 50%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    font-size: 20pxpx;
+    padding: 10px;
+    font-size: 1em;
     border-radius: 8px;
     border:none;
     color: white;
     font-weight: 700;
     background-color: #F09100;
-    border-radius: 5px;
     box-shadow:3px 3px 3px #0000003d
 }
 
 /* boton de cantidad de objetos */
 
 #cantidad{
-    text-align: center;
-    width: 20%;
-    height: 10%;
-    padding-top: 6px;
-    padding-bottom: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    font-size: 20px;
+    width: 10%;
+   padding: 10px;
+    font-size: 1em;
     border-radius: 8px;
     margin-bottom: 5%;
     border:none;
     color: white;
     font-weight: 700;
-
     background-color: #212529;;
-    border-radius: 5px;
     box-shadow:3px 3px 3px #0000003d
 
 }
@@ -95,9 +90,7 @@
 /* trabajo con imagenes */
 .mainImg{
 
-    display: flex;
-    flex-direction: column;
-    width: 60%;
+    width: 50%;
     margin-top: 3em;
    
 
@@ -111,17 +104,19 @@
 }
 
 .carrusel{
-    
-    display: flex;
     width: 50%;
     padding-top: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;       
     
 }
 
 .carrusel img{
     
     margin: 7px;
-    width: 180px;
+    width: 100%;
+    max-width: 80px;
     border-radius: 5px;
     box-shadow:3px 3px 3px #0000003d;
     border: solid lightgrey 1px;
@@ -130,10 +125,6 @@
 
 /* seccion de comentarios */
 
-
-.mainComments{
-    
-}
 
 .mainComments h2{
 
@@ -160,7 +151,7 @@
 
 .comment{
     border: solid 0.5px lightgrey;
-    border-bottom: n;
+    border-bottom: none;
     padding: 20px;
     margin-top: -1px;
 }
@@ -173,6 +164,23 @@
    padding-right: 2px;
 
 }
+
+/*@media (max-width: 768px){
+    .contenidoTexto{
+        width: 100%;
+        float: none;
+    }
+
+    .mainImg{
+        width: 100%;
+    
+    }
+
+    .carrusel img {
+        width: 80%;
+        max-width: 180px;
+    }
+}*/
 
 .botonEnviar{
 
@@ -192,6 +200,44 @@
     transition: 0.2s;
 }
 
+#comment-form{
+
+    margin-top: .8em;
+    width: 50%;
+    background-color: rgba(223, 222, 222, 0.11);
+    padding: .5em 1em;
+    display: inline-block;
+    min-width: 100px;
+
+}
+
+@media (max-width: 768px){
+    .contenidoTexto{
+        width: 100%;
+        float: none;
+    }
+
+    .mainImg{
+        width: 100%;
+    
+    }
+    .carrusel{
+        width: 100%;
+    }
+
+    .carrusel img {
+        width: 80%;
+        max-width: 180px;
+    }
+
+    #comment-form{
+        width: 100%;
+    }
+
+
+}
+
+
 h2{
     margin-bottom: .8em;
     margin-top: .8em;
@@ -199,17 +245,8 @@ h2{
 
 }
 
-#comment-form{
-
-    margin-top: .8em;
-    width: 35%;
-    background-color: rgba(223, 222, 222, 0.11);
-    padding: .5em 1em;
-
-}
 
 #username, #rating, #comment{
-
     border:solid 0.5px lightgrey; 
     
 }
