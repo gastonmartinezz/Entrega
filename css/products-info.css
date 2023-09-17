@@ -104,11 +104,11 @@ html{
 }
 
 .carrusel{
-    width: 100%;
+    width: 50%;
     padding-top: 1em;
     display: flex;
     flex-wrap: wrap;
-    justify-content: baseline
+    justify-content: center;       
     
 }
 
@@ -214,6 +214,10 @@ html{
     .carrusel img {
         width: 80%;
         max-width: 180px;
+    }
+
+    #comment-form{
+        width: 100%;
     }
 
 
