@@ -27,9 +27,76 @@ document.addEventListener("DOMContentLoaded", function () {
   fetch(Comentarios)
   .then(response => response.json())
   .then(datos => agregarComentariosJSON(datos))
-  .catch(error => console.log(error))
+  .catch(error => console.log(error)) 
 
 });
+/*const productosRelacionadosURL = `https://japceibal.github.io/emercado-api/related-products/${productoid}.json`;
+
+fetch(productosRelacionadosURL)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("No se pudo obtener la información de productos relacionados.");
+    }
+    return response.json();
+  })
+  .then((data) => {
+   
+    data.forEach((relatedProduct) => {
+      const productName = relatedProduct.name;
+      const productImageURL = relatedProduct.image;
+
+      const productCard = document.createElement("div")
+        productCard.classList.add("related-product-card")
+      productCard.innerHTML = `
+        <img src="${productImageURL}" alt="${productName}">
+        <h3>${productName}</h3>
+      `;
+      const productosRelConteiner = document.getElementById("productos-relacionados")
+      productosRelConteiner.appendChild(productCard)
+    });
+  })
+  .catch((error) => {
+    console.error("Error al obtener productos relacionados:", error);
+  });*/
+
+fetch(`https://japceibal.github.io/emercado-api/products_related/${productoid}.json`)
+.then(response => response.json())
+.then(data => mostrarProductosRelacionados(data))
+.catch(error => console.error(error));
+
+function mostrarProductosRelacionados(productosRel) {
+  const containerProductosRelacionados = document.getElementById('productos-relacionados')
+  
+  containerProductosRelacionados.innerHTML = '' 
+
+ productosRel.forEach(product => {
+    const productCard = document.createElement('div');
+    productCard.classList.add('product-card')
+
+    productCard.innerHTML = `
+      <h3>${product.name}</h3>
+      <img src="${product.image}" alt="${product.name}">
+      <button onclick="showProductInfo('${product.id}')">Ver detalles</button>
+    `;
+
+    containerProductosRelacionados.appendChild(productCard)
+  })
+}
+
+function infoProducto(productId) {
+  const productInfoURL = `https://japceibal.github.io/emercado-api/products/${productId}.json`;
+
+  fetch(productInfoURL)
+  .then(response => response.json())
+  .then(data => {
+   
+    displayProductDetails(data)
+  })
+  .catch(error => console.error(error))
+
+}
+
+
 
 let divComentarios = document.getElementById("comentarios");
 
@@ -37,7 +104,6 @@ let divComentarios = document.getElementById("comentarios");
 function agregarComentariosJSON(lista){
   for (i of lista){
 
-    //Crea un objeto comentario con datos del json
     const username = i.user;
     const rating = i.score;
     const text = i.description;
@@ -49,10 +115,8 @@ function agregarComentariosJSON(lista){
       "text": text,
       "date": date
     }
-    //añade los comentarios a una lista
     listaComentarios.push(newComment);
   }
-  //imprime los comentarios de la lsita Y del LocalStorage
   imprimirComentariosLocal();
 }
 
@@ -146,7 +210,6 @@ function displayComments(comments) {
   });
 }
 
-//Cuando se envia el formulario de creacion de comentario
 commentForm.addEventListener('submit', event => {
   event.preventDefault();
 
@@ -166,10 +229,10 @@ commentForm.addEventListener('submit', event => {
   //Guardar comentario en lista local
   listaComentarios.push(newComment);
 
-  //Guardar comentario en LocalStorage del producto
+  //Guardar comentario en Local del producto
   saveCommentsLocal(newComment);
 
-  //Mostrar comentarios de la lista entera
+  //Mostrar comentario de la lista entera
   displayComments(listaComentarios);
 
 });
