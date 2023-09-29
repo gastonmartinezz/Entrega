@@ -22,44 +22,36 @@ document.addEventListener("DOMContentLoaded", function () {
   .then(response => response.json())
   .then(data => Infoproducto(data))
   .catch(error => console.log(error))
+
   
-  const Comentarios = `https://japceibal.github.io/emercado-api/products_comments/${productoid}.json`
-  fetch(Comentarios)
+  fetch(`https://japceibal.github.io/emercado-api/relatedProducts/${productoid}.json`)
   .then(response => response.json())
-  .then(datos => agregarComentariosJSON(datos))
-  .catch(error => console.log(error)) 
-
-});
-/*const productosRelacionadosURL = `https://japceibal.github.io/emercado-api/related-products/${productoid}.json`;
-
-fetch(productosRelacionadosURL)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("No se pudo obtener la información de productos relacionados.");
-    }
-    return response.json();
-  })
-  .then((data) => {
+  .then(relatedProducts => {
+  const ProductRel = document.querySelector('.lista-productos');
+  
+  relatedProducts.forEach(product => {
+    const productCard = document.createElement('div');
+    productCard.classList.add('product-card');
+    
+  
+    productCard.innerHTML = `
+      <h2>${product.name}</h2>
+      <img src="${product.image}" alt="${product.name}">
+    `;
+    
    
-    data.forEach((relatedProduct) => {
-      const productName = relatedProduct.name;
-      const productImageURL = relatedProduct.image;
-
-      const productCard = document.createElement("div")
-        productCard.classList.add("related-product-card")
-      productCard.innerHTML = `
-        <img src="${productImageURL}" alt="${productName}">
-        <h3>${productName}</h3>
-      `;
-      const productosRelConteiner = document.getElementById("productos-relacionados")
-      productosRelConteiner.appendChild(productCard)
+    productCard.addEventListener('click', () => {
+     
+      Infoproducto(product);
     });
-  })
-  .catch((error) => {
-    console.error("Error al obtener productos relacionados:", error);
-  });*/
+    
+   
+    ProductRel.appendChild(productCard);
+  });
+})
+.catch(error => console.error(error));
 
-fetch(`https://japceibal.github.io/emercado-api/products_related/${productoid}.json`)
+/*fetch(`https://japceibal.github.io/emercado-api/relatedProducts/${productoid}.json`)
 .then(response => response.json())
 .then(data => mostrarProductosRelacionados(data))
 .catch(error => console.error(error));
@@ -94,8 +86,18 @@ function infoProducto(productId) {
   })
   .catch(error => console.error(error))
 
-}
+}*/
 
+
+
+  
+  const Comentarios = `https://japceibal.github.io/emercado-api/products_comments/${productoid}.json`
+  fetch(Comentarios)
+  .then(response => response.json())
+  .then(datos => agregarComentariosJSON(datos))
+  .catch(error => console.log(error)) 
+
+});
 
 
 let divComentarios = document.getElementById("comentarios");
@@ -258,4 +260,39 @@ function imprimirComentariosLocal() {
   displayComments(listaComentarios);
 }
 
+/*document.addEventListener("DOMContentLoaded", function () {
+  
+  productoRelacionadoURL='https://japceibal.github.io/emercado-api/relatedProducts/${productoid}.json'
+ 
+  fetch(`https://japceibal.github.io/emercado-api/relatedProducts/${productoid}.json`)
+    .then(response => response.json())
+    .then(data => mostrarProductosRelacionados(data))
+    .catch(error => console.log(error));
+});
+
+function mostrarProductosRelacionados(productos) {
+  const productosRelacionados = productos.slice(0, 2);
+
+  const productosRelacionadosContainer = document.getElementById("productos-relacionados-lista");
+
+  productosRelacionados.forEach(producto => {
+    const productoRelacionadoDiv = document.createElement("div");
+    productoRelacionadoDiv.classList.add("producto-relacionado");
+
+    productoRelacionadoDiv.innerHTML = `
+      <h3>${producto.name}</h3>
+      <img src="${producto.image}" alt="${producto.name}">
+    `;
+
+    
+    productoRelacionadoDiv.addEventListener("click", () => {
+      
+      localStorage.setItem("idproduct", producto.id);
+
+      location.reload();
+    });
+
+    productosRelacionadosContainer.appendChild(productoRelacionadoDiv);
+  });
+}*/
 
