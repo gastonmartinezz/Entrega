@@ -17,80 +17,17 @@ document.addEventListener("DOMContentLoaded", function () {
     
   const ProductoURL = `https://japceibal.github.io/emercado-api/products/${productoid}.json`;
   
-  //fetch a 
+  //fetch a JSON de productos: llama a funciones de infoproductos como a los relatedproducts
   fetch(ProductoURL)
   .then(response => response.json())
-  .then(data => Infoproducto(data))
-  .catch(error => console.log(error))
-
-  
-  fetch(`https://japceibal.github.io/emercado-api/relatedProducts/${productoid}.json`)
-  .then(response => response.json())
-  .then(relatedProducts => {
-  const ProductRel = document.querySelector('.lista-productos');
-  
-  relatedProducts.forEach(product => {
-    const productCard = document.createElement('div');
-    productCard.classList.add('product-card');
-    
-  
-    productCard.innerHTML = `
-      <h2>${product.name}</h2>
-      <img src="${product.image}" alt="${product.name}">
-    `;
-    
-   
-    productCard.addEventListener('click', () => {
-     
-      Infoproducto(product);
-    });
-    
-   
-    ProductRel.appendChild(productCard);
-  });
-})
-.catch(error => console.error(error));
-
-/*fetch(`https://japceibal.github.io/emercado-api/relatedProducts/${productoid}.json`)
-.then(response => response.json())
-.then(data => mostrarProductosRelacionados(data))
-.catch(error => console.error(error));
-
-function mostrarProductosRelacionados(productosRel) {
-  const containerProductosRelacionados = document.getElementById('productos-relacionados')
-  
-  containerProductosRelacionados.innerHTML = '' 
-
- productosRel.forEach(product => {
-    const productCard = document.createElement('div');
-    productCard.classList.add('product-card')
-
-    productCard.innerHTML = `
-      <h3>${product.name}</h3>
-      <img src="${product.image}" alt="${product.name}">
-      <button onclick="showProductInfo('${product.id}')">Ver detalles</button>
-    `;
-
-    containerProductosRelacionados.appendChild(productCard)
-  })
-}
-
-function infoProducto(productId) {
-  const productInfoURL = `https://japceibal.github.io/emercado-api/products/${productId}.json`;
-
-  fetch(productInfoURL)
-  .then(response => response.json())
   .then(data => {
-   
-    displayProductDetails(data)
+    Infoproducto(data);
+    cargarProductosRelacionados(data);
   })
-  .catch(error => console.error(error))
-
-}*/
+  .catch(error => console.log(error));
 
 
-
-  
+  //Fetch a JSON de comentarios
   const Comentarios = `https://japceibal.github.io/emercado-api/products_comments/${productoid}.json`
   fetch(Comentarios)
   .then(response => response.json())
@@ -99,8 +36,34 @@ function infoProducto(productId) {
 
 });
 
-
 let divComentarios = document.getElementById("comentarios");
+
+//Llamar productos relacionados (dentro de fetch)
+function cargarProductosRelacionados(data){
+  const relatedProducts = data.relatedProducts;
+  const ProductRel = document.getElementById("productos-relacionados-lista");
+
+    
+    relatedProducts.forEach(product => {
+
+      const productCard = document.createElement('div');
+      productCard.classList.add('product-card');
+      
+    
+      productCard.innerHTML = `
+        <h2>${product.name}</h2>
+        <img src="${product.image}" alt="${product.name}">
+      `;
+      
+    
+      productCard.addEventListener('click', () => {
+        localStorage.setItem('idproduct',product.id)
+        this.location.reload();
+      });
+
+      ProductRel.appendChild(productCard);
+  })
+}
 
 //Agrega los comentarios del JSON a la listaComentarios y muestra la lista
 function agregarComentariosJSON(lista){
@@ -124,6 +87,7 @@ function agregarComentariosJSON(lista){
 
 const fichas = document.getElementById('main')
 
+//Crea el HTML con los datos del producto de la pagina
 function Infoproducto(x){
 
   fichas.innerHTML =
@@ -212,6 +176,7 @@ function displayComments(comments) {
   });
 }
 
+//Form para crear un nuevo comentario en la pagina y el Local
 commentForm.addEventListener('submit', event => {
   event.preventDefault();
 
@@ -249,8 +214,9 @@ function saveCommentsLocal(comentario){
   localStorage.setItem(`${productoid}Comentarios`, JSON.stringify(lista))
 }
 
-//Añade los comentarios del local a la listaComentarios, luego la imprime.
 
+
+//Añade los comentarios del local a la listaComentarios, luego la imprime.
 function imprimirComentariosLocal() {
   let local = JSON.parse(localStorage.getItem(`${productoid}Comentarios`));
   if (local != null)
@@ -259,40 +225,4 @@ function imprimirComentariosLocal() {
   }
   displayComments(listaComentarios);
 }
-
-/*document.addEventListener("DOMContentLoaded", function () {
-  
-  productoRelacionadoURL='https://japceibal.github.io/emercado-api/relatedProducts/${productoid}.json'
- 
-  fetch(`https://japceibal.github.io/emercado-api/relatedProducts/${productoid}.json`)
-    .then(response => response.json())
-    .then(data => mostrarProductosRelacionados(data))
-    .catch(error => console.log(error));
-});
-
-function mostrarProductosRelacionados(productos) {
-  const productosRelacionados = productos.slice(0, 2);
-
-  const productosRelacionadosContainer = document.getElementById("productos-relacionados-lista");
-
-  productosRelacionados.forEach(producto => {
-    const productoRelacionadoDiv = document.createElement("div");
-    productoRelacionadoDiv.classList.add("producto-relacionado");
-
-    productoRelacionadoDiv.innerHTML = `
-      <h3>${producto.name}</h3>
-      <img src="${producto.image}" alt="${producto.name}">
-    `;
-
-    
-    productoRelacionadoDiv.addEventListener("click", () => {
-      
-      localStorage.setItem("idproduct", producto.id);
-
-      location.reload();
-    });
-
-    productosRelacionadosContainer.appendChild(productoRelacionadoDiv);
-  });
-}*/
 
