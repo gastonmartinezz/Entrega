@@ -99,3 +99,5 @@ function toggle() {
 }
 //Togglear al ahcer click en el boton
 btn.addEventListener('click', toggle);
+
+
