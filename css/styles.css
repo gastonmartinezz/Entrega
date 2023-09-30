@@ -279,6 +279,11 @@ a.custom-card:hover {
   transition: 0.2s;
 }
 
+.noche #autos #juguetes #muebles{
+
+  background-color: #070A18;
+  color: white
+}
 
 nav button {
   background-color: #212529;

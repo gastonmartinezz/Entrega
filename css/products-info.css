@@ -76,27 +76,43 @@ html {
     transition: 0.2s;
 }
 
-/* trabajo con imagenes */
-.mainImg {
+
+
+#carru {
+
+    display: flex;
     width: 50%;
-    margin-top: 3em;
+    flex-direction: column;
+    margin-top: 5%;
 }
 
-.mainImg img{
+.volver{
+
+    margin-top: 1000px;
+}
+
+/* trabajo con imagenes */
+/* .mainImg {
+    width: 50%;
+    margin-top: 3em;
+} */
+
+
+/* .mainImg img{
     width: 100%;
     border-radius: 8px;
     box-shadow: 0px 3px 3px #0000003d;
     border: solid lightgrey 1px;
 }
-
-.carrusel {
+ */
+/* .carrusel {
     width: 50%;
     padding-top: 1em;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;       
 }
-
+ */
 .carrusel img {
     margin: 7px;
     width: 100%;

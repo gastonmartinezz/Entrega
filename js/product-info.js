@@ -21,8 +21,9 @@ document.addEventListener("DOMContentLoaded", function () {
   fetch(ProductoURL)
   .then(response => response.json())
   .then(data => {
-    Infoproducto(data);
     cargarProductosRelacionados(data);
+    Infoproducto(data);
+    
   })
   .catch(error => console.log(error));
 
@@ -115,18 +116,48 @@ function Infoproducto(x){
           
   </div>
     
-  <div class="mainImg">
-  <a href="products.html">Volver al listado<a>
-  <img id="Mainimagen" src=${x.images[0]}>
+ 
+ 
+
+  
+  <div class="carousel-inner" id="carru">
+  <a href="products.html">Volver al listado </a>
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 3"></button>
+      </div>
+  
+      <div class="carousel-item active">
+        <img src="${x.images[0]}" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="${x.images[1]}" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="${x.images[2]}" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="${x.images[3]}" class="d-block w-100" alt="...">
+      </div> 
+      
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
   </div>
+
+  
           
-  <div class="carrusel">
-    <img id="carrusel0" src=${x.images[0]}>
-    <img id="carrusel1" src=${x.images[1]}>
-    <img id="carrusel2" src=${x.images[2]}>
-    <img id="carrusel3" src=${x.images[3]}>
-  </div>
-          
+
   `
   const ImgMain = document.getElementById('MainImagen')
   const Img0 = document.getElementById('carrusel0')
