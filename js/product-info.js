@@ -17,27 +17,58 @@ document.addEventListener("DOMContentLoaded", function () {
     
   const ProductoURL = `https://japceibal.github.io/emercado-api/products/${productoid}.json`;
   
-  //fetch a 
+  //fetch a JSON de productos: llama a funciones de infoproductos como a los relatedproducts
   fetch(ProductoURL)
   .then(response => response.json())
-  .then(data => Infoproducto(data))
-  .catch(error => console.log(error))
-  
+  .then(data => {
+    Infoproducto(data);
+    cargarProductosRelacionados(data);
+  })
+  .catch(error => console.log(error));
+
+
+  //Fetch a JSON de comentarios
   const Comentarios = `https://japceibal.github.io/emercado-api/products_comments/${productoid}.json`
   fetch(Comentarios)
   .then(response => response.json())
   .then(datos => agregarComentariosJSON(datos))
-  .catch(error => console.log(error))
+  .catch(error => console.log(error)) 
 
 });
 
 let divComentarios = document.getElementById("comentarios");
 
+//Llamar productos relacionados (dentro de fetch)
+function cargarProductosRelacionados(data){
+  const relatedProducts = data.relatedProducts;
+  const ProductRel = document.getElementById("productos-relacionados-lista");
+
+    
+    relatedProducts.forEach(product => {
+
+      const productCard = document.createElement('div');
+      productCard.classList.add('product-card');
+      
+    
+      productCard.innerHTML = `
+        <h2>${product.name}</h2>
+        <img src="${product.image}" alt="${product.name}">
+      `;
+      
+    
+      productCard.addEventListener('click', () => {
+        localStorage.setItem('idproduct',product.id)
+        document.location.reload();
+      });
+
+      ProductRel.appendChild(productCard);
+  })
+}
+
 //Agrega los comentarios del JSON a la listaComentarios y muestra la lista
 function agregarComentariosJSON(lista){
   for (i of lista){
 
-    //Crea un objeto comentario con datos del json
     const username = i.user;
     const rating = i.score;
     const text = i.description;
@@ -49,15 +80,14 @@ function agregarComentariosJSON(lista){
       "text": text,
       "date": date
     }
-    //añade los comentarios a una lista
     listaComentarios.push(newComment);
   }
-  //imprime los comentarios de la lsita Y del LocalStorage
   imprimirComentariosLocal();
 }
 
 const fichas = document.getElementById('main')
 
+//Crea el HTML con los datos del producto de la pagina
 function Infoproducto(x){
 
   fichas.innerHTML =
@@ -146,7 +176,7 @@ function displayComments(comments) {
   });
 }
 
-//Cuando se envia el formulario de creacion de comentario
+//Form para crear un nuevo comentario en la pagina y el Local
 commentForm.addEventListener('submit', event => {
   event.preventDefault();
 
@@ -166,10 +196,10 @@ commentForm.addEventListener('submit', event => {
   //Guardar comentario en lista local
   listaComentarios.push(newComment);
 
-  //Guardar comentario en LocalStorage del producto
+  //Guardar comentario en Local del producto
   saveCommentsLocal(newComment);
 
-  //Mostrar comentarios de la lista entera
+  //Mostrar comentario de la lista entera
   displayComments(listaComentarios);
 
 });
@@ -184,8 +214,9 @@ function saveCommentsLocal(comentario){
   localStorage.setItem(`${productoid}Comentarios`, JSON.stringify(lista))
 }
 
-//Añade los comentarios del local a la listaComentarios, luego la imprime.
 
+
+//Añade los comentarios del local a la listaComentarios, luego la imprime.
 function imprimirComentariosLocal() {
   let local = JSON.parse(localStorage.getItem(`${productoid}Comentarios`));
   if (local != null)
@@ -194,5 +225,4 @@ function imprimirComentariosLocal() {
   }
   displayComments(listaComentarios);
 }
-
 
