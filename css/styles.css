@@ -279,6 +279,9 @@ a.custom-card:hover {
   transition: 0.2s;
 }
 
+.col-md-4{
+  color: white;
+}
 
 nav button {
   background-color: #212529;
@@ -287,5 +290,4 @@ nav button {
   color: rgba(255,255,255,.55);
 }
 
-/* arreglo de bordes de categories */
 
