@@ -58,7 +58,7 @@ function cargarProductosRelacionados(data){
     
       productCard.addEventListener('click', () => {
         localStorage.setItem('idproduct',product.id)
-        this.location.reload();
+        document.location.reload();
       });
 
       ProductRel.appendChild(productCard);
