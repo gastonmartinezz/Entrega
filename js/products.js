@@ -102,10 +102,9 @@ document.addEventListener('keyup', e => {
 // When the user scrolls the page, execute myFunction
 window.onscroll = function() {stickying()};
 
-    let elemento = document.getElementsByClassName("posibleSticky")[0];
-
-    // Get the offset position of the navbar
-    var sticky = elemento.offsetTop;
+  let elemento = document.getElementsByClassName("posibleSticky")[0];
+  // Get the offset position of the navbar
+  var sticky = elemento.offsetTop;
 
 function stickying() {
   if (window.scrollY >= sticky) {
@@ -144,16 +143,9 @@ function filtrarProductos() {
   mostrarProductos(ordenSelect.value);
 }
 
-
 function viajar(x){
 
-    localStorage.setItem('idproduct', x);
-    window.location.href = 'product-info.html';
+  localStorage.setItem('idproduct', x);
+  window.location.href = 'product-info.html';
     
 }
-
-
-
-
-
- 

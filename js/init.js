@@ -40,3 +40,46 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const body = document.body;
+
+  if (localStorage.getItem("modo") == undefined){
+    localStorage.setItem("modo", "dia");
+    body.classList.toggle('dia') ;
+  } else {
+    toggle();
+  }
+
+});
+
+const btn = document.getElementById('modo');
+
+function toggle() {
+  const body = document.body;
+
+  if (body.classList == ""){
+    body.classList.add(localStorage.getItem("modo")); 
+
+  } else {
+    body.classList.toggle('dia');
+    body.classList.toggle('noche');
+  }    
+
+  let modoLocal;
+  if (body.classList.contains('dia')) {
+    modoLocal = "dia";
+
+  } else {
+    modoLocal = "noche";
+  }
+
+  localStorage.setItem("modo", modoLocal);
+
+  let mode = localStorage.getItem("modo");
+  if (mode === "noche") {
+      body.classList.add("noche");
+  }
+}
+
+btn.addEventListener('click', toggle);

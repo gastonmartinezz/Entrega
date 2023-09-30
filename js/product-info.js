@@ -225,4 +225,3 @@ function imprimirComentariosLocal() {
   }
   displayComments(listaComentarios);
 }
-

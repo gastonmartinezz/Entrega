@@ -191,4 +191,43 @@ a.custom-card:hover {
   color: orange;
 }
 
+.noche {
+  background-color: rgb(60, 60, 60);
+  color: white;
+}
 
+.noche div {
+  background-color: rgb(60, 60, 60);
+  color: white;
+}
+
+.noche a {
+  color: white;
+}
+
+.noche nav div {
+  background-color: #212529;
+}
+
+.noche .mucho-mas  {
+  background-color: rgb(40, 40, 40);
+  color: white;
+  border: rgb(40, 40, 40);
+}
+
+.noche .articulo {
+  box-shadow: none;
+  border: 2px rgb(40, 40, 40) solid;
+}
+
+.noche .articulo:hover {
+  box-shadow: 1px 1px 10px black;
+
+}
+
+nav button {
+  background-color: #212529;
+  border: none;
+  outline: none;
+  color: rgba(255,255,255,.55);
+}
