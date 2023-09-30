@@ -176,7 +176,7 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     width:75%;
     height: 80%;
-    gap: 1.2em  ;
+    gap: 1.3em  ;
     padding: 1.2em;
 }
 /* Cuando la pantalla es chica, width auto */
@@ -194,6 +194,7 @@ body {
         box-shadow: 1px 1px 10px lightgray;
         border-top-left-radius: .7em;
         border-top-right-radius: .7em;
+        height: 100%;
         
     }
 
@@ -222,6 +223,8 @@ body {
         background-color: var(--color);
         border: 2px solid var(--color);
         font-size: 1.1rem;
+        justify-content: center;
+
     }
 
     .titulo {

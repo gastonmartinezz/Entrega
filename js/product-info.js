@@ -51,8 +51,11 @@ function cargarProductosRelacionados(data){
       
     
       productCard.innerHTML = `
-        <h2>${product.name}</h2>
+      <div class="relatedprod">  
+        
         <img src="${product.image}" alt="${product.name}">
+        <h3>${product.name}</h3>
+      </div>
       `;
       
     

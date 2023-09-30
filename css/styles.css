@@ -192,13 +192,34 @@ a.custom-card:hover {
 }
 
 .noche {
-  background-color: rgb(60, 60, 60);
+  background-color: #070A18;
   color: white;
 }
 
-.noche div {
-  background-color: rgb(60, 60, 60);
+.noche p{
+
   color: white;
+}
+.noche .articulo{
+  
+  background-color: #151722;
+  color: rgb(199, 197, 197);
+  box-shadow: none;
+}
+
+/* ajuste en categorias y arreglo de border blancos en img*/
+.noche #carcat div{
+
+  color: white;
+  background-color: #151722;
+ 
+}
+
+.noche #carcat img{
+
+  background-color: #131727;
+  width: 100%;
+  border: #131727;
 }
 
 .noche a {
@@ -215,15 +236,49 @@ a.custom-card:hover {
   border: rgb(40, 40, 40);
 }
 
-.noche .articulo {
-  box-shadow: none;
-  border: 2px rgb(40, 40, 40) solid;
+.noche aside h2{
+  color: white;
+ 
+}
+/* boton carrito de noche */
+.noche .botonDeAgregar{
+
+  box-shadow: 1px 1px 5px rgb(27, 27, 27);
+  background-color:#ffffff;
+  border: #151722;
+  color: black;
+  font-weight: 650;
+}
+
+.noche .botonDeAgregar:hover {
+  box-shadow: 1px 1px 5px rgb(0, 0, 0);
+  transition: .1s;
+  background-color: #F09100;
+  color: white;
+  border: #131727;
 }
 
 .noche .articulo:hover {
-  box-shadow: 1px 1px 10px black;
-
+  box-shadow: 1px 1px 10px rgb(54, 54, 52);
 }
+
+.noche .relatedprod {
+  background-color: #131727;
+  box-shadow: none;
+}
+
+.noche .comment{
+
+  border: #171b2b solid .8px;
+  
+}
+
+.relatedprod:hover{
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
 
 nav button {
   background-color: #212529;
@@ -231,3 +286,6 @@ nav button {
   outline: none;
   color: rgba(255,255,255,.55);
 }
+
+/* arreglo de bordes de categories */
+
