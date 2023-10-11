@@ -257,21 +257,41 @@ function imprimirComentariosLocal() {
   displayComments(listaComentarios);
 }
 
-//Agregar a carrito
-let btnCarrito = document.getElementsByClassName("botoncarrito")[0];
-btnCarrito.addEventListener("click", agregarCarrito(productoid));
 
-function agregarCarrito(id) {
-  let localCarrito = JSON.parse(localStorage.getItem("carrito"));
-  
-  if (localCarrito!= null && localcarrito)
-
-
-/*   if (localCarrito != null)
-    for (i of local){
-      listaComentarios.push(i);
+//Agregar a carrito.
+//Leer boton. Procedimiento: al hacer click en el main, identifica si se clickea el boton. En caso positivo,agrega al carrito 
+document.getElementById("main").addEventListener("click", btn => {
+  if (btn.target.classList.contains("botoncarrito")){
+    agregarCarrito(productoid);
+    viajarCarrito();
   }
-*/
+})
 
+//Funcion que toma el product id y cantidad para "subirlo" al localStorage. Si el elemento ya esta, aumenta su cantidad, sino lo agrega
+function agregarCarrito(id) {
+
+  let localCarrito = JSON.parse(localStorage.getItem("carrito"));
+  let cantidadValue = document.getElementById("cantidad").value;
+  let infoProducto = {
+    id: id,
+    cantidad: parseInt(cantidadValue),
+  }
+  if (localCarrito != null){
+    let indice = localCarrito.findIndex(b => Object.values(b).includes(id));
+    if (indice != -1){
+      localCarrito[indice].cantidad = parseInt(localCarrito[indice].cantidad) + parseInt(cantidadValue);
+  
+    } else {
+      localCarrito.push(infoProducto);
+    };
+  } else {
+    localCarrito= [];
+    localCarrito.push(infoProducto);
+  }
+  localStorage.setItem("carrito", JSON.stringify(localCarrito));
+}
+
+function viajarCarrito(){
+  window.location = "cart.html";
 }
 
