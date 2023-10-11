@@ -58,7 +58,6 @@ function cargarProductosRelacionados(data){
         <h3>${product.name}</h3>
       </div>
       `;
-      
     
       productCard.addEventListener('click', () => {
         localStorage.setItem('idproduct',product.id)
@@ -156,6 +155,7 @@ function Infoproducto(x){
  
 
   `
+
   const ImgMain = document.getElementById('MainImagen')
   const Img0 = document.getElementById('carrusel0')
   const Img1 = document.getElementById('carrusel1')
@@ -256,3 +256,22 @@ function imprimirComentariosLocal() {
   }
   displayComments(listaComentarios);
 }
+
+//Agregar a carrito
+let btnCarrito = document.getElementsByClassName("botoncarrito")[0];
+btnCarrito.addEventListener("click", agregarCarrito(productoid));
+
+function agregarCarrito(id) {
+  let localCarrito = JSON.parse(localStorage.getItem("carrito"));
+  
+  if (localCarrito!= null && localcarrito)
+
+
+/*   if (localCarrito != null)
+    for (i of local){
+      listaComentarios.push(i);
+  }
+*/
+
+}
+
