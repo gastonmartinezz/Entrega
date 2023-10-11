@@ -15,10 +15,10 @@ html {
     flex-direction: column;
     float: right;
     width: 35%;
-    padding: 2em;
+    padding: 3em;
     background-color: rgba(223, 222, 222, 0.11);
-    margin-top: 3.4em;
     box-sizing: border-box;
+    margin-top: 2em;
 }
 
 
@@ -83,8 +83,7 @@ html {
     display: flex;
     width: 63%;
     flex-direction: column;
-    margin-top: 5%;
-    padding-top: 2%;
+   
     
 }
 
@@ -95,36 +94,12 @@ html {
 }
 
 /* trabajo con imagenes */
-/* .mainImg {
-    width: 50%;
+
+#main{
     margin-top: 3em;
-} */
+    border: solid green 4px;
+}
 
-
-/* .mainImg img{
-    width: 100%;
-    border-radius: 8px;
-    box-shadow: 0px 3px 3px #0000003d;
-    border: solid lightgrey 1px;
-}
- */
-/* .carrusel {
-    width: 50%;
-    padding-top: 1em;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;       
-}
- */
-.carrusel img {
-    margin: 7px;
-    width: 100%;
-    max-width: 90px;
-    border-radius: 5px;
-    box-shadow:3px 3px 3px #0000003d;
-    border: solid lightgrey 1px;
-    cursor: pointer;
-}
 
 /* seccion de comentarios */
 
@@ -193,17 +168,9 @@ html {
         float: none;
     }
 
-    .mainImg{
-        width: 100%;
-    
-    }
-    .carrusel{
-        width: 100%;
-    }
+    #carru{
 
-    .carrusel img {
-        width: 80%;
-        max-width: 180px;
+        width: 100%;
     }
 
     #comment-form{
