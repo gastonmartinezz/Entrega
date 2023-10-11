@@ -13,7 +13,6 @@ html {
 .contenidoTexto {
     display: flex;
     flex-direction: column;
-    float: right;
     width: 35%;
     padding: 3em;
     background-color: rgba(223, 222, 222, 0.11);
@@ -80,10 +79,8 @@ html {
 
 #carru {
 
-    display: flex;
+    display: grid;
     width: 63%;
-    flex-direction: column;
-   
     
 }
 
@@ -97,8 +94,12 @@ html {
 
 #main{
     margin-top: 3em;
-    border: solid green 4px;
+    width: 100%;
+    display: flex;
+    gap: 2em;
+    
 }
+
 
 
 /* seccion de comentarios */
@@ -162,10 +163,45 @@ html {
     min-width: 100px;
 }
 
-@media (max-width: 768px) {
+/* media para laptops pequeñas */
+
+@media(min-width:1023px)and (max-device-width: 1300px){
+
+    .contenidoTexto{
+
+        padding: 1.5em;
+        
+    }
+
+   #carru img {
+        height: 480px; 
+   }
+
+   #carru{
+        width: 80%;
+        margin-top: 0.5em;
+   }
+
+   .contenidoTexto .Vendidos{
+
+        margin-top: 0.5em;
+        margin-bottom: 0;
+   }
+
+
+}
+
+
+/* media para tablets y celulares */
+@media (max-width: 1020px) {
     .contenidoTexto {
         width: 100%;
-        float: none;
+        height: fit-content;
+        padding: 1.5em;
+        margin: 0;
+    }
+    .contenidoTexto .Vendidos{
+        display: none;
     }
 
     #carru{
@@ -175,6 +211,11 @@ html {
 
     #comment-form{
         width: 100%;
+    }
+
+    #main{
+        display: flex;
+        flex-direction: column;
     }
 }
 
