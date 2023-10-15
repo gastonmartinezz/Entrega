@@ -7,7 +7,6 @@ if (isLoggedIn) {
     usernameElement.textContent = username;
 } 
 
-
 const peugeot = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
 
 // Función para obtener y agregar productos desde la API
@@ -34,15 +33,13 @@ async function agregarProductos() {
           <td><img src="${article.image}" width="50px" alt="Imágen del producto ${article.name}"></td>
           <td>${article.name}</td>
           <td><span class="precio-unitario">${article.currency} ${article.unitCost}</span></td>
-          <td><input class="cantidad" type="number" value="1" min="1"></td>
-          <td>${article.currency}<span class="subtotal" type="number">${(article.unitCost * article.count)}</span></td>
+          <td><input class="cantidad" type="number" value="1" min="1" oninput="actualizarSubtotal(this)"></td>
+          <td>${article.currency} <span class="subtotal" type="number">${(article.unitCost * article.count)}</span></td>
         `;
 
         cartProductsElement.appendChild(fila);
       });
 
-     
-    
     } else {
       console.error();
     }
@@ -54,9 +51,20 @@ async function agregarProductos() {
 // Llama a la función para agregar productos desde la API al cargar la página
 window.addEventListener("load", agregarProductos);
 
+function actualizarSubtotal(elemento) {
+  const fila = elemento.parentElement.parentElement; 
+  const unitCosto = fila.querySelector('.precio-unitario');
+  const subtotal = fila.querySelector('.subtotal');
 
+  const unitCost = unitCosto.textContent.replace(/[^\d.]/g, '');
+  const cantidad = elemento.value;
 
-
-
-
+  const newSubtotal = unitCost * cantidad;
+  
+  if (elemento = "") {
+    subtotal.textContent = "0"
+  } else {
+    subtotal.textContent = `${newSubtotal}`;
+  }
+}
 
