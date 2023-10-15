@@ -48,6 +48,39 @@ async function agregarProductos() {
   }
 }
 
+//Agregar productos del local
+document.addEventListener("DOMContentLoaded",()=>{
+  let listaLocal = JSON.parse(localStorage.getItem("carrito"));
+  const tablaLocalCarrito = document.getElementById("localProducts");
+  console.log(listaLocal);
+
+  listaLocal.forEach((producto) => crearFichaCarrito(producto))
+  
+  function crearFichaCarrito(producto){
+    
+    let cantidad = producto.cantidad;
+    let id = producto.id;
+
+    fetch(PRODUCT_INFO_URL + id + ".json")
+    .then(response => response.json())
+    .then(article => {
+      let fila = document.createElement("tr");
+      fila.innerHTML =
+        `<td><img src="${article.images[0]}" width="50px" alt="Imágen del producto ${article.name}"></td>
+        <td>${article.name}</td>
+        <td><span class="precio-unitario">${article.currency} ${article.cost}</span></td>
+        <td><input class="cantidad" type="number" value="${cantidad}" min="1" oninput="actualizarSubtotal(this)"></td>
+        <td>${article.currency} <span class="subtotal" type="number">${(article.cost * cantidad)}</span></td>
+        `;    
+      tablaLocalCarrito.appendChild(fila);
+    })
+    .catch(error => console.log(error));
+  };
+});
+
+
+
+
 // Llama a la función para agregar productos desde la API al cargar la página
 window.addEventListener("load", agregarProductos);
 

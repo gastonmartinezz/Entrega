@@ -49,63 +49,62 @@
       </div>
     </div>
   </nav>
-  <main>
+
+  <main class="container">
     <div class="container" id="resultado">
-    <br>
-        <h2 class="text-center mb-5">Carrito de compras</h2>
-        <h3 class="">Artículos a comprar</h3>
-				<br>
-        <table class="table">
-					<thead>
-						<tr>	
-              <th scope="col"></th>
-							<th scope="col">Nombre</th>
-							<th scope="col">Costo</th>
-							<th scope="col">Cantidad</th>
-							<th scope="col" >SubTotal</th>
-              
-            </tr>
-        
-           </thead>
-		    </div>
+      <br>
+      <h2 class="text-center mb-5">Carrito de compras</h2>
+      <h3 class="">Artículos a comprar</h3>
+			<br>
+
+      <table class="table container">
+				<thead>
+					<tr>	
+            <th scope="col"></th>
+						<th scope="col">Nombre</th>
+						<th scope="col">Costo</th>
+						<th scope="col">Cantidad</th>
+						<th scope="col" >SubTotal</th>
+          </tr>
+        </thead>
+
         <tbody id="cartProducts"></tbody>
-				</table>
-        <div id="articulo" class="container"></div>
-     
-				</form>
-      </div>
+        <tbody id="localProducts"></tbody>
+			</table>
+
+      <div id="articulo" class="container"></div>
     </div>
+
     <div class="card">
       <h5>Tipo de envío</h5>
       <div class="radio-label">
-          <input type="radio" id="premium" name="shippingType" checked>
-          <label for="premium">Premium 2 a 5 días (15%)</label>
+        <input type="radio" id="premium" name="shippingType" checked>
+        <label for="premium">Premium 2 a 5 días (15%)</label>
       </div>
       <div class="radio-label">
-          <input type="radio" id="normal" name="shippingType">
-          <label for="normal">Express 5 a 8 días (7%)</label>
+        <input type="radio" id="normal" name="shippingType">
+        <label for="normal">Express 5 a 8 días (7%)</label>
       </div>
       <div class="radio-label">
-          <input type="radio" id="urgente" name="shippingType">
-          <label for="urgente">Standard 12 a 15 días (5%)</label>
+        <input type="radio" id="urgente" name="shippingType">
+        <label for="urgente">Standard 12 a 15 días (5%)</label>
       </div>
-   
-  <br>
+      <br>
 
-    <label for="calle">Calle:</label>
-    <input type="text" name="calle" id="calle">
-    <br>
+      <label for="calle">Calle:</label>
+      <input type="text" name="calle" id="calle">
+      <br>
 
-    <label for="numero">Número:</label>
-    <input type="text" name="numero" id="numero">
-    <br>
+      <label for="numero">Número:</label>
+      <input type="text" name="numero" id="numero">
+      <br>
 
-    <label for="esquina">Esquina:</label>
-    <input type="text" name="esquina" id="esquina">
-    <br>
+      <label for="esquina">Esquina:</label>
+      <input type="text" name="esquina" id="esquina">
+      <br>
 
-    <button class="boton" type="button" > <strong>Enviar</strong></button>
-    </form> 
+      <button class="boton" type="button" > <strong>Enviar</strong></button>
+    </div> 
   </main>
  
   <footer class="text-muted">
