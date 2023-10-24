@@ -1,4 +1,3 @@
-
 const isLoggedIn = true;
      
 if (isLoggedIn) {
@@ -23,17 +22,19 @@ async function agregarProductos() {
 
     // Limpia la tabla de productos existente
     cartProductsElement.innerHTML = "";
+    const id = data.articles[0].id;
 
     if (data.articles && Array.isArray(data.articles)) {
       // Recorre los artículos y agrégalos a la tabla
       data.articles.forEach(article => {
         const fila = document.createElement("tr");
 
-        fila.innerHTML = `
+        fila.innerHTML = 
+        `
           <td><img src="${article.image}" width="50px" alt="Imágen del producto ${article.name}"></td>
           <td>${article.name}</td>
           <td><span class="precio-unitario">${article.currency} ${article.unitCost}</span></td>
-          <td><input class="cantidad" type="number" value="1" min="1" oninput="actualizarSubtotal(this)"></td>
+          <td><input class="cantidad" type="number" value="1" min="1" oninput="actualizarSubtotal(this)" data-id="${id}"></td>
           <td>${article.currency} <span class="subtotal" type="number">${(article.unitCost * article.count)}</span></td>
         `;
 
@@ -48,11 +49,11 @@ async function agregarProductos() {
   }
 }
 
+
 //Agregar productos del local
 document.addEventListener("DOMContentLoaded",()=>{
   let listaLocal = JSON.parse(localStorage.getItem("carrito"));
   const tablaLocalCarrito = document.getElementById("localProducts");
-  console.log(listaLocal);
 
   listaLocal.forEach((producto) => crearFichaCarrito(producto))
   
@@ -66,10 +67,11 @@ document.addEventListener("DOMContentLoaded",()=>{
     .then(article => {
       let fila = document.createElement("tr");
       fila.innerHTML =
-        `<td><img src="${article.images[0]}" width="50px" alt="Imágen del producto ${article.name}"></td>
+        `
+        <td><img src="${article.images[0]}" width="50px" alt="Imágen del producto ${article.name}"></td>
         <td>${article.name}</td>
         <td><span class="precio-unitario">${article.currency} ${article.cost}</span></td>
-        <td><input class="cantidad" type="number" value="${cantidad}" min="1" oninput="actualizarSubtotal(this)"></td>
+        <td><input class="cantidad" type="number" value="${cantidad}" min="1" oninput="actualizarSubtotal(this)" data-id="${id}"></td>
         <td>${article.currency} <span class="subtotal" type="number">${(article.cost * cantidad)}</span></td>
         `;    
       tablaLocalCarrito.appendChild(fila);
@@ -78,26 +80,34 @@ document.addEventListener("DOMContentLoaded",()=>{
   };
 });
 
-
-
-
 // Llama a la función para agregar productos desde la API al cargar la página
 window.addEventListener("load", agregarProductos);
 
-function actualizarSubtotal(elemento) {
-  const fila = elemento.parentElement.parentElement; 
+function actualizarSubtotal(inputArticulo) {
+  const fila = inputArticulo.parentElement.parentElement;
   const unitCosto = fila.querySelector('.precio-unitario');
   const subtotal = fila.querySelector('.subtotal');
 
   const unitCost = unitCosto.textContent.replace(/[^\d.]/g, '');
-  const cantidad = elemento.value;
+  const cantidad = inputArticulo.value;
 
   const newSubtotal = unitCost * cantidad;
   
-  if (elemento = "") {
-    subtotal.textContent = "0"
+  if (inputArticulo.value === "") {
+    subtotal.textContent = "0";
   } else {
     subtotal.textContent = `${newSubtotal}`;
   }
-}
 
+  const id = inputArticulo.getAttribute("data-id");
+  const carrito = JSON.parse(localStorage.getItem("carrito"));
+
+  for (let i = 0; i < carrito.length; i++) {
+    if (carrito[i].id === id) {
+      carrito[i].cantidad = cantidad;
+      break;
+    }
+  }
+
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+}
