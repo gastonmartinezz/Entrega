@@ -16,8 +16,8 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra ligera */
-  max-width: 400px;
   margin: 0 auto;
+  width: 30%;
 }
 .boton {
   width: 100%;
@@ -318,15 +318,34 @@ nav button {
 }
 
 #tabla{
-  
+
   background-color: #FFF; /* Fondo blanco */
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra ligera */
-  width: 50%;
+  
 }
+/* contenedor que agarra tabla y contenedor con imputs de direccion, etc */
 
 .maincontent{
-
+  
   display: flex;
+  gap: 1em;
 }
+/* aca modifico el tamaño de las iamgenes del carrito con la clsase imgCart agregada desde el js */
+
+.tdImg{
+
+  
+  justify-content: center;
+  text-align: center;
+  
+}
+.imgCart {
+
+  width: 10em;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  
+}
+
