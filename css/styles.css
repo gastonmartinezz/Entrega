@@ -10,13 +10,15 @@
 .jumbotron .display-4 {
   font-weight: bold;
 }
-.card {
+#info{
+
   background-color: #FFF; /* Fondo blanco */
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra ligera */
-  max-width: 400px;
   margin: 0 auto;
+  width: 30%;
+  
 }
 .boton {
   width: 100%;
@@ -315,5 +317,53 @@ nav button {
   outline: none;
   color: rgba(255,255,255,.55);
 }
+
+#tabla{
+
+  background-color: #FFF; /* Fondo blanco */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+  height: 100%;
+  
+}
+/* contenedor que agarra tabla y contenedor con imputs de direccion, etc */
+
+.maincontent{
+  
+  display: flex;
+  gap: 1em;
+}
+/* aca modifico el tamaño de las iamgenes del carrito con la clsase imgCart agregada desde el js */
+
+.tdImg{
+
+  justify-content: center;
+  text-align: center;
+  
+}
+.imgCart {
+
+  width: 10em;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  margin: .2em;
+  
+}
+
+/* titulos */
+
+.title{
+
+  color: #F09100;
+  font-size: em;
+  font-family: 'Poppins', sans-serif;
+}
+
+h5{
+
+  font-weight: bolder;
+}
+
 
 
