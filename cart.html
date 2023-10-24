@@ -77,35 +77,51 @@
 
     <div class="card">
       <h5>Tipo de envío</h5>
-      <div class="radio-label">
-        <input type="radio" id="premium" name="shippingType" checked>
-        <label for="premium">Premium 2 a 5 días (15%)</label>
-      </div>
-      <div class="radio-label">
-        <input type="radio" id="normal" name="shippingType">
-        <label for="normal">Express 5 a 8 días (7%)</label>
-      </div>
-      <div class="radio-label">
-        <input type="radio" id="urgente" name="shippingType">
-        <label for="urgente">Standard 12 a 15 días (5%)</label>
-      </div>
-      <br>
-
-      <label for="calle">Calle:</label>
-      <input type="text" name="calle" id="calle">
-      <br>
-
-      <label for="numero">Número:</label>
-      <input type="text" name="numero" id="numero">
-      <br>
-
-      <label for="esquina">Esquina:</label>
-      <input type="text" name="esquina" id="esquina">
-      <br>
-
-      <button class="boton" type="button" > <strong>Enviar</strong></button>
-    </div> 
-  </main>
+    
+      <form action="#" method="get" class="needs-validation" novalidate>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" required>
+          <label class="form-check-label" for="flexRadioDefault1">
+           Premium 2 a 5 dias (15%)
+          </label>
+        </div>
+  
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" required>
+            <label class="form-check-label" for="flexRadioDefault1">
+              Express 5 a 8 días (7%)
+            </label>
+            </div>
+  
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" required>
+              <label class="form-check-label" for="flexRadioDefault1">
+                Standard 12 a 15 días (5%)
+            </label>
+          </div>
+        
+  
+        <div class="form-floating mb-3 mt-3" >
+          <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+          <label for="floatingInput">Email address</label>
+          
+        </div>
+  
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+          <label for="floatingInput">Email address</label>
+        </div>
+        
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+          <label for="floatingInput">Email address</label>
+        </div>
+  
+        <button class="boton" type="submit" > <strong>Enviar</strong></button>
+      </div> 
+        
+      </form>
+    </main>
  
   <footer class="text-muted">
     <div class="container">
