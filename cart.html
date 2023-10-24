@@ -141,15 +141,35 @@
           <h1 class="modal-title fs-5">Forma de pago</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-header">
           <div class="form-check">
             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" required>
             <label class="form-check-label" for="flexRadioDefault1">Tarjeta de crédito</label>
           </div>
-          <div class="modal-content">
-              <input type="text">
-          </div>  
         </div>
+          <div class="modal-header">
+            <span>
+              <label for="text">Número de tarjeta</label>
+              <input type="text" required>
+              <br>
+              <label for="text">Código de seg.</label>
+              <input type="text" required>
+              <br>
+              <label for="text">Vencimiento (MM/AA)</label>
+              <input type="text" required>
+            </span>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" required>
+            <label class="form-check-label" for="flexRadioDefault1">Transferencia Bancaria</label>
+          </div>
+          <div class="modal-footer">
+            <div>
+              <span>
+                <label for="text">Número de cuenta</label>
+                <input type="text" required>
+              </span>
+          </div>  
       </div>
     </div>
   </div>
