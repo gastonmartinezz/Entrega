@@ -30,7 +30,7 @@ async function agregarProductos() {
         const fila = document.createElement("tr");
 
         fila.innerHTML = `
-          <td class="tdImg"><img src="${article.image}" width="50px" alt="Imágen del producto ${article.name}" class="imgCart shadow-sm  bg-body-tertiary rounded" ></td>
+          <td class="tdImg"><img src="${article.image}" width="50px" alt="Imágen del producto ${article.name}" class="imgCart shadow-md  bg-body-tertiary rounded" ></td>
           <td>${article.name}</td>
           <td><span class="precio-unitario">${article.currency} ${article.unitCost}</span></td>
           <td><input class="cantidad" type="number" value="1" min="1" oninput="actualizarSubtotal(this)"></td>
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     .then(article => {
       let fila = document.createElement("tr");
       fila.innerHTML =
-        `<td class="tdImg"><img src="${article.images[0]}" width="50px" alt="Imágen del producto ${article.name}" class="imgCart shadow-sm  bg-body-tertiary rounded"></td>
+        `<td class="tdImg"><img src="${article.images[0]}" width="50px" alt="Imágen del producto ${article.name}" class="imgCart shadow-md  bg-body-tertiary rounded"></td>
         <td>${article.name}</td>
         <td><span class="precio-unitario">${article.currency} ${article.cost}</span></td>
         <td><input class="cantidad" type="number" value="${cantidad}" min="1" oninput="actualizarSubtotal(this)"></td>
