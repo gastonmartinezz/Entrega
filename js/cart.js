@@ -123,3 +123,21 @@ function actualizarSubtotal(elemento) {
       }, false)
     })
 })()
+
+$(document).ready(function () {
+  $("#tarjetaCheckbox").change(function () {
+      if (this.checked) {
+          $("#tarjetaFields").show();
+      } else {
+          $("#tarjetaFields").hide();
+      }
+  });
+
+  $("#transferenciaCheckbox").change(function () {
+      if (this.checked) {
+          $("#transferenciaField").show();
+      } else {
+          $("#transferenciaField").hide();
+      }
+  });
+});

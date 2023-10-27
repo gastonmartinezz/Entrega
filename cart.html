@@ -13,7 +13,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@1,6..12,200&family=Quicksand:wght@300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@1,6..12,200&family=Quicksand:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -121,14 +122,65 @@
             <label for="floatingInput">Esquina</label>
           </div>
     
-          <button class="boton" type="submit" > <strong>Enviar</strong></button>
+          <button class="boton" type="submit" >  <strong>Enviar</strong></button>
         </div> 
           
         </form>
       </div>
     </div>
     
-    
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Abrir Modal</button>
+  
+  <!-- El Modal -->
+  <div class="modal" id="myModal">
+      <div class="modal-dialog">
+          <div class="modal-content">
+  
+              <!-- Contenido del modal -->
+              <div class="modal-header">
+                  <h4 class="modal-title">Formulario de Pago</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                  <form>
+                      <div class="form-check">
+                          <input type="checkbox" class="form-check-input" id="tarjetaCheckbox">
+                          <label class="form-check-label" for="tarjetaCheckbox">Tarjeta de Crédito</label>
+                      </div>
+                      <div id="tarjetaFields" style="display: none;">
+                          <div class="form-group">
+                              <label for="numeroTarjeta">Número de Tarjeta:</label>
+                              <input type="text" class="form-control" id="numeroTarjeta">
+                          </div>
+                          <div class="form-group">
+                              <label for="vencimiento">Vencimiento:</label>
+                              <input type="text" class="form-control" id="vencimiento">
+                          </div>
+                          <div class="form-group">
+                              <label for="codigoSeguridad">Código de Seguridad:</label>
+                              <input type="text" class="form-control" id="codigoSeguridad">
+                          </div>
+                      </div>
+                      <div class="form-check">
+                          <input type="checkbox" class="form-check-input" id="transferenciaCheckbox">
+                          <label class="form-check-label" for="transferenciaCheckbox">Transferencia Bancaria</label>
+                      </div>
+                      <div id="transferenciaField" style="display: none;">
+                          <div class="form-group">
+                              <label for="numeroCuenta">Número de Cuenta:</label>
+                              <input type="text" class="form-control" id="numeroCuenta">
+                          </div>
+                      </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-primary">Enviar</button>
+              </div>
+          </div>
+      </div>
+  </div>
+  
 
    
   </main>
@@ -150,54 +202,10 @@
     </div>
   </div>
 
-  <div class="modal fade" id="modalTerminos" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5">Forma de pago</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" required>
-              <label class="form-check-label" for="flexRadioDefault1">Tarjeta de crédito</label>
-          </div>
-        </div>
-          <div class="modal-body">
-            <div class="container-fluid">
-              <div class="row">
-                <label for="text">Número de tarjeta</label>
-                <input type="text" required>
-                <br>
-                <label for="text">Código de seg.</label>
-                <input type="text" required>
-                <br>
-                <label for="text">Vencimiento (MM/AA)</label>
-                <input type="text" required>
-              </div>
-            </div>  
-          </div>
-            <div class="modal-body">
-              <div class="container-fluid">
-                <div class="row">  
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" required>
-                      <label class="form-check-label" for="flexRadioDefault1">Transferencia Bancaria</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <div class="modal-footer">
-            <div class="container-fluid">
-              <div class="row">
-                  <label for="text">Número de cuenta</label>
-                  <input type="text" required>
-              </div>
-          </div>  
-      </div>
-    </div>
-  </div>
-
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
