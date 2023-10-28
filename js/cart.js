@@ -1,3 +1,4 @@
+
 const isLoggedIn = true;
      
 if (isLoggedIn) {
@@ -48,30 +49,44 @@ async function agregarProductos() {
   }
 }
 
-
 //Agregar productos del local
 document.addEventListener("DOMContentLoaded",()=>{
   let listaLocal = JSON.parse(localStorage.getItem("carrito"));
   const tablaLocalCarrito = document.getElementById("localProducts");
 
-  listaLocal.forEach((producto) => crearFichaCarrito(producto))
+  listaLocal.forEach((producto) => crearFichaCarrito(producto));
   
-  function crearFichaCarrito(producto){
-    
+  function crearFichaCarrito(producto) {
+
     let cantidad = producto.cantidad;
     let id = producto.id;
-
+  
     fetch(PRODUCT_INFO_URL + id + ".json")
     .then(response => response.json())
     .then(article => {
       let fila = document.createElement("tr");
+
+      // Verifica si la moneda del artículo es "USD"
+      if (article.currency === "USD") {
+        // Si la moneda es "USD", el costo y el subtotal ya están en USD
+        var costUSD = article.cost;
+      } else {
+        // Si la moneda es "UYU", realiza la conversión a USD
+        var costUSD = article.cost * CONVERSION;
+      }
+    
+      // Calcula el subtotal en USD
+      const subtotalUSD = costUSD * cantidad;
+
       fila.innerHTML =
+
+      
         `<td class="tdImg"><img src="${article.images[0]}" width="50px" alt="Imágen del producto ${article.name}" class="imgCart shadow-md  bg-body-tertiary rounded"></td>
         <td>${article.name}</td>
         <td><span class="precio-unitario">${article.currency} ${article.cost}</span></td>
         <td><input class="cantidad" type="number" value="${cantidad}" min="1" oninput="actualizarSubtotal(this)" data-id="${id}"></td>
-        <td>${article.currency} <span class="subtotal" type="number">${(article.cost * cantidad)}</span></td>
-        `;    
+        <td>USD <span class="subtotal" type="number">${subtotalUSD.toFixed(2)}</span></td>
+        `;
       tablaLocalCarrito.appendChild(fila);
     })
     .catch(error => console.log(error));
@@ -81,23 +96,34 @@ document.addEventListener("DOMContentLoaded",()=>{
 // Llama a la función para agregar productos desde la API al cargar la página
 window.addEventListener("load", agregarProductos);
 
-function actualizarSubtotal(inputArticulo) {
-  const fila = inputArticulo.parentElement.parentElement;
+const CONVERSION = 0.025; // valor según la tasa de conversión actual
+
+function actualizarSubtotal(elemento) {
+  const fila = elemento.parentElement.parentElement;
   const unitCosto = fila.querySelector('.precio-unitario');
   const subtotal = fila.querySelector('.subtotal');
 
-  const unitCost = unitCosto.textContent.replace(/[^\d.]/g, '');
-  const cantidad = inputArticulo.value;
+  const precioCompleto = unitCosto.textContent;
+  const cantidad = parseFloat(elemento.value);
 
-  const newSubtotal = unitCost * cantidad;
-  
-  if (inputArticulo.value === "") {
-    subtotal.textContent = "0";
+  // Verifica si la moneda es "UYU" y luego realiza la conversión
+  if (precioCompleto.includes("UYU")) {
+    const unitCost = parseFloat(precioCompleto.match(/[\d.]+/)[0]);
+    const unitCostUSD = unitCost * CONVERSION;
+    const newSubtotal = unitCostUSD * cantidad;
+
+    // Añade la moneda USD al valor del subtotal
+    subtotal.textContent = ` ${newSubtotal.toFixed(2)}`;
   } else {
-    subtotal.textContent = `${newSubtotal}`;
+    // Si la moneda es "USD", simplemente calcula el subtotal en USD
+    const unitCostUSD = parseFloat(precioCompleto.match(/[\d.]+/)[0]);
+    const newSubtotal = unitCostUSD * cantidad;
+
+    // Añade la moneda USD al valor del subtotal
+    subtotal.textContent = ` ${newSubtotal.toFixed(2)}`;
   }
 
-  const id = inputArticulo.getAttribute("data-id");
+  const id = elemento.getAttribute("data-id");
   const carrito = JSON.parse(localStorage.getItem("carrito"));
 
   for (let i = 0; i < carrito.length; i++) {
