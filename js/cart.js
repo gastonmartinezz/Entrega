@@ -29,9 +29,8 @@ async function agregarProductos() {
       data.articles.forEach(article => {
         const fila = document.createElement("tr");
 
-        fila.innerHTML = 
-        `
-          <td><img src="${article.image}" width="50px" alt="Imágen del producto ${article.name}"></td>
+        fila.innerHTML = `
+          <td class="tdImg"><img src="${article.image}" width="50px" alt="Imágen del producto ${article.name}" class="imgCart shadow-md  bg-body-tertiary rounded" ></td>
           <td>${article.name}</td>
           <td><span class="precio-unitario">${article.currency} ${article.unitCost}</span></td>
           <td><input class="cantidad" type="number" value="1" min="1" oninput="actualizarSubtotal(this)" data-id="${id}"></td>
@@ -67,8 +66,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     .then(article => {
       let fila = document.createElement("tr");
       fila.innerHTML =
-        `
-        <td><img src="${article.images[0]}" width="50px" alt="Imágen del producto ${article.name}"></td>
+        `<td class="tdImg"><img src="${article.images[0]}" width="50px" alt="Imágen del producto ${article.name}" class="imgCart shadow-md  bg-body-tertiary rounded"></td>
         <td>${article.name}</td>
         <td><span class="precio-unitario">${article.currency} ${article.cost}</span></td>
         <td><input class="cantidad" type="number" value="${cantidad}" min="1" oninput="actualizarSubtotal(this)" data-id="${id}"></td>
@@ -111,3 +109,43 @@ function actualizarSubtotal(inputArticulo) {
 
   localStorage.setItem("carrito", JSON.stringify(carrito));
 }
+
+/* funcion de bootstrap para  chequeo de campos con feedback */
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+
+$(document).ready(function () {
+  $("#tarjetaCheckbox").change(function () {
+      if (this.checked) {
+          $("#tarjetaFields").show();
+      } else {
+          $("#tarjetaFields").hide();
+      }
+  });
+
+  $("#transferenciaCheckbox").change(function () {
+      if (this.checked) {
+          $("#transferenciaField").show();
+      } else {
+          $("#transferenciaField").hide();
+      }
+  });
+});
