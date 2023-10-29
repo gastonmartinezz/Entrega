@@ -86,7 +86,7 @@
       <div class="card" id="info">
         <h5>Tipo de envío</h5>
       
-        <form id="envio" action="#" method="get" class="needs-validation" novalidate>
+        <form id="envio" action="#" method="get" class="needs-validation" onclick="subtotalEnvioTotal()" novalidate>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="0.15" required>
             <label class="form-check-label" for="flexRadioDefault1">
@@ -194,15 +194,15 @@
       <table>
         <tr>
           <td class="col-10">Subtotal</td>
-          <td id="subtotal" class="col-1"></td>
+          <td class="col-sm-2">USD $<span id="subtotal"></span></td>
         </tr>
         <tr>
           <td class="col-10">Costo de envio</td>
-          <td id="costo-envio" class="col-1"></td>
+          <td class="col-2">USD $<span id="costo-envio"></span></td>
         </tr>
         <tr>
           <td class="col-10">Total</td>
-          <td id="total" class="col-1"></td>
+          <td class="col-2">USD $<span id="total" ></span></td>
         </tr>
       </table>
     </div>
