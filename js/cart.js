@@ -231,3 +231,51 @@ $(document).ready(function () {
       }
   });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  let myModal = new bootstrap.Modal(document.getElementById("myModal"));
+
+  // Agregar un controlador al evento "show.bs.modal" del modal
+  myModal._element.addEventListener("show.bs.modal", function () {
+    // Validar si al menos una forma de pago está seleccionada
+    let tarjetaCheckbox = document.getElementById("tarjetaCheckbox");
+    let transferenciaCheckbox = document.getElementById("transferenciaCheckbox");
+
+    if (!tarjetaCheckbox.checked && !transferenciaCheckbox.checked) {
+      alert("Por favor, seleccione una forma de pago.");
+      myModal.hide();
+    }
+  });
+
+  // Manejar el guardado de datos
+  document.getElementById("guardarCambios").addEventListener("click", function () {
+    // Realiza la lógica de guardado aquí
+
+    // Validar campos según la forma de pago seleccionada
+    let tarjetaFields = document.getElementById("tarjetaFields");
+    let transferenciaField = document.getElementById("transferenciaField");
+
+    if (tarjetaCheckbox.checked) {
+      let numeroTarjeta = document.getElementById("numeroTarjeta").value;
+      let vencimiento = document.getElementById("vencimiento").value;
+      let codigoSeguridad = document.getElementById("codigoSeguridad").value;
+
+      if (!numeroTarjeta || !vencimiento || !codigoSeguridad) {
+        alert("Por favor, complete todos los campos de Tarjeta de Crédito.");
+        return;
+      }
+    }
+
+    if (transferenciaCheckbox.checked) {
+      let numeroCuenta = document.getElementById("numeroCuenta").value;
+
+      if (!numeroCuenta) {
+        alert("Por favor, complete el campo de Número de Cuenta.");
+        return;
+      }
+    }
+
+    // Cierra el modal
+    myModal.hide();
+  });
+});
