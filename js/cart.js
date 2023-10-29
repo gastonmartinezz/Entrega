@@ -199,6 +199,7 @@ function subtotalEnvioTotal (){
 
   // Fetch all the forms we want to apply custom Bootstrap validation styles to
   var forms = document.querySelectorAll('.needs-validation')
+  
 
   // Loop over them and prevent submission
   Array.prototype.slice.call(forms)
@@ -209,7 +210,7 @@ function subtotalEnvioTotal (){
           event.stopPropagation()
         }
 
-        form.classList.add('was-validated')
+        form.classList.add('was-validated');
       }, false)
     })
 })()
@@ -285,6 +286,14 @@ const tarjetaCheckbox = document.getElementById("tarjetaCheckbox");
 const transferenciaCheckbox = document.getElementById("transferenciaCheckbox");
 const tarjetaFields = document.getElementById("tarjetaFields");
 const transferenciaField = document.getElementById("transferenciaField");
+const formaDePago = document.getElementById("formaDePago");
+const texto = document.getElementById("texto");
+const numeroCuenta = document.getElementById("numeroCuenta");
+const numeroTarjeta = document.getElementById("numeroTarjeta");
+const cvv = document.getElementById("codigoSeguridad");
+const expired = document.getElementById("vencimiento");
+const formulario = document.getElementById('envio');
+const alertSuccess = document.getElementById("success");
 
 tarjetaCheckbox.addEventListener("change", function () {
   if (tarjetaCheckbox.checked) {
@@ -292,8 +301,12 @@ tarjetaCheckbox.addEventListener("change", function () {
     tarjetaFields.style.display = "block";
     transferenciaField.style.display = "none";
 
+    texto.textContent = "Tarjeta de Crédito";
+    texto.style.color = "black";
+
   } else {
     tarjetaFields.style.display = "none";
+    texto.textContent = "";
   }
 });
 
@@ -303,7 +316,42 @@ transferenciaCheckbox.addEventListener("change", function () {
     transferenciaField.style.display = "block";
     tarjetaFields.style.display = "none";
 
+    texto.textContent = "Transferencia";
+    texto.style.color = "black";
+
   } else {
     transferenciaField.style.display = "none";
+    texto.textContent = "";
+  }
+});
+
+const botonGuardar = document.getElementById("guardarCambios");
+
+botonGuardar.addEventListener("click", () => {
+  if (!transferenciaCheckbox.checked && !tarjetaCheckbox.checked) {
+    texto.textContent = "Debe seleccionar una forma de pago.";
+    texto.style.color = "red";
+  }
+});
+
+const enviar = document.getElementById("enviarBoton");
+
+enviar.addEventListener("click", () => {
+  let tarjetaPago;
+  let transferenciaPago;
+  if (tarjetaCheckbox.checked && numeroTarjeta.value != "" && cvv.value != "" && expired.value != "") {
+    tarjetaPago = true;
+  } else {
+    tarjetaPago = false;
+  }
+
+  if (transferenciaCheckbox.checked && numeroCuenta.value != "") {
+    transferenciaPago = true;
+  } else {
+    transferenciaPago = false;
+  }
+
+  if (formulario.classList.contains("was-validated") && (tarjetaPago || transferenciaPago)) {
+    alertSuccess.style.display = "block";
   }
 });

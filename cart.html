@@ -64,6 +64,9 @@
       </svg></h2> 
       
     </div>
+    <div class="alert alert-success" role="alert" id="success" style="display: none;">
+      ¡Has comprado con éxito!
+    </div>
 
     <div class="maincontent">
       <table class="table container" id="tabla">
@@ -108,26 +111,27 @@
     
           <div class="form-floating mb-3 mt-3" >
             <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" required>
-            <label for="floatingInput">Dirección</label>
+            <label for="floatingInput" id="dire">Dirección</label>
             
           </div>
     
           <div class="form-floating mb-3">
             <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" required>
-            <label for="floatingInput">Número</label>
+            <label for="floatingInput" id="nroCalle">Número</label>
           </div>
           
           <div class="form-floating mb-3">
             <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" required>
-            <label for="floatingInput">Esquina</label>
+            <label for="floatingInput" id="esquina">Esquina</label>
           </div>
     
-          <button class="boton" type="submit" >  <strong>Enviar</strong></button>
+          <button class="boton" type="submit" id="enviarBoton">  <strong>Enviar</strong></button>
           <div class="pt-3">
-          <h5>Forma de pago</h5>
+          <h5 id="formaDePago">Forma de pago</h5>
+          <p id="texto"></p>
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Seleccionar</button> 
           </div>
-        </div> 
+          </div> 
         
           
         </form>
@@ -151,7 +155,7 @@
                         <input type="checkbox" class="form-check-input" id="tarjetaCheckbox">
                         <label class="form-check-label" for="tarjetaCheckbox">Tarjeta de Crédito</label>
                     </div>
-                    <div id="tarjetaFields" style="display: block;">
+                    <div id="tarjetaFields" style="display: none;">
                         <div class="form-group">
                             <label for="numeroTarjeta">Número de Tarjeta:</label>
                             <input type="text" class="form-control" id="numeroTarjeta" required>
@@ -169,7 +173,7 @@
                         <input type="checkbox" class="form-check-input" id="transferenciaCheckbox">
                         <label class="form-check-label" for="transferenciaCheckbox">Transferencia Bancaria</label>
                     </div>
-                    <div id="transferenciaField" style="display: block;">
+                    <div id="transferenciaField" style="display: none;">
                         <div class="form-group">
                             <label for="numeroCuenta">Número de Cuenta:</label>
                             <input type="text" class="form-control" id="numeroCuenta" required>
@@ -179,7 +183,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" id="guardarCambios">Guardar cambios</button>
+                <button type="button" class="btn btn-primary" id="guardarCambios" data-dismiss="modal">Guardar cambios</button>
             </div>
         </div>
     </div>
@@ -211,6 +215,7 @@
       </p>
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
+
   </footer>
   <div id="spinner-wrapper">
     <div class="lds-ring">
