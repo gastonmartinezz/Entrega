@@ -279,3 +279,31 @@ document.addEventListener("DOMContentLoaded", function () {
     myModal.hide();
   });
 });
+
+//Funcionamiento de checkbox de método de pago
+const tarjetaCheckbox = document.getElementById("tarjetaCheckbox");
+const transferenciaCheckbox = document.getElementById("transferenciaCheckbox");
+const tarjetaFields = document.getElementById("tarjetaFields");
+const transferenciaField = document.getElementById("transferenciaField");
+
+tarjetaCheckbox.addEventListener("change", function () {
+  if (tarjetaCheckbox.checked) {
+    transferenciaCheckbox.checked = false;
+    tarjetaFields.style.display = "block";
+    transferenciaField.style.display = "none";
+
+  } else {
+    tarjetaFields.style.display = "none";
+  }
+});
+
+transferenciaCheckbox.addEventListener("change", function () {
+  if (transferenciaCheckbox.checked) {
+    tarjetaCheckbox.checked = false;
+    transferenciaField.style.display = "block";
+    tarjetaFields.style.display = "none";
+
+  } else {
+    transferenciaField.style.display = "none";
+  }
+});
