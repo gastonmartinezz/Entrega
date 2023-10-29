@@ -34,7 +34,7 @@ async function agregarProductos() {
           <td class="tdImg"><img src="${article.image}" width="50px" alt="Imágen del producto ${article.name}" class="imgCart shadow-md  bg-body-tertiary rounded" ></td>
           <td>${article.name}</td>
           <td><span class="precio-unitario">${article.currency} ${article.unitCost}</span></td>
-          <td><input class="cantidad" type="number" value="1" min="1" oninput="actualizarSubtotal(this)" data-id="${id}"></td>
+          <td><input class="cantidad" type="number" value="1" min="1" oninput="actualizarSubtotal(this); subtotalEnvioTotal()" data-id="${id}"></td>
           <td>${article.currency} <span class="subtotal" type="number">${(article.unitCost * article.count)}</span></td>
           <td><button class="btn btn-danger" onclick="eliminarProducto(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
           <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
@@ -48,6 +48,10 @@ async function agregarProductos() {
     } else {
       console.error();
     }
+
+    //Actualiza el subtotal cuando se completa el fetch
+    subtotalEnvioTotal();
+
   } catch (error) {
     console.error(error);
   }
@@ -88,7 +92,7 @@ document.addEventListener("DOMContentLoaded",()=>{
         `<td class="tdImg"><img src="${article.images[0]}" width="50px" alt="Imágen del producto ${article.name}" class="imgCart shadow-md  bg-body-tertiary rounded"></td>
         <td>${article.name}</td>
         <td><span class="precio-unitario">${article.currency} ${article.cost}</span></td>
-        <td><input class="cantidad" type="number" value="${cantidad}" min="1" oninput="actualizarSubtotal(this)" data-id="${id}"></td>
+        <td><input class="cantidad" type="number" value="${cantidad}" min="1" oninput="actualizarSubtotal(this); subtotalEnvioTotal()" data-id="${id}"></td>
         <td>USD <span class="subtotal" type="number">${subtotalUSD.toFixed(2)}</span></td>
         <td><button class="btn btn-danger" onclick="eliminarProducto(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
@@ -143,6 +147,38 @@ function actualizarSubtotal(elemento) {
 
   localStorage.setItem("carrito", JSON.stringify(carrito));
 }
+
+/////////////////////////////////////////////
+//Funcion que actualiza los campos Subtotal, Costo Envio y Total segun lo que esté en la pagina. (NO USA LOCAL STORAGE)
+function subtotalEnvioTotal (){
+
+  //Toma los elementos de los subtotales y los guarda en una lista. Itera la lista, sumandolos. Devuelve el subtotal.
+  let lista = Array.from(document.querySelectorAll("span.subtotal"));
+  let subtotal = 0;
+  lista.forEach((element)=> subtotal+= parseInt(element.innerHTML));
+
+  //console.log(subtotal);
+
+  //Considera el formulario de envio. Calcula el costo de envio.
+  let form = document.getElementById("envio").getElementsByTagName("input");
+  //console.log(form);
+  let costoEnvio = 0;
+  for (let i = 0; i < form.length; i++) {
+    if(form[i].checked)
+      costoEnvio = subtotal * parseFloat(form[i].value);
+  }
+
+  //Modificar los elementos en el html
+  const DIV_SUBTOTAL = document.getElementById("subtotal");
+  const DIV_COSTO_ENVIO = document.getElementById("costo-envio");
+  const DIV_TOTAL = document.getElementById("total");
+
+  DIV_SUBTOTAL.innerHTML= subtotal;
+  DIV_COSTO_ENVIO.innerHTML= costoEnvio;
+  DIV_TOTAL.innerHTML= subtotal + costoEnvio;
+};
+/////////////////////////////////////////////
+
   function eliminarProducto(button) {
   const fila = button.parentElement.parentElement;
   const id = fila.querySelector('.cantidad').getAttribute("data-id");
