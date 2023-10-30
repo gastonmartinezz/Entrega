@@ -36,7 +36,7 @@ async function agregarProductos() {
           <td><span class="precio-unitario">${article.currency} ${article.unitCost}</span></td>
           <td><input class="cantidad" type="number" value="1" min="1" oninput="actualizarSubtotal(this); subtotalEnvioTotal()" data-id="${id}"></td>
           <td>${article.currency} <span class="subtotal" type="number">${(article.unitCost * article.count)}</span></td>
-          <td><button class="btn btn-danger" onclick="eliminarProducto(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+          <td><button class="btn btn-danger" onclick="eliminarProducto(this); subtotalEnvioTotal()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
           <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
           <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
         </svg></button></td>
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded",()=>{
         <td><span class="precio-unitario">${article.currency} ${article.cost}</span></td>
         <td><input class="cantidad" type="number" value="${cantidad}" min="1" oninput="actualizarSubtotal(this); subtotalEnvioTotal()" data-id="${id}"></td>
         <td>USD <span class="subtotal" type="number">${subtotalUSD.toFixed(2)}</span></td>
-        <td><button class="btn btn-danger" onclick="eliminarProducto(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+        <td><button class="btn btn-danger" onclick="eliminarProducto(this); subtotalEnvioTotal()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
         <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
       </svg></button></td>
@@ -155,7 +155,7 @@ function subtotalEnvioTotal (){
   //Toma los elementos de los subtotales y los guarda en una lista. Itera la lista, sumandolos. Devuelve el subtotal.
   let lista = Array.from(document.querySelectorAll("span.subtotal"));
   let subtotal = 0;
-  lista.forEach((element)=> subtotal+= parseInt(element.innerHTML));
+  lista.forEach((element)=> subtotal+= parseFloat(element.innerHTML));
 
   //console.log(subtotal);
 
@@ -173,9 +173,9 @@ function subtotalEnvioTotal (){
   const DIV_COSTO_ENVIO = document.getElementById("costo-envio");
   const DIV_TOTAL = document.getElementById("total");
 
-  DIV_SUBTOTAL.innerHTML= subtotal;
-  DIV_COSTO_ENVIO.innerHTML= costoEnvio;
-  DIV_TOTAL.innerHTML= subtotal + costoEnvio;
+  DIV_SUBTOTAL.textContent= subtotal.toFixed(2);
+  DIV_COSTO_ENVIO.textContent= costoEnvio.toFixed(2);
+  DIV_TOTAL.textContent= (subtotal + costoEnvio).toFixed(2);
 };
 /////////////////////////////////////////////
 
