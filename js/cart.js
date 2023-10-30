@@ -208,6 +208,10 @@ function subtotalEnvioTotal (){
         if (!form.checkValidity()) {
           event.preventDefault()
           event.stopPropagation()
+        } else {
+          validacion();
+          event.preventDefault()
+          event.stopPropagation()
         }
 
         form.classList.add('was-validated');
@@ -336,7 +340,7 @@ botonGuardar.addEventListener("click", () => {
 
 const enviar = document.getElementById("enviarBoton");
 
-enviar.addEventListener("click", () => {
+function validacion() {
   let tarjetaPago;
   let transferenciaPago;
   if (tarjetaCheckbox.checked && numeroTarjeta.value != "" && cvv.value != "" && expired.value != "") {
@@ -354,4 +358,4 @@ enviar.addEventListener("click", () => {
   if (formulario.classList.contains("was-validated") && (tarjetaPago || transferenciaPago)) {
     alertSuccess.style.display = "block";
   }
-});
+};
