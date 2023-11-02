@@ -58,7 +58,7 @@
 
   <main class="container">
     <div class="container" id="resultado">
-      <h2 class=" title text-start mb-4 my-5">Mi Carrito <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-check" viewBox="0 0 16 16">
+      <h2 class=" title text-start mb-3 my-5 fw-bold">Mi Carrito <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-check" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
         <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
       </svg></h2> 
@@ -125,11 +125,11 @@
             <label for="floatingInput" id="esquina">Esquina</label>
           </div>
     
-          <button class="boton" type="submit" id="enviarBoton">  <strong>Enviar</strong></button>
+          <button class="boton" type="submit" id="enviarBoton">  <strong>Comprar</strong></button>
           <div class="pt-3">
-          <h5 id="formaDePago">Forma de pago</h5>
+          <h5 id="formaDePago" class="fw-bold">Forma de pago</h5>
           <p id="texto"></p>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Seleccionar</button> 
+          <button type="button" class="btn btn-dark fw-bold" data-toggle="modal" data-target="#myModal">Seleccionar</button> 
           </div>
           </div> 
         
@@ -189,20 +189,20 @@
     </div>
 </div>
   
-    <div id="Costos" class="card">
-      <h3>Costos</h3>
+    <div id="Costos" class="card mt-4 p-3 shadow p-3 mb-5 bg-body-tertiary rounded">
+      <h3 class="fw-bolder" id="h3">Costos</h3>
       <table>
         <tr>
-          <td class="col-10">Subtotal</td>
-          <td class="col-sm-2">USD $<span id="subtotal"></span></td>
+          <td class="col-10 fw-bold">Subtotal</td>
+          <td class="col-sm-2 fw-bold">USD $<span id="subtotal"></span></td>
         </tr>
         <tr>
-          <td class="col-10">Costo de envio</td>
-          <td class="col-2">USD $<span id="costo-envio"></span></td>
+          <td class="col-10 fw-bold">Costo de envio</td>
+          <td class="col-2 fw-bold">USD $<span id="costo-envio"></span></td>
         </tr>
         <tr>
-          <td class="col-10">Total</td>
-          <td class="col-2">USD $<span id="total" ></span></td>
+          <td class="col-10 fw-bold">Total</td>
+          <td class="col-2 fw-bold">USD $<span id="total" ></span></td>
         </tr>
       </table>
     </div>
