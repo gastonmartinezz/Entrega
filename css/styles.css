@@ -357,7 +357,7 @@ nav button {
 
   color: #F09100;
   font-family: 'Poppins', sans-serif;
-  font-size: ;
+  
 }
 
 h5{
@@ -370,4 +370,21 @@ h5{
   color: #F09100;
 }
 
-#costos
+/* modo noche */
+.noche #info{
+
+  background-color: #181d31;
+}
+
+.noche #tabla{
+
+  background-color: #181d31;
+  color: white;
+}
+
+.noche #Costos{
+
+  background-color: #181d31;
+  color: white;
+  
+}
