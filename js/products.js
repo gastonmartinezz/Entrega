@@ -1,20 +1,30 @@
+//Damos valor verdadero a la constante "isLoggedIn" 
+
 const isLoggedIn = true;
      
+//Transformamos el email ingresado en la variable "username" para que figure en pantalla en el costado del navBar. 
+
 if (isLoggedIn) {
   const username = localStorage.getItem("Email");
   const usernameElement = document.getElementById("logged-in-username");
  
+// Mostramos el nombre de usuario en el navbar
   usernameElement.textContent = username;
 } 
 
+// Obtenemos el ID de la categoría almacenado en el Local Storage
 let categoriaID = localStorage.getItem("catID");
+
+//Traemos la información de los productos en formato json
 
 const categoriaURL = `https://japceibal.github.io/emercado-api/cats_products/${categoriaID}.json`;
 
 const fichas = document.getElementsByClassName("contenedor")[0];
 const titulo = document.getElementById("tituloCategoria");
 
+// Función que crea fichas de productos basadas en la información proporcionada
 function crearFichas(registro){
+// Actualizamos el título de la categoría en la página  
   titulo.innerHTML =
   `
     <div>
@@ -41,16 +51,19 @@ function crearFichas(registro){
   }
 };
 
+// Realizamos una solicitud fetch para obtener la información de productos y luego creamos las fichas
 fetch(categoriaURL)
 .then(response => response.json())
 .then(data => crearFichas(data));
 
 console.log(categoriaURL)
 
+// Función que filtra y ordena los productos según el rango de precios y actualiza la página
 document.addEventListener("DOMContentLoaded", function () {
   const precioFiltrosBtn = document.getElementById("precioFiltros");
 
   precioFiltrosBtn.addEventListener("click", function () {
+// Obtención de valores de los campos de entrada de precio
     const precioMinInput = parseFloat(document.getElementById("precioMin").value);
     const precioMaxInput = parseFloat(document.getElementById("precioMax").value);
 
@@ -73,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-
+// Función que filtra productos en tiempo real mientras se escribe en el buscador
 document.addEventListener('keyup', e => {
   if (e.target.matches('#buscador')) {
 
@@ -99,7 +112,7 @@ document.addEventListener('keyup', e => {
 
 /* STICKY (testing) */
 
-// When the user scrolls the page, execute myFunction
+// Funciones para el manejo del formato "sticky" (posiblemente se esté probando)
 window.onscroll = function() {stickying()};
 
   let elemento = document.getElementsByClassName("posibleSticky")[0];
@@ -114,6 +127,7 @@ function stickying() {
   }
 }
 
+// Funciones para manejar la obtención y visualización de productos
 async function fetchProductos() {
   const response = await fetch(categoriaURL);
   const data = await response.json();
@@ -137,12 +151,14 @@ async function mostrarProductos(orden) {
   crearFichas(productos); 
 }
 
+// Función para filtrar y mostrar productos según la opción de orden seleccionada
 function filtrarProductos() {
   const ordenSelect = document.getElementById('ordenSelect');
   //console.log(ordenSelect.value)
   mostrarProductos(ordenSelect.value);
 }
 
+// Función para redirigir a la página de detalles del producto
 function viajar(x){
 
   localStorage.setItem('idproduct', x);

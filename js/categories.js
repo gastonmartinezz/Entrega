@@ -1,3 +1,4 @@
+// Este bloque de código se ejecutará cuando el contenido del documento HTML esté completamente cargado
 document.addEventListener("DOMContentLoaded", ()=> {
 	if (!userEmail) {
 		window.location.replace("./index.html");
@@ -11,8 +12,11 @@ document.addEventListener("DOMContentLoaded", ()=> {
         document.getElementById("email").value
         
     })});
+
+//Damos valor verdadero a la constante "isLoggedIn" 
     const isLoggedIn = true;
      
+//Transformamos el email ingresado en la variable "username" para que figure en pantalla en el costado del navBar.    
 if (isLoggedIn) {
        const username = localStorage.getItem("Email");
     const usernameElement = document.getElementById("logged-in-username");
@@ -22,15 +26,18 @@ if (isLoggedIn) {
 
 
 
-
+// Constantes para ordenar las categorías
 const ORDER_ASC_BY_NAME = "AZ";
 const ORDER_DESC_BY_NAME = "ZA";
 const ORDER_BY_PROD_COUNT = "Cant.";
+
+// Variables para gestionar las categorías y el orden actual
 let currentCategoriesArray = [];
 let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 
+// Función para ordenar las categorías según un criterio dado
 function sortCategories(criteria, array){
     let result = [];
     if (criteria === ORDER_ASC_BY_NAME)
@@ -60,11 +67,13 @@ function sortCategories(criteria, array){
     return result;
 }
 
+// Función para establecer el ID de la categoría en el localStorage y redirigir a la página de productos
 function setCatID(id) {
     localStorage.setItem("catID", id);
     window.location = "products.html"
 }
 
+// Función para mostrar la lista de categorías en el HTML
 function showCategoriesList(){
 
     let htmlContentToAppend = "";
@@ -96,6 +105,7 @@ function showCategoriesList(){
     }
 }
 
+// Función para ordenar y mostrar las categorías
 function sortAndShowCategories(sortCriteria, categoriesArray){
     currentSortCriteria = sortCriteria;
 
@@ -105,13 +115,11 @@ function sortAndShowCategories(sortCriteria, categoriesArray){
 
     currentCategoriesArray = sortCategories(currentSortCriteria, currentCategoriesArray);
 
-    //Muestro las categorías ordenadas
+    //Mostramos las categorías ordenadas
     showCategoriesList();
 }
 
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
+// Función que se ejecuta una vez que se haya lanzado el evento de que el documento se encuentra cargado
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(CATEGORIES_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
@@ -144,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 
     document.getElementById("rangeFilterCount").addEventListener("click", function(){
-        //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
+        //Obtenemos el mínimo y máximo de los intervalos para filtrar por cantidad
         //de productos por categoría.
         minCount = document.getElementById("rangeFilterCountMin").value;
         maxCount = document.getElementById("rangeFilterCountMax").value;

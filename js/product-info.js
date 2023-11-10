@@ -1,16 +1,21 @@
+//Damos valor verdadero a la constante "isLoggedIn" 
+
 const isLoggedIn = true;
      
+//Transformamos el email ingresado en la variable "username" para que figure en pantalla en el costado del navBar.
+
 if (isLoggedIn) {
   const username = localStorage.getItem("Email");
   const usernameElement = document.getElementById("logged-in-username");
  
+// Mostramos el nombre de usuario en el navbar
   usernameElement.textContent = username;
 }
 
-//Defino una lista vacia que contendrá comentarios(objetos)
+//Defino una lista vacia que contendrá comentarios (objetos)
 let listaComentarios = [];
 
-//idProducto
+// idProducto
 let productoid = localStorage.getItem('idproduct');
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -39,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 let divComentarios = document.getElementById("comentarios");
 
-//Llamar productos relacionados (dentro de fetch)
+// Llamar productos relacionados (dentro de fetch)
 function cargarProductosRelacionados(data){
   const relatedProducts = data.relatedProducts;
   const ProductRel = document.getElementById("productos-relacionados-lista");
@@ -290,7 +295,7 @@ function agregarCarrito(id) {
   }
   localStorage.setItem("carrito", JSON.stringify(localCarrito));
 }
-
+ 
 function viajarCarrito(){
   window.location = "cart.html";
 }

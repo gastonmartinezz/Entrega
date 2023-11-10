@@ -1,6 +1,9 @@
+//Damos valor verdadero a la constante "isLoggedIn" 
 
     const isLoggedIn = true;
-     
+
+//Transformamos el email ingresado en la variable "username" para que figure en pantalla en el costado del navBar.     
+
     if (isLoggedIn) {
            const username = localStorage.getItem("Email");
         const usernameElement = document.getElementById("logged-in-username");
@@ -34,9 +37,9 @@ function updateTotalCosts(){
     totalCostHTML.innerHTML = totalCostToShow;
 }
 
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
+// Función que se ejecuta una vez que se haya lanzado el evento de
+// que el documento se encuentra cargado, es decir, se encuentran todos los
+// elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
     document.getElementById("productCountInput").addEventListener("change", function(){
         productCount = this.value;
@@ -100,12 +103,12 @@ document.addEventListener("DOMContentLoaded", function(e){
         let productCost = document.getElementById("productCostInput");
         let infoMissing = false;
 
-        //Quito las clases que marcan como inválidos
+        //Quitamos las clases que marcan como inválidos
         productNameInput.classList.remove('is-invalid');
         productCategory.classList.remove('is-invalid');
         productCost.classList.remove('is-invalid');
 
-        //Se realizan los controles necesarios,
+        //Realizamos los controles necesarios,
         //En este caso se controla que se haya ingresado el nombre y categoría.
         //Consulto por el nombre del producto
         if (productNameInput.value === "")
@@ -114,14 +117,14 @@ document.addEventListener("DOMContentLoaded", function(e){
             infoMissing = true;
         }
         
-        //Consulto por la categoría del producto
+        //Consultamos por la categoría del producto
         if (productCategory.value === "")
         {
             productCategory.classList.add('is-invalid');
             infoMissing = true;
         }
 
-        //Consulto por el costo
+        //Consultamos por el costo
         if (productCost.value <=0)
         {
             productCost.classList.add('is-invalid');

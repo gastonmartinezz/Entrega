@@ -1,16 +1,23 @@
+//Damos valor verdadero a la constante "isLoggedIn" 
 
 const isLoggedIn = true;
      
+//Transformamos el email ingresado en la variable "username" para que figure en pantalla en el costado del navBar. 
+
 if (isLoggedIn) {
     const username = localStorage.getItem("Email");
     const usernameElement = document.getElementById("logged-in-username");
     usernameElement.textContent = username;
 } 
 
-const peugeot = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
 
-// Función para obtener y agregar productos desde la API
+// Función asincrónica para obtener y agregar productos desde la API
+
 async function agregarProductos() {
+
+  // URL de la API para obtener datos de productos
+  const peugeot = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
+
   try {
     const response = await fetch(peugeot);
 
@@ -47,6 +54,7 @@ async function agregarProductos() {
 
     } else {
       console.error();
+      alert('Ha habido un error en la carga de los productos, actualice la página')
     }
 
     //Actualiza el subtotal cuando se completa el fetch
@@ -57,7 +65,7 @@ async function agregarProductos() {
   }
 }
 
-//Agregar productos del local
+//Agregar productos del local al cargar la página
 document.addEventListener("DOMContentLoaded",()=>{
   let listaLocal = JSON.parse(localStorage.getItem("carrito"));
   const tablaLocalCarrito = document.getElementById("localProducts");
@@ -108,8 +116,10 @@ document.addEventListener("DOMContentLoaded",()=>{
 // Llama a la función para agregar productos desde la API al cargar la página
 window.addEventListener("load", agregarProductos);
 
-const CONVERSION = 0.025; // valor según la tasa de conversión actual
+// Constante para la tasa de conversión actual
+const CONVERSION = 0.025; 
 
+// Función para actualizar el subtotal basado en la cantidad ingresada por el usuario
 function actualizarSubtotal(elemento) {
   const fila = elemento.parentElement.parentElement;
   const unitCosto = fila.querySelector('.precio-unitario');
@@ -134,7 +144,7 @@ function actualizarSubtotal(elemento) {
     // Añade la moneda USD al valor del subtotal
     subtotal.textContent = ` ${newSubtotal.toFixed(2)}`;
   }
-
+    // Actualiza la cantidad en el carrito almacenada en el Local Storage
   const id = elemento.getAttribute("data-id");
   const carrito = JSON.parse(localStorage.getItem("carrito"));
 
@@ -149,7 +159,7 @@ function actualizarSubtotal(elemento) {
 }
 
 /////////////////////////////////////////////
-//Funcion que actualiza los campos Subtotal, Costo Envio y Total segun lo que esté en la pagina. (NO USA LOCAL STORAGE)
+//Funcion que actualiza los campos subtotal, costo envio y total segun lo que esté en la pagina. (NO USA LOCAL STORAGE)
 function subtotalEnvioTotal (){
 
   //Toma los elementos de los subtotales y los guarda en una lista. Itera la lista, sumandolos. Devuelve el subtotal.
@@ -168,7 +178,7 @@ function subtotalEnvioTotal (){
       costoEnvio = subtotal * parseFloat(form[i].value);
   }
 
-  //Modificar los elementos en el html
+  //Modificar los elementos en el HTML
   const DIV_SUBTOTAL = document.getElementById("subtotal");
   const DIV_COSTO_ENVIO = document.getElementById("costo-envio");
   const DIV_TOTAL = document.getElementById("total");
@@ -179,20 +189,21 @@ function subtotalEnvioTotal (){
 };
 /////////////////////////////////////////////
 
+// Función para eliminar un producto del carrito
   function eliminarProducto(button) {
   const fila = button.parentElement.parentElement;
   const id = fila.querySelector('.cantidad').getAttribute("data-id");
 
-  // Elimina el producto del carrito
-  let carrito = JSON.parse(localStorage.getItem("carrito"));
+    // Elimina el producto del carrito en el Local Storage
+    let carrito = JSON.parse(localStorage.getItem("carrito"));
   carrito = carrito.filter(producto => producto.id !== id);
   localStorage.setItem("carrito", JSON.stringify(carrito));
 
-  // Actualizamos la tabla y el subtotal
+    // Actualiza la tabla y el subtotal después de eliminar un producto
   fila.remove();
 }
 
-/* funcion de bootstrap para  chequeo de campos con feedback */
+// Manejo del formulario y validación utilizando Bootstrap y JavaScript
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function () {
   'use strict'
@@ -285,7 +296,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-//Funcionamiento de checkbox de método de pago
+    // Manejo de checkboxes para los métodos de pago
 const tarjetaCheckbox = document.getElementById("tarjetaCheckbox");
 const transferenciaCheckbox = document.getElementById("transferenciaCheckbox");
 const tarjetaFields = document.getElementById("tarjetaFields");
@@ -340,6 +351,7 @@ botonGuardar.addEventListener("click", () => {
 
 const enviar = document.getElementById("enviarBoton");
 
+    // Función de validación que muestra un mensaje de éxito si los campos son válidos
 function validacion() {
   let tarjetaPago;
   let transferenciaPago;
