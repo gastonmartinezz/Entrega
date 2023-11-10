@@ -97,7 +97,6 @@ function toggle() {
   localStorage.setItem("modo", modoLocal);
 
   toggleImgNoche();
-
 }
 //Togglear al ahcer click en el boton
 btn.addEventListener('click', toggle);
