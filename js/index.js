@@ -30,7 +30,10 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
 document.getElementById('closeSession').addEventListener('click', function() {
-    localStorage.clear();
+    //localStorage.clear();
+
+    
+
     alert('Haz cerrado sesion correctamente');
     window.location.href = 'login.html';
     

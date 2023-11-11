@@ -21,6 +21,11 @@ const ImputImg = document.getElementById('imagen');
 
 //U otra manera..
 
+//Cargar la pfp que esta en local.
+document.addEventListener("DOMContentLoaded",()=>{
+    let srcLocal = localStorage.getItem("pfp");
+    MainImg.src = "../img/" + srcLocal;
+})
 
 //Cambiar pfp cuando se submitea
 botonImg.addEventListener('click',()=>{
@@ -41,9 +46,9 @@ botonImg.addEventListener('click',()=>{
         MainImg.src = "../img/" + imgSrc.substring(12);
 
         //Añadir a local--
+        localStorage.setItem("pfp", imgSrc.substring(12))
 
         //Borrar value del iMput al terminar
         ImputImg.value='';
-    }
-    
+    } 
 })

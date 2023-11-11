@@ -8,6 +8,7 @@ document.getElementById('formulario').addEventListener('submit', (e) =>{
 
     localStorage.setItem('Email', mail);
     localStorage.setItem('pass', pass);
+    localStorage.setItem('pfp', 'img_perfil.png');
 
     console.log(localStorage);
 
