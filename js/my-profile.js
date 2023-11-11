@@ -32,15 +32,26 @@ const inputCelular = document.getElementById("celular");
 botonGuardar.addEventListener("click", function(event){
     event.preventDefault();
 
+    resetValidationClasses();
+    
     if (
         inputPrimerNombre.value.trim() === "" ||
         inputPrimerApellido.value.trim() === "" ||
         inputEmail.value.trim() === "" ||
         inputCelular.value.trim() === ""
       ) {
-        alert("Por favor, complete los campos obligatorios");
+
+        setInputInvalid(inputPrimerNombre);
+        setInputInvalid(inputPrimerApellido);
+        setInputInvalid(inputEmail);
+        setInputInvalid(inputCelular);
         return;
-      }
+      }  else {
+        
+        setInputValid(inputPrimerNombre);
+        setInputValid(inputPrimerApellido);
+        setInputValid(inputEmail);
+        setInputValid(inputCelular);
 
       const perfil = {
         primerNombre: inputPrimerNombre.value.trim(),
@@ -54,8 +65,23 @@ botonGuardar.addEventListener("click", function(event){
 
       localStorage.setItem("perfilUsuario", JSON.stringify(perfil));
       alert("Datos guardados con exito")
+    }
 });
 
+function resetValidationClasses() {
+  const inputs = document.querySelectorAll(".form-control");
+  inputs.forEach((input) => {
+      input.classList.remove("is-invalid", "is-valid");
+  });
+}
+
+function setInputInvalid(inputElement) {
+  inputElement.classList.add("is-invalid");
+}
+
+function setInputValid(inputElement) {
+  inputElement.classList.add("is-valid");
+}
 
 
 
