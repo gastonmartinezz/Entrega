@@ -25,8 +25,10 @@ document.addEventListener("DOMContentLoaded", function(){
         localStorage.setItem("catID", 103);
         window.location = "products.html"
     });
-});
 
+    //mostrar alt pfp si noche
+    toggleImgNoche();
+});
 
 
 document.getElementById('closeSession').addEventListener('click', function() {
@@ -40,4 +42,15 @@ document.getElementById('closeSession').addEventListener('click', function() {
 if(passvalidation === null || passvalidation === '' ||  mailvalidation === 'undefined' || mailvalidation === null){
     alert('Necesitas inicar sesion');
     window.location.href = 'login.html';
+}
+
+//JS Para cambiar imagen si noche
+function toggleImgNoche(){
+    let modo = localStorage.getItem("modo");
+    let imagen = document.getElementsByClassName("jumbotron")[0];
+    if (modo == "noche"){
+        imagen.classList.add("oscuro");
+    } else if (imagen.classList.contains("oscuro")){
+        imagen.classList.remove("oscuro");
+    }
 }
