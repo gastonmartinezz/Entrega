@@ -322,7 +322,7 @@ nav button {
 
   background-color: #FFF; /* Fondo blanco */
   padding: 20px;
-  border-radius: 10px;
+ /*  border-radius: 10px; */
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra ligera */
   height: 100%;
   
@@ -387,4 +387,30 @@ h5{
   background-color: #181d31;
   color: white;
   
+}
+
+.noche #mandar{
+
+  background-color: #F09100;
+  color: white;
+  font-weight: bolder;
+}
+.noche input{
+  color: #070A18;
+}
+
+.noche .profile{
+  color: #070A18;
+}
+.noche .loginfo{
+
+  background-color: #181d31;
+
+}
+
+.noche #ruta{
+
+  background-color: #F09100;
+  color: white;
+  font-weight: bolder;
 }
