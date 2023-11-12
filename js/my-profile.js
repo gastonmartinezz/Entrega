@@ -7,19 +7,21 @@ if (isLoggedIn) {
     usernameElement.textContent = username;
 } 
 
-const botonImg = document.getElementById('ruta');
+/* const botonImg = document.getElementById('ruta');
 const MainImg = document.getElementById('perfilImg');
 const ImputImg = document.getElementById('imagen');
 
 
 botonImg.addEventListener('click',()=>{
-
+  event.preventDefault(); 
   MainImg.src = ImputImg.value;
-  console.log(ImputImg.value)
-
   localStorage.setItem("foto", ImputImg.value);
-
+  MainImg.src = localStorage.getItem('foto');
 })
+
+document.addEventListener("DOMContentLoaded", () => {
+  MainImg.src = localStorage.getItem('foto');
+}) */
 
 const botonGuardar = document.getElementById("mandar");
 const inputPrimerNombre = document.getElementById("primer-nombre");
@@ -85,29 +87,49 @@ function setInputValid(inputElement) {
 
 document.addEventListener('DOMContentLoaded', function () {
   // Obtener elementos del DOM
-  var inputFile = document.getElementById('imagen');
-  var profileImage = document.getElementById('perfilImg');
+  const inputFile = document.getElementById('imagen');
+  const profileImage = document.getElementById('perfilImg');
+  const guardarBtn = document.getElementById('ruta');
+
+  // Función para cargar la imagen desde el almacenamiento local
+  function cargarImagen() {
+    let fotoGuardada = localStorage.getItem('foto');
+    if (fotoGuardada) {
+      profileImage.src = fotoGuardada;
+      profileImage.style.display = 'block';
+    }
+  }
+
+  // Cargar la imagen al iniciar la sesión
+  cargarImagen();
 
   // Escuchar cambios en el input de archivo
   inputFile.addEventListener('change', function (event) {
-      // Obtener el archivo seleccionado
-      var file = event.target.files[0];
+    // Obtener el archivo seleccionado
+    let file = event.target.files[0];
 
-      if (file) {
-          // Crear objeto FileReader para leer el contenido del archivo
-          var reader = new FileReader();
+    if (file) {
+      // Crear objeto FileReader para leer el contenido del archivo
+      let reader = new FileReader();
 
-          // Configurar el evento onload para ser notificado cuando la lectura esté completa
-          reader.onload = function (e) {
-              // Asignar la URL de la imagen al src del elemento de imagen
-              profileImage.src = e.target.result;
+      // Configurar el evento onload para ser notificado cuando la lectura esté completa
+      reader.onload = function (e) {
+        // Asignar la URL de la imagen al src del elemento de imagen
+        profileImage.src = e.target.result;
+        localStorage.setItem('foto', e.target.result);
 
-              // Mostrar la imagen
-              profileImage.style.display = 'block';
-          };
+        // Mostrar la imagen
+        profileImage.style.display = 'block';
+      };
 
-          // Leer el contenido del archivo como una URL de datos (data URL)
-          reader.readAsDataURL(file);
-      }
+      // Leer el contenido del archivo como una URL de datos (data URL)
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // Manejar clic en el botón "Guardar imagen"
+  guardarBtn.addEventListener('click', function () {
+    // Llamada a la función para cargar la imagen desde el almacenamiento local
+    cargarImagen();
   });
 });
