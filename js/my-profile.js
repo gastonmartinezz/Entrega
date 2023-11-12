@@ -1,5 +1,3 @@
-
-
 const isLoggedIn = true;
      
 if (isLoggedIn) {
@@ -16,8 +14,10 @@ const ImputImg = document.getElementById('imagen');
 
 botonImg.addEventListener('click',()=>{
 
-    MainImg.src = ImputImg.value;
-    console.log(ImputImg.value)
+  MainImg.src = ImputImg.value;
+  console.log(ImputImg.value)
+
+  localStorage.setItem("foto", ImputImg.value);
 
 })
 
@@ -83,7 +83,31 @@ function setInputValid(inputElement) {
   inputElement.classList.add("is-valid");
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+  // Obtener elementos del DOM
+  var inputFile = document.getElementById('imagen');
+  var profileImage = document.getElementById('perfilImg');
 
+  // Escuchar cambios en el input de archivo
+  inputFile.addEventListener('change', function (event) {
+      // Obtener el archivo seleccionado
+      var file = event.target.files[0];
 
+      if (file) {
+          // Crear objeto FileReader para leer el contenido del archivo
+          var reader = new FileReader();
 
+          // Configurar el evento onload para ser notificado cuando la lectura esté completa
+          reader.onload = function (e) {
+              // Asignar la URL de la imagen al src del elemento de imagen
+              profileImage.src = e.target.result;
 
+              // Mostrar la imagen
+              profileImage.style.display = 'block';
+          };
+
+          // Leer el contenido del archivo como una URL de datos (data URL)
+          reader.readAsDataURL(file);
+      }
+  });
+});
