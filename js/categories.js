@@ -11,17 +11,6 @@ document.addEventListener("DOMContentLoaded", ()=> {
         document.getElementById("email").value
         
     })});
-    const isLoggedIn = true;
-     
-if (isLoggedIn) {
-       const username = localStorage.getItem("Email");
-    const usernameElement = document.getElementById("logged-in-username");
- 
-    usernameElement.textContent = username;
-} 
-
-
-
 
 const ORDER_ASC_BY_NAME = "AZ";
 const ORDER_DESC_BY_NAME = "ZA";

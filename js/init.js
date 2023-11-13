@@ -1,3 +1,21 @@
+const isLoggedIn = localStorage.getItem("Email");
+  if (isLoggedIn) {
+    const username = localStorage.getItem("Email");
+    const usernameElement = document.getElementById("logged-in-username");
+    usernameElement.textContent = username;
+} else {
+  alert('Necesitas inicar sesion');
+  window.location.href = 'login.html';
+}
+
+document.getElementById("closeSession").addEventListener("click",()=>{
+  localStorage.removeItem("Email");
+  localStorage.removeItem("pass");
+  localStorage.removeItem("perfilUsuario");
+  localStorage.removeItem("foto");
+  alert('Has cerrado la sesión');
+})
+
 
 const CATEGORIES_URL = "https://japceibal.github.io/emercado-api/cats/cat.json";
 const PUBLISH_PRODUCT_URL = "https://japceibal.github.io/emercado-api/sell/publish.json";

@@ -1,11 +1,3 @@
-const isLoggedIn = true;
-     
-if (isLoggedIn) {
-  const username = localStorage.getItem("Email");
-  const usernameElement = document.getElementById("logged-in-username");
- 
-  usernameElement.textContent = username;
-}
 
 //Defino una lista vacia que contendrá comentarios(objetos)
 let listaComentarios = [];

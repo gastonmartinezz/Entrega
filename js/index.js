@@ -1,16 +1,3 @@
-const isLoggedIn = true;
-     
-if (isLoggedIn) {
-    const username = localStorage.getItem("Email");
-    const usernameElement = document.getElementById("logged-in-username");
-    usernameElement.textContent = username;
-} 
-
-const passvalidation = localStorage.getItem('pass');
-const mailvalidation = localStorage.getItem('Email');
-
-console.log(mailvalidation);
-console.log(passvalidation);
 
 document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("autos").addEventListener("click", function() {
@@ -38,11 +25,6 @@ document.getElementById('closeSession').addEventListener('click', function() {
     
     event.stopPropagation();
 })
-
-if(passvalidation === null || passvalidation === '' ||  mailvalidation === 'undefined' || mailvalidation === null){
-    alert('Necesitas inicar sesion');
-    window.location.href = 'login.html';
-}
 
 //JS Para cambiar imagen si noche
 function toggleImgNoche(){

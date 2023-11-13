@@ -1,12 +1,3 @@
-const isLoggedIn = true;
-     
-if (isLoggedIn) {
-       const username = localStorage.getItem("Email");
-    const usernameElement = document.getElementById("logged-in-username");
- 
-    usernameElement.textContent = username;
-} 
-
 /* const botonImg = document.getElementById('ruta');
 const MainImg = document.getElementById('perfilImg');
 const ImputImg = document.getElementById('imagen');
@@ -60,12 +51,17 @@ botonGuardar.addEventListener("click", function(event){
         sgundoNombre: inputSegundoNombre.value.trim(),
         pimerApellido: inputPrimerApellido.value.trim(),
         segundoApellido: inputSegundoApellido.value.trim(),
-        email: inputEmail.value.trim(),
+        //email: inputEmail.value.trim(),
+        //se modifica el otro campo del local (el del login)
         celular: inputCelular.value.trim(),
 
       };
 
       localStorage.setItem("perfilUsuario", JSON.stringify(perfil));
+      //Arreglar el Email
+      localStorage.setItem("Email", inputEmail.value.trim());
+      document.getElementById("logged-in-username").textContent = inputEmail.value;
+      /////
       alert("Datos guardados con exito")
     }
 });
@@ -101,13 +97,15 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   //Cargar Datos del Perfil si existen
+  inputEmail.value = localStorage.getItem("Email");
+
   if (localStorage.getItem("perfilUsuario")){
     let local = JSON.parse(localStorage.getItem("perfilUsuario"));
     inputPrimerNombre.value = local.primerNombre;
     inputSegundoNombre.value = local.sgundoNombre;
     inputPrimerApellido.value = local.pimerApellido;
     inputSegundoApellido.value = local.segundoApellido;
-    inputEmail.value = local.email;
+    //inputEmail.value = local.email;
     inputCelular.value = local.celular;
   };
 

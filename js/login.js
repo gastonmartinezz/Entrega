@@ -9,7 +9,7 @@ document.getElementById('formulario').addEventListener('submit', (e) =>{
     localStorage.setItem('Email', mail);
     localStorage.setItem('pass', pass);
 
-    console.log(localStorage);
+    //console.log(localStorage);
 
     alert('Registrado con éxito!');
 
