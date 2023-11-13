@@ -100,6 +100,17 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  //Cargar Datos del Perfil si existen
+  if (localStorage.getItem("perfilUsuario")){
+    let local = JSON.parse(localStorage.getItem("perfilUsuario"));
+    inputPrimerNombre.value = local.primerNombre;
+    inputSegundoNombre.value = local.sgundoNombre;
+    inputPrimerApellido.value = local.pimerApellido;
+    inputSegundoApellido.value = local.segundoApellido;
+    inputEmail.value = local.email;
+    inputCelular.value = local.celular;
+  };
+
   // Cargar la imagen al iniciar la sesión
   cargarImagen();
 
