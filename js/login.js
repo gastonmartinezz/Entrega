@@ -15,6 +15,3 @@ document.getElementById('formulario').addEventListener('submit', (e) =>{
 
     window.location.href = 'index.html';
 })
-
-
-

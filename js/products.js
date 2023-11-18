@@ -1,7 +1,7 @@
 
 let categoriaID = localStorage.getItem("catID");
 
-const categoriaURL = `https://japceibal.github.io/emercado-api/cats_products/${categoriaID}.json`;
+const categoriaURL = CAT_PRODUCTS_URL + `${categoriaID}` + EXT_TYPE;
 
 const fichas = document.getElementsByClassName("contenedor")[0];
 const titulo = document.getElementById("tituloCategoria");

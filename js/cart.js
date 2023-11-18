@@ -1,9 +1,7 @@
-const peugeot = "https://japceibal.github.io/emercado-api/user_cart/25801.json";
-
 // Función para obtener y agregar productos desde la API
 async function agregarProductos() {
   try {
-    const response = await fetch(peugeot);
+    const response = await fetch(CART_INFO_URL);
 
     if (!response.ok) {
       throw new Error(`Error al obtener productos desde la API: ${response.status}`);

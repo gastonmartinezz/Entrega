@@ -7,7 +7,7 @@ let productoid = localStorage.getItem('idproduct');
 
 document.addEventListener("DOMContentLoaded", function () {
     
-  const ProductoURL = `https://japceibal.github.io/emercado-api/products/${productoid}.json`;
+  const ProductoURL = PRODUCT_INFO_URL + `${productoid}` + EXT_TYPE;
   
   //fetch a JSON de productos: llama a funciones de infoproductos como a los relatedproducts
   fetch(ProductoURL)
@@ -21,12 +21,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   //Fetch a JSON de comentarios
-  const Comentarios = `https://japceibal.github.io/emercado-api/products_comments/${productoid}.json`
+  const Comentarios = PRODUCT_INFO_COMMENTS_URL + `${productoid}` + EXT_TYPE;
   fetch(Comentarios)
   .then(response => response.json())
   .then(datos => agregarComentariosJSON(datos))
   .catch(error => console.log(error)) 
-
 });
 
 let divComentarios = document.getElementById("comentarios");

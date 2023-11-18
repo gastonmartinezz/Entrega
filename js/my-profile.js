@@ -1,19 +1,3 @@
-/* const botonImg = document.getElementById('ruta');
-const MainImg = document.getElementById('perfilImg');
-const ImputImg = document.getElementById('imagen');
-
-
-botonImg.addEventListener('click',()=>{
-  event.preventDefault(); 
-  MainImg.src = ImputImg.value;
-  localStorage.setItem("foto", ImputImg.value);
-  MainImg.src = localStorage.getItem('foto');
-})
-
-document.addEventListener("DOMContentLoaded", () => {
-  MainImg.src = localStorage.getItem('foto');
-}) */
-
 const botonGuardar = document.getElementById("mandar");
 const inputPrimerNombre = document.getElementById("primer-nombre");
 const inputPrimerApellido = document.getElementById("primer-apellido");
