@@ -13,5 +13,15 @@ document.getElementById('formulario').addEventListener('submit', (e) =>{
 
     alert('Registrado con éxito!');
 
-    window.location.href = 'index.html';
-})
+    //window.location.href = 'index.html';
+
+    fetch('./login', {
+        method:"POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({m:mail, p:pass})
+    })
+    .then(response => console.log(response));
+
+});

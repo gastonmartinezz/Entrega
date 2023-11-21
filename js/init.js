@@ -16,6 +16,7 @@ document.getElementById("closeSession").addEventListener("click",()=>{
   alert('Has cerrado la sesión');
 })
 
+const LOGIN = "./login";
 const CATEGORIES_URL = "./json/categorias";
 const CAT_PRODUCTS_URL = "./json/categorias/";
 const PRODUCT_INFO_URL = "./json/producto/";

@@ -1,15 +1,17 @@
 const express = require('express');
+const jwt = require("jsonwebtoken");
 
 const app = express();
 const port = 3000;
 
+// Iniciar el servidor
+app.listen(port, () => {
+  console.log(`Servidor en http://localhost:${port}`);
+});
+
 // Configurar el directorio estático para servir archivos
 app.use(express.static(__dirname));
 
-//Seccion 2, punto 1
-app.post("/login.html", (req, res) => {
-
-});
 
 ///////////////////////////
 //Mover todos los "Fetches" al servidor
@@ -49,7 +51,10 @@ app.get("/json/alerta", (req,res) =>{
 
 /////////////////////////
 
-// Iniciar el servidor
-app.listen(port, () => {
-  console.log(`Servidor en http://localhost:${port}`);
+//Seccion 2, punto 1
+app.post("/login", (req, res) => {
+
+  // ???
+  
 });
+
