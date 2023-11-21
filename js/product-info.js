@@ -7,7 +7,7 @@ let productoid = localStorage.getItem('idproduct');
 
 document.addEventListener("DOMContentLoaded", function () {
     
-  const ProductoURL = PRODUCT_INFO_URL + `${productoid}` + EXT_TYPE;
+  const ProductoURL = PRODUCT_INFO_URL + productoid;
   
   //fetch a JSON de productos: llama a funciones de infoproductos como a los relatedproducts
   fetch(ProductoURL)
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   //Fetch a JSON de comentarios
-  const Comentarios = PRODUCT_INFO_COMMENTS_URL + `${productoid}` + EXT_TYPE;
+  const Comentarios = PRODUCT_INFO_COMMENTS_URL + productoid;
   fetch(Comentarios)
   .then(response => response.json())
   .then(datos => agregarComentariosJSON(datos))

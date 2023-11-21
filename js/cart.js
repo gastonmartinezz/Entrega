@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     let cantidad = producto.cantidad;
     let id = producto.id;
   
-    fetch(PRODUCT_INFO_URL + id + ".json")
+    fetch(PRODUCT_INFO_URL + id)
     .then(response => response.json())
     .then(article => {
       let fila = document.createElement("tr");

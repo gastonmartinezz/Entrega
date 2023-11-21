@@ -16,12 +16,12 @@ document.getElementById("closeSession").addEventListener("click",()=>{
   alert('Has cerrado la sesión');
 })
 
-const CATEGORIES_URL = "./json/cats/cat.json";
-const CAT_PRODUCTS_URL = "./json/cats_products/";
-const PRODUCT_INFO_URL = "./json/products/";
-const PRODUCT_INFO_COMMENTS_URL = "./json/products_comments/";
-const CART_INFO_URL = "./json/user_cart/25801.json";
-const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
+const CATEGORIES_URL = "./json/categorias";
+const CAT_PRODUCTS_URL = "./json/categorias/";
+const PRODUCT_INFO_URL = "./json/producto/";
+const PRODUCT_INFO_COMMENTS_URL = "./json/comentarios/";
+const CART_INFO_URL = "./json/carrito";
+const CART_BUY_URL = "./json/alerta";
 const EXT_TYPE = ".json";
 
 let showSpinner = function(){

@@ -1,7 +1,7 @@
 
 let categoriaID = localStorage.getItem("catID");
 
-const categoriaURL = CAT_PRODUCTS_URL + `${categoriaID}` + EXT_TYPE;
+const categoriaURL = CAT_PRODUCTS_URL + categoriaID;
 
 const fichas = document.getElementsByClassName("contenedor")[0];
 const titulo = document.getElementById("tituloCategoria");
