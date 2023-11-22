@@ -12,6 +12,9 @@ app.listen(port, () => {
 // Configurar el directorio estático para servir archivos
 app.use(express.static(__dirname));
 
+//IMPORTANTE: Que express maneje peticiones en formato json
+app.use(express.json());
+
 
 ///////////////////////////
 //Mover todos los "Fetches" al servidor
@@ -50,11 +53,35 @@ app.get("/json/alerta", (req,res) =>{
 })
 
 /////////////////////////
+//Funciones pre-definidas:
+
+//CrearToken
+function crearToken(user) {
+  const payload = {
+    mail: user.mail,
+    pass: user.pass
+  };
+  
+  const secret = '111';
+  const options = { expiresIn: '1h' };
+
+  return jwt.sign(payload, secret, options);
+}
+
 
 //Seccion 2, punto 1
 app.post("/login", (req, res) => {
-
-  // ???
   
+  let cuerpo = req.body;
+  if (!cuerpo)
+    res.status(404).send("User login failed");
+
+  //res.send(cuerpo); 
+  let token = crearToken(cuerpo);
+
+  res.status(200).json({status: "ok", "res": token});
 });
 
+
+////
+//

@@ -15,13 +15,18 @@ document.getElementById('formulario').addEventListener('submit', (e) =>{
 
     //window.location.href = 'index.html';
 
+    let jason = {mail:'abc', pass:'wasd'};
+
     fetch('./login', {
         method:"POST",
         headers: {
+            'Accept': 'application/json',
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({m:mail, p:pass})
+        body: JSON.stringify(jason)
     })
-    .then(response => console.log(response));
+    .then(response =>response.json())
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
 
 });
