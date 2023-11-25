@@ -274,14 +274,32 @@ function agregarCarrito(id) {
   
     } else {
       localCarrito.push(infoProducto);
+      meterEnBase(infoProducto)
+
     };
   } else {
     localCarrito= [];
     localCarrito.push(infoProducto);
+    meterEnBase(infoProducto)
+
   }
   localStorage.setItem("carrito", JSON.stringify(localCarrito));
 }
-
+/* 
+function meterEnBase (i){
+  fetch("/carrito",{
+    method: "POST",
+    body: JSON.stringify(i),
+    headers: {
+      'Accept': 'application/json',
+      "Content-Type": "application/json"
+    }}
+  )
+  .then(response => response.json())
+  .then( data => console.log(data))
+  .catch(error => console.log (error));
+}
+ */
 function viajarCarrito(){
   window.location = "cart.html";
 }

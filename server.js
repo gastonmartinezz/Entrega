@@ -1,8 +1,21 @@
 const express = require('express');
 const jwt = require("jsonwebtoken");
 
+//mariadb
+const mariadb = require("mariadb");
+const pool = mariadb.createPool({
+  host: 'localhost',
+  port: 3306,
+  user:'root', 
+  password: '',
+  database:'webpage'
+});
+
 const app = express();
 const port = 3000;
+
+const KEY = 'contra';
+let TOKEN;
 
 // Iniciar el servidor
 app.listen(port, () => {
@@ -55,21 +68,23 @@ app.get("/json/alerta", (req,res) =>{
 /////////////////////////
 //Funciones pre-definidas:
 
-//CrearToken
+//Funcion para CrearToken con 1h de expiracion
 function crearToken(user) {
   const payload = {
     mail: user.mail,
     pass: user.pass
   };
   
-  const secret = '111';
+  const secret = '123';
   const options = { expiresIn: '1h' };
 
-  return jwt.sign(payload, secret, options);
+  TOKEN = jwt.sign(payload, secret, options)
+  return TOKEN;
 }
 
 
 //Seccion 2, punto 1
+//POST. Crea un token y lo devuelve como json
 app.post("/login", (req, res) => {
   
   let cuerpo = req.body;
@@ -78,10 +93,24 @@ app.post("/login", (req, res) => {
 
   //res.send(cuerpo); 
   let token = crearToken(cuerpo);
-
-  res.status(200).json({status: "ok", "res": token});
+  res.status(200).json({"token": token});
 });
 
+//Seccion 3
 
 ////
-//
+
+
+//////
+//BASE DE DATOS
+/* 
+app.post("/carrito", async(req,res) => {
+  let objeto = req.body;
+  try {
+    const result = await pool.query("insert into carrito (id, cantidad) values (?,?)", [objeto.id, objeto.cantidad]);
+    res.send(result);
+  } catch (err) {
+    throw err;
+  }
+});
+ */
