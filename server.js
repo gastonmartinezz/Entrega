@@ -1,5 +1,7 @@
 const express = require('express');
 const jwt = require("jsonwebtoken");
+const fs = require("fs");
+const secret = '123';
 
 //mariadb
 const mariadb = require("mariadb");
@@ -12,7 +14,7 @@ const pool = mariadb.createPool({
 });
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 const KEY = 'contra';
 let TOKEN;
@@ -69,7 +71,7 @@ app.get("/json/alerta", (req,res) =>{
 //Funciones pre-definidas:
 
 //Funcion para CrearToken con 1h de expiracion
-function crearToken(user) {
+/* function crearToken(user) {
   const payload = {
     mail: user.mail,
     pass: user.pass
@@ -81,21 +83,59 @@ function crearToken(user) {
   TOKEN = jwt.sign(payload, secret, options)
   return TOKEN;
 }
-
+*/
 
 //Seccion 2, punto 1
 //POST. Crea un token y lo devuelve como json
 app.post("/login", (req, res) => {
+  const mail = req.body.mail;
+  const pass = req.body.pass;
+
+  if (mail && pass) {
+    const token = jwt.sign({mail}, secret, {expiresIn: "1h"});
+    console.log("Token generado:", token);
+    res.cookie("access-token", token, {httpOnly: true, secure: true});
+    res.status(200).json({token});
+  } else {
+    res.status(401).json({message: "Usuario no encontrado"});
+  }
   
-  let cuerpo = req.body;
+  /* let cuerpo = req.body;
   if (!cuerpo)
     res.status(404).send("User login failed");
 
   //res.send(cuerpo); 
   let token = crearToken(cuerpo);
-  res.status(200).json({"token": token});
+  res.status(200).json({"token": token}); */
 });
 
+// Middleware de autorización para la ruta /cart
+const authorizarMiddleware = (req, res, next) => {
+  const tokenWitCookie = req.headers['cookie'];
+  const token = tokenWitCookie.replace('access-token=', '');
+
+  if (!token) {
+    return res.status(401).json({ message: "Accesso denegado. Token no proporcionado." });
+  }
+
+  try {
+    const decoded = jwt.verify(token, secret);
+    console.log("accesso correcto");
+    console.log(decoded);
+    next();
+  } catch (error) {
+    console.error("Error al decodificar el token:", error);
+    return res.status(401).json({ message: "Accesso denegado. Token incorrecto." });
+  }
+};
+
+// Aplicar el middleware de autorización solo para la ruta /cart
+
+app.get("/cart", (req, res) => {
+  res.sendFile(__dirname + '/cart.html');
+});
+
+app.use("/cart", authorizarMiddleware);
 //Seccion 3
 
 ////

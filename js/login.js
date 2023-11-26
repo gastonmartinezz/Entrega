@@ -1,5 +1,5 @@
-document.getElementById('formulario').addEventListener('submit', (e) =>{
-    e.preventDefault()
+document.getElementById('formulario').addEventListener('submit', (e) => {
+    e.preventDefault();
     const pass = document.getElementById('pass').value;
     const mail = document.getElementById('mail').value;
 
@@ -9,24 +9,21 @@ document.getElementById('formulario').addEventListener('submit', (e) =>{
     localStorage.setItem('Email', mail);
     localStorage.setItem('pass', pass);
 
-    //console.log(localStorage);
-
-    alert('Registrado con éxito!');
-
-    //window.location.href = 'index.html';
-
-    let jason = {mail:'abc', pass:'wasd'};
+    let jason = { mail: mail, pass: pass };
 
     fetch('./login', {
-        method:"POST",
+        method: "POST",
         headers: {
             'Accept': 'application/json',
-            "Content-Type": "application/json"
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(jason)
     })
-    .then(response =>response.json())
-    .then(data => console.log(data))
-    .catch(error => console.log(error))
+    .then(response => response.json())
+    .then(data => {
+        const token = data.token;
+        console.log('Access Token:', token);
 
+        window.location.href = 'index.html';
+    })
 });
