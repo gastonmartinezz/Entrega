@@ -274,13 +274,11 @@ function agregarCarrito(id) {
   
     } else {
       localCarrito.push(infoProducto);
-      meterEnBase(infoProducto)
 
     };
   } else {
     localCarrito= [];
     localCarrito.push(infoProducto);
-    meterEnBase(infoProducto)
 
   }
   localStorage.setItem("carrito", JSON.stringify(localCarrito));

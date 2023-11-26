@@ -344,7 +344,30 @@ function validacion() {
     transferenciaPago = false;
   }
 
-  if (formulario.classList.contains("was-validated") && (tarjetaPago || transferenciaPago)) {
-    alertSuccess.style.display = "block";
+  //Verificar el JWT
+  if( (tarjetaPago || transferenciaPago)) {
+
+    let tokenss = localStorage.getItem("tokenJWT");
+    let abc = {token: tokenss};
+
+    fetch("./cart", {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(abc)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      if (data == 420) {
+        alert("Su sesión ha expirado");
+        window.location.href = 'login.html';
+      } else {
+        alertSuccess.style.display = "block";
+      }      
+    })
+    .catch(err => console.log(err))
   }
 };

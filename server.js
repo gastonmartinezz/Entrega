@@ -16,9 +16,6 @@ const pool = mariadb.createPool({
 const app = express();
 const port = 3001;
 
-const KEY = 'contra';
-let TOKEN;
-
 // Iniciar el servidor
 app.listen(port, () => {
   console.log(`Servidor en http://localhost:${port}`);
@@ -92,9 +89,9 @@ app.post("/login", (req, res) => {
   const pass = req.body.pass;
 
   if (mail && pass) {
-    const token = jwt.sign({mail}, secret, {expiresIn: "1h"});
+    const token = jwt.sign({mail}, secret, {expiresIn: 60});
     console.log("Token generado:", token);
-    res.cookie("access-token", token, {httpOnly: true, secure: true});
+    //res.cookie("access-token", token, {httpOnly: true, secure: true});
     res.status(200).json({token});
   } else {
     res.status(401).json({message: "Usuario no encontrado"});
@@ -109,7 +106,7 @@ app.post("/login", (req, res) => {
   res.status(200).json({"token": token}); */
 });
 
-// Middleware de autorización para la ruta /cart
+// Middleware de autorización para la ruta /cart /COOKIE/
 const authorizarMiddleware = (req, res, next) => {
   const tokenWitCookie = req.headers['cookie'];
   const token = tokenWitCookie.replace('access-token=', '');
@@ -129,13 +126,41 @@ const authorizarMiddleware = (req, res, next) => {
   }
 };
 
+//v2 /SOLO JWT/
+function verificarToken(req, res, next){
+  
+  let tokenEntrada = req.body.token;
+  if (tokenEntrada){
+
+    jwt.verify(tokenEntrada, secret, (err, decoded) =>{
+      if (err){
+        console.log("Token invalido");
+        res.sendStatus(420).json({message: "Token Invalido"});
+      } else {
+        console.log("Token Valido: ", decoded);
+        next();
+      }
+    })
+  } else {
+    console.log("No se mando un token");
+    res.status(404).json({message: "Todo mal"});
+  }
+}
+
 // Aplicar el middleware de autorización solo para la ruta /cart
 
 app.get("/cart", (req, res) => {
   res.sendFile(__dirname + '/cart.html');
 });
 
-app.use("/cart", authorizarMiddleware);
+//app.use("/cart", authorizarMiddleware);
+
+//un post que se hace en carrito y deberia validar el token del usuario
+app.post("/cart", verificarToken, (req,res)=>{
+
+  res.json( {message: "BIENN"});
+})
+
 //Seccion 3
 
 ////

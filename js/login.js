@@ -24,6 +24,9 @@ document.getElementById('formulario').addEventListener('submit', (e) => {
         const token = data.token;
         console.log('Access Token:', token);
 
+        //añadir al local
+        localStorage.setItem("tokenJWT", token);
+
         window.location.href = 'index.html';
     })
 });
