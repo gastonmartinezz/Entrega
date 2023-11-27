@@ -2,24 +2,26 @@ const express = require('express');
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
 const secret = '123';
+const bodyParser = require("body-parser");
 
 //mariadb
 const mariadb = require("mariadb");
 const pool = mariadb.createPool({
   host: 'localhost',
-  port: 3306,
   user:'root', 
-  password: '',
-  database:'webpage'
+  password: '2307',
+  database:'entrega'
 });
 
 const app = express();
-const port = 3001;
+const port = 3000;
 
 // Iniciar el servidor
 app.listen(port, () => {
   console.log(`Servidor en http://localhost:${port}`);
 });
+
+app.use(bodyParser.json());
 
 // Configurar el directorio estático para servir archivos
 app.use(express.static(__dirname));
@@ -89,7 +91,7 @@ app.post("/login", (req, res) => {
   const pass = req.body.pass;
 
   if (mail && pass) {
-    const token = jwt.sign({mail}, secret, {expiresIn: 60});
+    const token = jwt.sign({mail}, secret, {expiresIn: "1h"});
     console.log("Token generado:", token);
     //res.cookie("access-token", token, {httpOnly: true, secure: true});
     res.status(200).json({token});
@@ -107,7 +109,7 @@ app.post("/login", (req, res) => {
 });
 
 // Middleware de autorización para la ruta /cart /COOKIE/
-const authorizarMiddleware = (req, res, next) => {
+/* const authorizarMiddleware = (req, res, next) => {
   const tokenWitCookie = req.headers['cookie'];
   const token = tokenWitCookie.replace('access-token=', '');
 
@@ -124,7 +126,7 @@ const authorizarMiddleware = (req, res, next) => {
     console.error("Error al decodificar el token:", error);
     return res.status(401).json({ message: "Accesso denegado. Token incorrecto." });
   }
-};
+}; */
 
 //v2 /SOLO JWT/
 function verificarToken(req, res, next){
@@ -156,26 +158,29 @@ app.get("/cart", (req, res) => {
 //app.use("/cart", authorizarMiddleware);
 
 //un post que se hace en carrito y deberia validar el token del usuario
-app.post("/cart", verificarToken, (req,res)=>{
-
+app.post("/cart", verificarToken, async (req,res)=>{
   res.json( {message: "BIENN"});
-})
 
-//Seccion 3
-
-////
-
-
-//////
-//BASE DE DATOS
-/* 
-app.post("/carrito", async(req,res) => {
-  let objeto = req.body;
+  let conn;
   try {
-    const result = await pool.query("insert into carrito (id, cantidad) values (?,?)", [objeto.id, objeto.cantidad]);
-    res.send(result);
-  } catch (err) {
-    throw err;
+    let carrito = localStorage.getItem("carrito");
+    req.body = carrito;
+
+    if (!id || !cant) {
+      return res.status(400).json({ message: "Los datos no son válidos." });
+    }
+
+    const conn = await pool.getConnection();
+
+    const response = await conn.query(
+      "INSERT INTO carrito(id, cant) VALUES (?, ?)",
+      [req.body[0].id, req.body[0].cantidad]
+    );
+    //res.json({id: parseInt(response.insertId), ...req.body});
+        
+  } catch(error) {
+    res.status(500).json({message: "El servidor se rompió."})
+  }finally {
+    if (conn) conn.release();
   }
-});
- */
+})
