@@ -136,8 +136,6 @@ function filtrarProductos() {
 }
 
 function viajar(x){
-
   localStorage.setItem('idproduct', x);
   window.location.href = 'product-info.html';
-    
 }
