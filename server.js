@@ -9,8 +9,9 @@ const mariadb = require("mariadb");
 const pool = mariadb.createPool({
   host: 'localhost',
   user:'root', 
-  password: '2307',
-  database:'entrega'
+  password: '',
+  database:'webpage',
+  port:'3306'
 });
 
 const app = express();
@@ -158,29 +159,32 @@ app.get("/cart", (req, res) => {
 //app.use("/cart", authorizarMiddleware);
 
 //un post que se hace en carrito y deberia validar el token del usuario
-app.post("/cart", verificarToken, async (req,res)=>{
-  res.json( {message: "BIENN"});
+app.post("/cart", verificarToken, async(req,res)=>{
 
-  let conn;
+  const conn = await pool.getConnection();
+  let carrito = req.body.data;
   try {
-    let carrito = localStorage.getItem("carrito");
-    req.body = carrito;
 
-    if (!id || !cant) {
-      return res.status(400).json({ message: "Los datos no son válidos." });
-    }
-
-    const conn = await pool.getConnection();
-
-    const response = await conn.query(
-      "INSERT INTO carrito(id, cant) VALUES (?, ?)",
-      [req.body[0].id, req.body[0].cantidad]
+    //1. Vaciar el carrito
+    await conn.query(
+     "TRUNCATE TABLE carrito"
     );
-    //res.json({id: parseInt(response.insertId), ...req.body});
-        
-  } catch(error) {
-    res.status(500).json({message: "El servidor se rompió."})
-  }finally {
+    
+    for (let i = 0; i < carrito.length; i++){
+      let productID = carrito[i].id;
+      let productCANT = carrito[i].cantidad;
+      console.log(productID, productCANT);
+
+      //2.Añadir elementos y sus cantidades
+      await conn.query(
+        "INSERT INTO carrito(id, cantidad) VALUES (?, ?)",
+        [productID, productCANT]
+      );
+    }
+    res.status(200).json({message: "Items del carrito guardados"})
+  } catch (error) {
+    res.status(500).json({message: "Error al guardar carrito"})
+  } finally{
     if (conn) conn.release();
   }
 })

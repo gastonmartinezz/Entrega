@@ -348,7 +348,9 @@ function validacion() {
   if( (tarjetaPago || transferenciaPago)) {
 
     let tokenss = localStorage.getItem("tokenJWT");
-    let abc = {token: tokenss};
+    let arreglo = JSON.parse(localStorage.getItem("carrito"));
+
+    let abc = {token: tokenss, data: arreglo};
 
     fetch("./cart", {
       method: "POST",
